@@ -59,7 +59,7 @@ AQR Open API는 AQR 개발자 Token을 파라메터로 입력해야 사용할 �
 
 ```shell
 
-curl -H "AQR-DEVELOPER-TOKEN: <DEVELOPER TOKEN>" -H "Content-type: application/json" -X POST -d '{"email_address":"<EMAILID>", "account_number":"1234567894321", "bank_id":"1", "account_owner":"<OWNER NAME>","phone_number":"01012341234","account_name":"<ACCOUNT NAME>"}' https://aplx.link/api/
+curl -H "AQR-DEVELOPER-TOKEN: <DEVELOPER TOKEN>" -H "Content-type: application/x-www-form-urlencoded" -X POST -d 'email_address=<EMAILID>&account_number=1234567894321&bank_id=1&account_owner=<OWNER NAME>&phone_number=01012341234&account_name=<ACCOUNT NAME>' https://aplx.link/api/
 
 ```
 
@@ -73,7 +73,7 @@ $body['phone_number'] = '01012341234';
 $body['account_name'] = '<ACCOUNT NAME>';
 
 $headers = array(
-        'Content-Type: application/json',
+        'Content-Type: application/x-www-form-urlencoded',
         'AQR-DEVELOPER-TOKEN: <DEVELOPER TOKEN>'
 );
 
@@ -94,15 +94,21 @@ echo $response;
 
 ```javascript
 
+var formdata = new FormData();
+formdata.append("email_address", "<EMAILID>");
+formdata.append("account_number", "123456789432");
+formdata.append("bank_id", "1");
+formdata.append("account_owner", "<OWNER NAME>");
+formdata.append("phone_number", "01012341234");
+formdata.append("account_name", "<ACCOUNT NAME>");
 
-var jdata = {"email_address":"<EMAILID>", "account_number":"1234567894321", "bank_id":"1", "account_owner":"<OWNER NAME>","phone_number":"01012341234","account_name":"<ACCOUNT NAME>"};
 
 $.ajax({url : "https://aplx.link/api/",
        dataType : "json",
-       contentType : "application/json",
+       contentType : "application/x-www-form-urlencoded",
        crossDomain: true,
        cache : false,
-       data : JSON.stringify(jdata),
+       data : formdata,
        type : "POST",
        async: false,
        beforeSend: function(request) {
@@ -125,13 +131,13 @@ $.ajax({url : "https://aplx.link/api/",
 
 import requests
 headers = {
-    'Content-Type': 'application/json',
+    'Content-Type': 'application/x-www-form-urlencoded',
     'AQR-DEVELOPER-TOKEN' : '<DEVELOPER TOKEN>'
 }
-data = {"email_address":"<EMAILID>", "account_number":"1234567894321", "bank_id":"1", "account_owner":"<OWNER NAME>","phone_number":"01012341234","account_name":"<ACCOUNT NAME>"}
+data = "email_address=<EMAILID>&account_number=1234567894321&bank_id=1&account_owner=<OWNER NAME>&phone_number=01012341234&account_name=<ACCOUNT NAME>"
 url = 'https://aplx.link/api/'
 response = requests.post(url, headers=headers,
-                         data=json.dumps(data))
+                         data=data)
 response.raise_for_status()
 'response.json()
 

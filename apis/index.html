@@ -356,7 +356,7 @@
 
 <p><a href="https://aplx.link/manager">AQR 계좌 정보 관리 사이트</a>.</p>
 <h1 id='885fe0f983'>계좌 정보 생성</h1><h2 id='e509655454'>계좌 정보 생성하기</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>
-curl <span class="nt">-H</span> <span class="s2">"AQR-DEVELOPER-TOKEN: &lt;DEVELOPER TOKEN&gt;"</span> <span class="nt">-H</span> <span class="s2">"Content-type: application/json"</span> <span class="nt">-X</span> POST <span class="nt">-d</span> <span class="s1">'{"email_address":"&lt;EMAILID&gt;", "account_number":"1234567894321", "bank_id":"1", "account_owner":"&lt;OWNER NAME&gt;","phone_number":"01012341234","account_name":"&lt;ACCOUNT NAME&gt;"}'</span> https://aplx.link/api/
+curl <span class="nt">-H</span> <span class="s2">"AQR-DEVELOPER-TOKEN: &lt;DEVELOPER TOKEN&gt;"</span> <span class="nt">-H</span> <span class="s2">"Content-type: application/x-www-form-urlencoded"</span> <span class="nt">-X</span> POST <span class="nt">-d</span> <span class="s1">'email_address=&lt;EMAILID&gt;&amp;account_number=1234567894321&amp;bank_id=1&amp;account_owner=&lt;OWNER NAME&gt;&amp;phone_number=01012341234&amp;account_name=&lt;ACCOUNT NAME&gt;'</span> https://aplx.link/api/
 
 </code></pre></div><div class="highlight"><pre class="highlight php tab-php"><code>
 <span class="nv">$body</span><span class="p">[</span><span class="s1">'email_address'</span><span class="p">]</span> <span class="o">=</span> <span class="s1">'&lt;EMAILID&gt;'</span><span class="p">;</span>
@@ -367,7 +367,7 @@ curl <span class="nt">-H</span> <span class="s2">"AQR-DEVELOPER-TOKEN: &lt;DEVEL
 <span class="nv">$body</span><span class="p">[</span><span class="s1">'account_name'</span><span class="p">]</span> <span class="o">=</span> <span class="s1">'&lt;ACCOUNT NAME&gt;'</span><span class="p">;</span>
 
 <span class="nv">$headers</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span>
-        <span class="s1">'Content-Type: application/json'</span><span class="p">,</span>
+        <span class="s1">'Content-Type: application/x-www-form-urlencoded'</span><span class="p">,</span>
         <span class="s1">'AQR-DEVELOPER-TOKEN: &lt;DEVELOPER TOKEN&gt;'</span>
 <span class="p">);</span>
 
@@ -385,15 +385,21 @@ curl <span class="nt">-H</span> <span class="s2">"AQR-DEVELOPER-TOKEN: &lt;DEVEL
 <span class="k">echo</span> <span class="nv">$response</span><span class="p">;</span>
 
 </code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code>
+<span class="kd">var</span> <span class="nx">formdata</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">FormData</span><span class="p">();</span>
+<span class="nx">formdata</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="dl">"</span><span class="s2">email_address</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">&lt;EMAILID&gt;</span><span class="dl">"</span><span class="p">);</span>
+<span class="nx">formdata</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="dl">"</span><span class="s2">account_number</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">123456789432</span><span class="dl">"</span><span class="p">);</span>
+<span class="nx">formdata</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="dl">"</span><span class="s2">bank_id</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">1</span><span class="dl">"</span><span class="p">);</span>
+<span class="nx">formdata</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="dl">"</span><span class="s2">account_owner</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">&lt;OWNER NAME&gt;</span><span class="dl">"</span><span class="p">);</span>
+<span class="nx">formdata</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="dl">"</span><span class="s2">phone_number</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">01012341234</span><span class="dl">"</span><span class="p">);</span>
+<span class="nx">formdata</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="dl">"</span><span class="s2">account_name</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">&lt;ACCOUNT NAME&gt;</span><span class="dl">"</span><span class="p">);</span>
 
-<span class="kd">var</span> <span class="nx">jdata</span> <span class="o">=</span> <span class="p">{</span><span class="dl">"</span><span class="s2">email_address</span><span class="dl">"</span><span class="p">:</span><span class="dl">"</span><span class="s2">&lt;EMAILID&gt;</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">account_number</span><span class="dl">"</span><span class="p">:</span><span class="dl">"</span><span class="s2">1234567894321</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">bank_id</span><span class="dl">"</span><span class="p">:</span><span class="dl">"</span><span class="s2">1</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">account_owner</span><span class="dl">"</span><span class="p">:</span><span class="dl">"</span><span class="s2">&lt;OWNER NAME&gt;</span><span class="dl">"</span><span class="p">,</span><span class="dl">"</span><span class="s2">phone_number</span><span class="dl">"</span><span class="p">:</span><span class="dl">"</span><span class="s2">01012341234</span><span class="dl">"</span><span class="p">,</span><span class="dl">"</span><span class="s2">account_name</span><span class="dl">"</span><span class="p">:</span><span class="dl">"</span><span class="s2">&lt;ACCOUNT NAME&gt;</span><span class="dl">"</span><span class="p">};</span>
 
 <span class="nx">$</span><span class="p">.</span><span class="nx">ajax</span><span class="p">({</span><span class="na">url</span> <span class="p">:</span> <span class="dl">"</span><span class="s2">https://aplx.link/api/</span><span class="dl">"</span><span class="p">,</span>
        <span class="na">dataType</span> <span class="p">:</span> <span class="dl">"</span><span class="s2">json</span><span class="dl">"</span><span class="p">,</span>
-       <span class="na">contentType</span> <span class="p">:</span> <span class="dl">"</span><span class="s2">application/json</span><span class="dl">"</span><span class="p">,</span>
+       <span class="na">contentType</span> <span class="p">:</span> <span class="dl">"</span><span class="s2">application/x-www-form-urlencoded</span><span class="dl">"</span><span class="p">,</span>
        <span class="na">crossDomain</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
        <span class="na">cache</span> <span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
-       <span class="na">data</span> <span class="p">:</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">jdata</span><span class="p">),</span>
+       <span class="na">data</span> <span class="p">:</span> <span class="nx">formdata</span><span class="p">,</span>
        <span class="na">type</span> <span class="p">:</span> <span class="dl">"</span><span class="s2">POST</span><span class="dl">"</span><span class="p">,</span>
        <span class="na">async</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
        <span class="na">beforeSend</span><span class="p">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">request</span><span class="p">)</span> <span class="p">{</span>
@@ -413,13 +419,13 @@ curl <span class="nt">-H</span> <span class="s2">"AQR-DEVELOPER-TOKEN: &lt;DEVEL
 </code></pre></div><div class="highlight"><pre class="highlight python tab-python"><code>
 <span class="kn">import</span> <span class="nn">requests</span>
 <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s">'Content-Type'</span><span class="p">:</span> <span class="s">'application/json'</span><span class="p">,</span>
+    <span class="s">'Content-Type'</span><span class="p">:</span> <span class="s">'application/x-www-form-urlencoded'</span><span class="p">,</span>
     <span class="s">'AQR-DEVELOPER-TOKEN'</span> <span class="p">:</span> <span class="s">'&lt;DEVELOPER TOKEN&gt;'</span>
 <span class="p">}</span>
-<span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="s">"email_address"</span><span class="p">:</span><span class="s">"&lt;EMAILID&gt;"</span><span class="p">,</span> <span class="s">"account_number"</span><span class="p">:</span><span class="s">"1234567894321"</span><span class="p">,</span> <span class="s">"bank_id"</span><span class="p">:</span><span class="s">"1"</span><span class="p">,</span> <span class="s">"account_owner"</span><span class="p">:</span><span class="s">"&lt;OWNER NAME&gt;"</span><span class="p">,</span><span class="s">"phone_number"</span><span class="p">:</span><span class="s">"01012341234"</span><span class="p">,</span><span class="s">"account_name"</span><span class="p">:</span><span class="s">"&lt;ACCOUNT NAME&gt;"</span><span class="p">}</span>
+<span class="n">data</span> <span class="o">=</span> <span class="s">"email_address=&lt;EMAILID&gt;&amp;account_number=1234567894321&amp;bank_id=1&amp;account_owner=&lt;OWNER NAME&gt;&amp;phone_number=01012341234&amp;account_name=&lt;ACCOUNT NAME&gt;"</span>
 <span class="n">url</span> <span class="o">=</span> <span class="s">'https://aplx.link/api/'</span>
 <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="n">post</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span>
-                         <span class="n">data</span><span class="o">=</span><span class="n">json</span><span class="p">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">data</span><span class="p">))</span>
+                         <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
 <span class="n">response</span><span class="p">.</span><span class="n">raise_for_status</span><span class="p">()</span>
 <span class="s">'response.json()
 
