@@ -49,7 +49,7 @@ AQR 개발자를 위한 Open API사용법과 예제코드를 제공합니다.
 >
 
 AQR Open API는 AQR 개발자 Token을 파라메터로 입력해야 사용할 수 있습니다.
-개발자 Token은 아래의 AQR 계정 관리 사이트에 가입 및 로그인 후 "개인정보수정" 메뉴에서 받을 수 있습니다.
+개발자 Token은 아래의 AQR 계정 관리 사이트에 가입 및 로그인 후 "개인정보수정" 메뉴에서 확인 할 수 있습니다.
 
 [AQR 계좌 정보 관리 사이트](https://aplx.link/manager).
 
@@ -59,7 +59,7 @@ AQR Open API는 AQR 개발자 Token을 파라메터로 입력해야 사용할 �
 
 ```shell
 
-curl -H "AQR-DEVELOPER-TOKEN: <DEVELOPER TOKEN>" -H "Content-type: application/x-www-form-urlencoded" -X POST -d 'email_address=<EMAILID>&account_number=1234567894321&bank_id=1&account_owner=<OWNER NAME>&phone_number=01012341234&account_name=<ACCOUNT NAME>' https://aplx.link/api/
+curl -H "AQR-DEVELOPER-TOKEN: <DEVELOPER TOKEN>" -H "Content-type: application/x-www-form-urlencoded" -X POST -d 'email_address=<EMAILID>&account_number=1234567894321&bank_id=1&account_owner=<OWNER NAME>&phone_number=01012341234&account_name=<ACCOUNT NAME>&action=aqr_create' https://api.aplx.link
 
 ```
 
@@ -71,6 +71,7 @@ $body['bank_id'] = '1';
 $body['account_owner'] = '<OWNER NAME>';
 $body['phone_number'] = '01012341234';
 $body['account_name'] = '<ACCOUNT NAME>';
+$body['action'] = 'aqr_create';
 
 $headers = array(
         'Content-Type: application/x-www-form-urlencoded',
@@ -78,12 +79,12 @@ $headers = array(
 );
 
 $ch = curl_init();
-curl_setopt($ch, CURLOPT_URL, 'https://aplx.link/api/');
+curl_setopt($ch, CURLOPT_URL, 'https://api.aplx.link');
 curl_setopt($ch, CURLOPT_HTTPHEADER,  $headers);
 curl_setopt($ch, CURLOPT_POST,    true);
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-curl_setopt($ch, CURLOPT_POSTFIELDS,json_encode($body));
+curl_setopt($ch, CURLOPT_POSTFIELDS,http_build_query($body));
 $response = curl_exec($ch);
 //$json_list= json_decode($response, true);
 curl_close($ch);
@@ -101,9 +102,9 @@ formdata.append("bank_id", "1");
 formdata.append("account_owner", "<OWNER NAME>");
 formdata.append("phone_number", "01012341234");
 formdata.append("account_name", "<ACCOUNT NAME>");
+formdata.append("action", "aqr_create");
 
-
-$.ajax({url : "https://aplx.link/api/",
+$.ajax({url : "https://api.aplx.link",
        dataType : "json",
        contentType : "application/x-www-form-urlencoded",
        crossDomain: true,
@@ -134,8 +135,8 @@ headers = {
     'Content-Type': 'application/x-www-form-urlencoded',
     'AQR-DEVELOPER-TOKEN' : '<DEVELOPER TOKEN>'
 }
-data = "email_address=<EMAILID>&account_number=1234567894321&bank_id=1&account_owner=<OWNER NAME>&phone_number=01012341234&account_name=<ACCOUNT NAME>"
-url = 'https://aplx.link/api/'
+data = "email_address=<EMAILID>&account_number=1234567894321&bank_id=1&account_owner=<OWNER NAME>&phone_number=01012341234&account_name=<ACCOUNT NAME>&action=aqr_create"
+url = 'https://api.aplx.link'
 response = requests.post(url, headers=headers,
                          data=data)
 response.raise_for_status()
@@ -156,7 +157,7 @@ response.raise_for_status()
 
 ### HTTP 요청
 
-`POST https://aplx.link/api/`
+`POST https://api.aplx.link`
 
 ### 파라메터
 
@@ -166,6 +167,7 @@ AQR-DEVELOPER-TOKEN | 부여받은 개발자 Token값을 헤더에 입력합니�
 
 POST 파라메터 | 설명
 --------- | -----------
+action | "aqr_create"를 입력합니다.
 email_address | 가입시 입력한 이메일 주소를 입력합니다.
 account_number | 계좌 번호를 입력합니다.
 bank_id | 은행 id 를 입력합니다. (은행 id 테이블 참조)
