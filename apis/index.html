@@ -315,10 +315,13 @@
             <a href="#token" class="toc-h1 toc-link" data-title="Token 발급 받기">Token 발급 받기</a>
           </li>
           <li>
-            <a href="#885fe0f983" class="toc-h1 toc-link" data-title="계좌 정보 생성">계좌 정보 생성</a>
+            <a href="#20db1de88c" class="toc-h1 toc-link" data-title="계좌 정보 생성/삭제">계좌 정보 생성/삭제</a>
               <ul class="toc-list-h2">
                   <li>
                     <a href="#e509655454" class="toc-h2 toc-link" data-title="계좌 정보 생성하기">계좌 정보 생성하기</a>
+                  </li>
+                  <li>
+                    <a href="#5f5c3ab7d2" class="toc-h2 toc-link" data-title="계좌 정보 삭제하기">계좌 정보 삭제하기</a>
                   </li>
               </ul>
           </li>
@@ -355,7 +358,7 @@
 개발자 Token은 아래의 AQR 계정 관리 사이트에 가입 및 로그인 후 &quot;개인정보수정&quot; 메뉴에서 확인 할 수 있습니다.</p>
 
 <p><a href="https://aplx.link/manager">AQR 계좌 정보 관리 사이트</a>.</p>
-<h1 id='885fe0f983'>계좌 정보 생성</h1><h2 id='e509655454'>계좌 정보 생성하기</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>
+<h1 id='20db1de88c'>계좌 정보 생성/삭제</h1><h2 id='e509655454'>계좌 정보 생성하기</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>
 curl <span class="nt">-H</span> <span class="s2">"AQR-DEVELOPER-TOKEN: &lt;DEVELOPER TOKEN&gt;"</span> <span class="nt">-H</span> <span class="s2">"Content-type: application/x-www-form-urlencoded"</span> <span class="nt">-X</span> POST <span class="nt">-d</span> <span class="s1">'email_address=&lt;EMAILID&gt;&amp;account_number=1234567894321&amp;bank_id=1&amp;account_owner=&lt;OWNER NAME&gt;&amp;phone_number=01012341234&amp;account_name=&lt;ACCOUNT NAME&gt;&amp;action=aqr_create'</span> https://aplx.link/api/
 
 </code></pre></div><div class="highlight"><pre class="highlight php tab-php"><code>
@@ -438,7 +441,8 @@ curl <span class="nt">-H</span> <span class="s2">"AQR-DEVELOPER-TOKEN: &lt;DEVEL
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w"> 
     </span><span class="nl">"result"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w"> 
     </span><span class="nl">"qr_image"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"https://aplx.link/res?keyword=abcde"</span><span class="p">,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">QR</span><span class="w"> </span><span class="err">이미지</span><span class="w"> </span><span class="err">다운로드</span><span class="w"> </span><span class="err">경로</span><span class="w">
-    </span><span class="nl">"short_url"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"https://aq.gy/f/abcde"</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">계좌</span><span class="w"> </span><span class="err">정보</span><span class="w"> </span><span class="err">고유</span><span class="w"> </span><span class="err">URL</span><span class="w">
+    </span><span class="nl">"short_url"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"https://aq.gy/f/abcde"</span><span class="p">,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">계좌</span><span class="w"> </span><span class="err">정보</span><span class="w"> </span><span class="err">고유</span><span class="w"> </span><span class="err">URL</span><span class="w">
+  </span><span class="nl">"account_id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"abcde"</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">계좌</span><span class="w"> </span><span class="err">정보</span><span class="w"> </span><span class="err">ID</span><span class="w"> </span><span class="err">(삭제/수정시</span><span class="w"> </span><span class="err">사용)</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
 </span></code></pre></div><h3 id='http'>HTTP 요청</h3>
@@ -739,12 +743,122 @@ curl <span class="nt">-H</span> <span class="s2">"AQR-DEVELOPER-TOKEN: &lt;DEVEL
 <td>IBK투자증권</td>
 </tr>
 </tbody></table>
+<h2 id='5f5c3ab7d2'>계좌 정보 삭제하기</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>
+curl <span class="nt">-H</span> <span class="s2">"AQR-DEVELOPER-TOKEN: &lt;DEVELOPER TOKEN&gt;"</span> <span class="nt">-H</span> <span class="s2">"Content-type: application/x-www-form-urlencoded"</span> <span class="nt">-X</span> POST <span class="nt">-d</span> <span class="s1">'email_address=&lt;EMAILID&gt;&amp;account_id=abcde&amp;action=aqr_delete'</span> https://aplx.link/api/
+
+</code></pre></div><div class="highlight"><pre class="highlight php tab-php"><code>
+<span class="nv">$body</span><span class="p">[</span><span class="s1">'email_address'</span><span class="p">]</span> <span class="o">=</span> <span class="s1">'&lt;EMAILID&gt;'</span><span class="p">;</span>
+<span class="nv">$body</span><span class="p">[</span><span class="s1">'account_id'</span><span class="p">]</span> <span class="o">=</span> <span class="s1">'abcde'</span><span class="p">;</span>
+<span class="nv">$body</span><span class="p">[</span><span class="s1">'action'</span><span class="p">]</span> <span class="o">=</span> <span class="s1">'aqr_delete'</span><span class="p">;</span>
+
+<span class="nv">$headers</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span>
+        <span class="s1">'Content-Type: application/x-www-form-urlencoded'</span><span class="p">,</span>
+        <span class="s1">'AQR-DEVELOPER-TOKEN: &lt;DEVELOPER TOKEN&gt;'</span>
+<span class="p">);</span>
+
+<span class="nv">$ch</span> <span class="o">=</span> <span class="nb">curl_init</span><span class="p">();</span>
+<span class="nb">curl_setopt</span><span class="p">(</span><span class="nv">$ch</span><span class="p">,</span> <span class="no">CURLOPT_URL</span><span class="p">,</span> <span class="s1">'https://aplx.link/api/'</span><span class="p">);</span>
+<span class="nb">curl_setopt</span><span class="p">(</span><span class="nv">$ch</span><span class="p">,</span> <span class="no">CURLOPT_HTTPHEADER</span><span class="p">,</span>  <span class="nv">$headers</span><span class="p">);</span>
+<span class="nb">curl_setopt</span><span class="p">(</span><span class="nv">$ch</span><span class="p">,</span> <span class="no">CURLOPT_POST</span><span class="p">,</span>    <span class="kc">true</span><span class="p">);</span>
+<span class="nb">curl_setopt</span><span class="p">(</span><span class="nv">$ch</span><span class="p">,</span> <span class="no">CURLOPT_RETURNTRANSFER</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>
+<span class="nb">curl_setopt</span><span class="p">(</span><span class="nv">$ch</span><span class="p">,</span> <span class="no">CURLOPT_SSL_VERIFYPEER</span><span class="p">,</span> <span class="kc">false</span><span class="p">);</span>
+<span class="nb">curl_setopt</span><span class="p">(</span><span class="nv">$ch</span><span class="p">,</span> <span class="no">CURLOPT_POSTFIELDS</span><span class="p">,</span><span class="nb">http_build_query</span><span class="p">(</span><span class="nv">$body</span><span class="p">));</span>
+<span class="nv">$response</span> <span class="o">=</span> <span class="nb">curl_exec</span><span class="p">(</span><span class="nv">$ch</span><span class="p">);</span>
+<span class="c1">//$json_list= json_decode($response, true);</span>
+<span class="nb">curl_close</span><span class="p">(</span><span class="nv">$ch</span><span class="p">);</span>
+
+<span class="k">echo</span> <span class="nv">$response</span><span class="p">;</span>
+
+</code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code>
+<span class="kd">var</span> <span class="nx">formdata</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">FormData</span><span class="p">();</span>
+<span class="nx">formdata</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="dl">"</span><span class="s2">email_address</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">&lt;EMAILID&gt;</span><span class="dl">"</span><span class="p">);</span>
+<span class="nx">formdata</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="dl">"</span><span class="s2">account_id</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">abcde</span><span class="dl">"</span><span class="p">);</span>
+<span class="nx">formdata</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="dl">"</span><span class="s2">action</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">aqr_delete</span><span class="dl">"</span><span class="p">);</span>
+
+<span class="nx">$</span><span class="p">.</span><span class="nx">ajax</span><span class="p">({</span><span class="na">url</span> <span class="p">:</span> <span class="dl">"</span><span class="s2">https://aplx.link/api/</span><span class="dl">"</span><span class="p">,</span>
+       <span class="na">dataType</span> <span class="p">:</span> <span class="dl">"</span><span class="s2">json</span><span class="dl">"</span><span class="p">,</span>
+       <span class="na">contentType</span> <span class="p">:</span> <span class="dl">"</span><span class="s2">application/x-www-form-urlencoded</span><span class="dl">"</span><span class="p">,</span>
+       <span class="na">crossDomain</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+       <span class="na">cache</span> <span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+       <span class="na">data</span> <span class="p">:</span> <span class="nx">formdata</span><span class="p">,</span>
+       <span class="na">type</span> <span class="p">:</span> <span class="dl">"</span><span class="s2">POST</span><span class="dl">"</span><span class="p">,</span>
+       <span class="na">async</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+       <span class="na">beforeSend</span><span class="p">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">request</span><span class="p">)</span> <span class="p">{</span>
+          <span class="nx">request</span><span class="p">.</span><span class="nx">setRequestHeader</span><span class="p">(</span><span class="dl">"</span><span class="s2">AQR-DEVELOPER-TOKEN</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">&lt;DEVELOPER TOKEN&gt;</span><span class="dl">"</span><span class="p">);</span>
+        <span class="p">},</span>
+       <span class="na">success</span> <span class="p">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">r</span><span class="p">)</span> <span class="p">{</span>
+         <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">r</span><span class="p">));</span>
+         <span class="k">if</span><span class="p">(</span><span class="nx">r</span><span class="p">.</span><span class="nx">result</span> <span class="o">==</span> <span class="dl">"</span><span class="s2">success</span><span class="dl">"</span><span class="p">)</span> <span class="p">{</span>
+           <span class="c1">//r.data</span>
+         <span class="p">}</span>
+       <span class="p">},</span>
+       <span class="na">error</span><span class="p">:</span><span class="kd">function</span><span class="p">(</span><span class="nx">request</span><span class="p">,</span><span class="nx">status</span><span class="p">,</span><span class="nx">error</span><span class="p">){</span>
+           <span class="nx">alert</span><span class="p">(</span><span class="dl">"</span><span class="s2">code:</span><span class="dl">"</span><span class="o">+</span><span class="nx">request</span><span class="p">.</span><span class="nx">status</span><span class="o">+</span><span class="dl">"</span><span class="se">\n</span><span class="dl">"</span><span class="o">+</span><span class="dl">"</span><span class="s2">message:</span><span class="dl">"</span><span class="o">+</span><span class="nx">request</span><span class="p">.</span><span class="nx">responseText</span><span class="o">+</span><span class="dl">"</span><span class="se">\n</span><span class="dl">"</span><span class="o">+</span><span class="dl">"</span><span class="s2">error:</span><span class="dl">"</span><span class="o">+</span><span class="nx">error</span><span class="p">);</span>
+       <span class="p">}</span>
+<span class="p">});</span>
+
+</code></pre></div><div class="highlight"><pre class="highlight python tab-python"><code>
+<span class="kn">import</span> <span class="nn">requests</span>
+<span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s">'Content-Type'</span><span class="p">:</span> <span class="s">'application/x-www-form-urlencoded'</span><span class="p">,</span>
+    <span class="s">'AQR-DEVELOPER-TOKEN'</span> <span class="p">:</span> <span class="s">'&lt;DEVELOPER TOKEN&gt;'</span>
+<span class="p">}</span>
+<span class="n">data</span> <span class="o">=</span> <span class="s">"email_address=&lt;EMAILID&gt;&amp;account_id=abcde&amp;action=aqr_delete"</span>
+<span class="n">url</span> <span class="o">=</span> <span class="s">'https://aplx.link/api/'</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="n">post</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span>
+                         <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
+<span class="n">response</span><span class="p">.</span><span class="n">raise_for_status</span><span class="p">()</span>
+<span class="s">'response.json()
+
+
+</span></code></pre></div>
+<blockquote>
+<p>이 요청은 아래와 같이 JSON 구조로 응답합니다:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w"> 
+    </span><span class="nl">"result"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre></div><h3 id='http-2'>HTTP 요청</h3>
+<p><code>POST https://aplx.link/api/</code></p>
+<h3 id='fcb1c7c88c-2'>파라메터</h3>
+<table><thead>
+<tr>
+<th>헤더 파라메터</th>
+<th>설명</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>AQR-DEVELOPER-TOKEN</td>
+<td>부여받은 개발자 Token값을 헤더에 입력합니다.</td>
+</tr>
+</tbody></table>
+
+<table><thead>
+<tr>
+<th>POST 파라메터</th>
+<th>설명</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>action</td>
+<td>&quot;aqr_delete&quot;를 입력합니다.</td>
+</tr>
+<tr>
+<td>email_address</td>
+<td>가입시 입력한 이메일 주소를 입력합니다.</td>
+</tr>
+<tr>
+<td>account_id</td>
+<td>계좌 생성시 확인한 &#39;account_id&#39;값을 입력합니다.</td>
+</tr>
+</tbody></table>
 <h1 id='errors'>Errors</h1>
 <aside class="notice">
 This error section is stored in a separate file in <code>includes/_errors.md</code>. Slate allows you to optionally separate out your docs into many files...just save them to the <code>includes</code> folder and add them to the top of your <code>index.md</code>'s frontmatter. Files are included in the order listed.
 </aside>
 
-<p>The Kittn API uses the following error codes:</p>
+<p>AQR Open API uses the following error codes:</p>
 
 <table><thead>
 <tr>
@@ -762,15 +876,15 @@ This error section is stored in a separate file in <code>includes/_errors.md</co
 </tr>
 <tr>
 <td>403</td>
-<td>Forbidden -- The kitten requested is hidden for administrators only.</td>
+<td>Forbidden -- The API requested is hidden for administrators only.</td>
 </tr>
 <tr>
 <td>404</td>
-<td>Not Found -- The specified kitten could not be found.</td>
+<td>Not Found -- The specified resource could not be found.</td>
 </tr>
 <tr>
 <td>405</td>
-<td>Method Not Allowed -- You tried to access a kitten with an invalid method.</td>
+<td>Method Not Allowed -- You tried to access a resource with an invalid method.</td>
 </tr>
 <tr>
 <td>406</td>
@@ -778,15 +892,11 @@ This error section is stored in a separate file in <code>includes/_errors.md</co
 </tr>
 <tr>
 <td>410</td>
-<td>Gone -- The kitten requested has been removed from our servers.</td>
-</tr>
-<tr>
-<td>418</td>
-<td>I&#39;m a teapot.</td>
+<td>Gone -- The resource requested has been removed from our servers.</td>
 </tr>
 <tr>
 <td>429</td>
-<td>Too Many Requests -- You&#39;re requesting too many kittens! Slow down!</td>
+<td>Too Many Requests -- You&#39;re requesting too many resource! Slow down!</td>
 </tr>
 <tr>
 <td>500</td>

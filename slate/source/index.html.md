@@ -53,7 +53,7 @@ AQR Open API는 AQR 개발자 Token을 파라메터로 입력해야 사용할 �
 
 [AQR 계좌 정보 관리 사이트](https://aplx.link/manager).
 
-#계좌 정보 생성
+#계좌 정보 생성/삭제
 
 ##계좌 정보 생성하기
 
@@ -150,7 +150,8 @@ response.raise_for_status()
 { 
 	"result" : "success", 
 	"qr_image" : "https://aplx.link/res?keyword=abcde", // QR 이미지 다운로드 경로
-	"short_url" : "https://aq.gy/f/abcde" // 계좌 정보 고유 URL
+	"short_url" : "https://aq.gy/f/abcde", // 계좌 정보 고유 URL
+  "account_id" : "abcde" // 계좌 정보 ID (삭제/수정시 사용)
 }
 
 ```
@@ -241,3 +242,108 @@ id | 은행명
 59	|IBK투자증권
 
 
+##계좌 정보 삭제하기
+
+```shell
+
+curl -H "AQR-DEVELOPER-TOKEN: <DEVELOPER TOKEN>" -H "Content-type: application/x-www-form-urlencoded" -X POST -d 'email_address=<EMAILID>&account_id=abcde&action=aqr_delete' https://aplx.link/api/
+
+```
+
+```php
+
+$body['email_address'] = '<EMAILID>';
+$body['account_id'] = 'abcde';
+$body['action'] = 'aqr_delete';
+
+$headers = array(
+        'Content-Type: application/x-www-form-urlencoded',
+        'AQR-DEVELOPER-TOKEN: <DEVELOPER TOKEN>'
+);
+
+$ch = curl_init();
+curl_setopt($ch, CURLOPT_URL, 'https://aplx.link/api/');
+curl_setopt($ch, CURLOPT_HTTPHEADER,  $headers);
+curl_setopt($ch, CURLOPT_POST,    true);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+curl_setopt($ch, CURLOPT_POSTFIELDS,http_build_query($body));
+$response = curl_exec($ch);
+//$json_list= json_decode($response, true);
+curl_close($ch);
+
+echo $response;
+
+```
+
+```javascript
+
+var formdata = new FormData();
+formdata.append("email_address", "<EMAILID>");
+formdata.append("account_id", "abcde");
+formdata.append("action", "aqr_delete");
+
+$.ajax({url : "https://aplx.link/api/",
+       dataType : "json",
+       contentType : "application/x-www-form-urlencoded",
+       crossDomain: true,
+       cache : false,
+       data : formdata,
+       type : "POST",
+       async: false,
+       beforeSend: function(request) {
+          request.setRequestHeader("AQR-DEVELOPER-TOKEN", "<DEVELOPER TOKEN>");
+        },
+       success : function(r) {
+         console.log(JSON.stringify(r));
+         if(r.result == "success") {
+           //r.data
+         }
+       },
+       error:function(request,status,error){
+           alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+       }
+});
+
+```
+
+```python
+
+import requests
+headers = {
+    'Content-Type': 'application/x-www-form-urlencoded',
+    'AQR-DEVELOPER-TOKEN' : '<DEVELOPER TOKEN>'
+}
+data = "email_address=<EMAILID>&account_id=abcde&action=aqr_delete"
+url = 'https://aplx.link/api/'
+response = requests.post(url, headers=headers,
+                         data=data)
+response.raise_for_status()
+'response.json()
+
+
+```
+> 이 요청은 아래와 같이 JSON 구조로 응답합니다:
+
+```json
+{ 
+	"result" : "success"
+}
+
+```
+
+### HTTP 요청
+
+`POST https://aplx.link/api/`
+
+### 파라메터
+
+헤더 파라메터 | 설명
+--------- | -----------
+AQR-DEVELOPER-TOKEN | 부여받은 개발자 Token값을 헤더에 입력합니다.
+
+POST 파라메터 | 설명
+--------- | -----------
+action | "aqr_delete"를 입력합니다.
+email_address | 가입시 입력한 이메일 주소를 입력합니다.
+account_id | 계좌 생성시 확인한 'account_id'값을 입력합니다.
