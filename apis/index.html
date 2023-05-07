@@ -356,7 +356,7 @@
 
 <p><a href="https://aplx.link/manager">AQR 계좌 정보 관리 사이트</a>.</p>
 <h1 id='885fe0f983'>계좌 정보 생성</h1><h2 id='e509655454'>계좌 정보 생성하기</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>
-curl <span class="nt">-H</span> <span class="s2">"AQR-DEVELOPER-TOKEN: &lt;DEVELOPER TOKEN&gt;"</span> <span class="nt">-H</span> <span class="s2">"Content-type: application/x-www-form-urlencoded"</span> <span class="nt">-X</span> POST <span class="nt">-d</span> <span class="s1">'email_address=&lt;EMAILID&gt;&amp;account_number=1234567894321&amp;bank_id=1&amp;account_owner=&lt;OWNER NAME&gt;&amp;phone_number=01012341234&amp;account_name=&lt;ACCOUNT NAME&gt;&amp;action=aqr_create'</span> https://api.aplx.link
+curl <span class="nt">-H</span> <span class="s2">"AQR-DEVELOPER-TOKEN: &lt;DEVELOPER TOKEN&gt;"</span> <span class="nt">-H</span> <span class="s2">"Content-type: application/x-www-form-urlencoded"</span> <span class="nt">-X</span> POST <span class="nt">-d</span> <span class="s1">'email_address=&lt;EMAILID&gt;&amp;account_number=1234567894321&amp;bank_id=1&amp;account_owner=&lt;OWNER NAME&gt;&amp;phone_number=01012341234&amp;account_name=&lt;ACCOUNT NAME&gt;&amp;action=aqr_create'</span> https://aplx.link/api/
 
 </code></pre></div><div class="highlight"><pre class="highlight php tab-php"><code>
 <span class="nv">$body</span><span class="p">[</span><span class="s1">'email_address'</span><span class="p">]</span> <span class="o">=</span> <span class="s1">'&lt;EMAILID&gt;'</span><span class="p">;</span>
@@ -373,7 +373,7 @@ curl <span class="nt">-H</span> <span class="s2">"AQR-DEVELOPER-TOKEN: &lt;DEVEL
 <span class="p">);</span>
 
 <span class="nv">$ch</span> <span class="o">=</span> <span class="nb">curl_init</span><span class="p">();</span>
-<span class="nb">curl_setopt</span><span class="p">(</span><span class="nv">$ch</span><span class="p">,</span> <span class="no">CURLOPT_URL</span><span class="p">,</span> <span class="s1">'https://api.aplx.link'</span><span class="p">);</span>
+<span class="nb">curl_setopt</span><span class="p">(</span><span class="nv">$ch</span><span class="p">,</span> <span class="no">CURLOPT_URL</span><span class="p">,</span> <span class="s1">'https://aplx.link/api/'</span><span class="p">);</span>
 <span class="nb">curl_setopt</span><span class="p">(</span><span class="nv">$ch</span><span class="p">,</span> <span class="no">CURLOPT_HTTPHEADER</span><span class="p">,</span>  <span class="nv">$headers</span><span class="p">);</span>
 <span class="nb">curl_setopt</span><span class="p">(</span><span class="nv">$ch</span><span class="p">,</span> <span class="no">CURLOPT_POST</span><span class="p">,</span>    <span class="kc">true</span><span class="p">);</span>
 <span class="nb">curl_setopt</span><span class="p">(</span><span class="nv">$ch</span><span class="p">,</span> <span class="no">CURLOPT_RETURNTRANSFER</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>
@@ -395,7 +395,7 @@ curl <span class="nt">-H</span> <span class="s2">"AQR-DEVELOPER-TOKEN: &lt;DEVEL
 <span class="nx">formdata</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="dl">"</span><span class="s2">account_name</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">&lt;ACCOUNT NAME&gt;</span><span class="dl">"</span><span class="p">);</span>
 <span class="nx">formdata</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="dl">"</span><span class="s2">action</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">aqr_create</span><span class="dl">"</span><span class="p">);</span>
 
-<span class="nx">$</span><span class="p">.</span><span class="nx">ajax</span><span class="p">({</span><span class="na">url</span> <span class="p">:</span> <span class="dl">"</span><span class="s2">https://api.aplx.link</span><span class="dl">"</span><span class="p">,</span>
+<span class="nx">$</span><span class="p">.</span><span class="nx">ajax</span><span class="p">({</span><span class="na">url</span> <span class="p">:</span> <span class="dl">"</span><span class="s2">https://aplx.link/api/</span><span class="dl">"</span><span class="p">,</span>
        <span class="na">dataType</span> <span class="p">:</span> <span class="dl">"</span><span class="s2">json</span><span class="dl">"</span><span class="p">,</span>
        <span class="na">contentType</span> <span class="p">:</span> <span class="dl">"</span><span class="s2">application/x-www-form-urlencoded</span><span class="dl">"</span><span class="p">,</span>
        <span class="na">crossDomain</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
@@ -424,7 +424,7 @@ curl <span class="nt">-H</span> <span class="s2">"AQR-DEVELOPER-TOKEN: &lt;DEVEL
     <span class="s">'AQR-DEVELOPER-TOKEN'</span> <span class="p">:</span> <span class="s">'&lt;DEVELOPER TOKEN&gt;'</span>
 <span class="p">}</span>
 <span class="n">data</span> <span class="o">=</span> <span class="s">"email_address=&lt;EMAILID&gt;&amp;account_number=1234567894321&amp;bank_id=1&amp;account_owner=&lt;OWNER NAME&gt;&amp;phone_number=01012341234&amp;account_name=&lt;ACCOUNT NAME&gt;&amp;action=aqr_create"</span>
-<span class="n">url</span> <span class="o">=</span> <span class="s">'https://api.aplx.link'</span>
+<span class="n">url</span> <span class="o">=</span> <span class="s">'https://aplx.link/api/'</span>
 <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="n">post</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span>
                          <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
 <span class="n">response</span><span class="p">.</span><span class="n">raise_for_status</span><span class="p">()</span>
@@ -442,7 +442,7 @@ curl <span class="nt">-H</span> <span class="s2">"AQR-DEVELOPER-TOKEN: &lt;DEVEL
 </span><span class="p">}</span><span class="w">
 
 </span></code></pre></div><h3 id='http'>HTTP 요청</h3>
-<p><code>POST https://api.aplx.link</code></p>
+<p><code>POST https://aplx.link/api/</code></p>
 <h3 id='fcb1c7c88c'>파라메터</h3>
 <table><thead>
 <tr>
