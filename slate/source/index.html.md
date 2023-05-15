@@ -6,6 +6,7 @@ language_tabs: # must be one of https://git.io/vQNgJ
   - php
   - javascript
   - python
+  - csharp
 
 toc_footers:
   - <a href='https://aqr.aplx.link'>AQR 홈페이지</a>
@@ -145,7 +146,7 @@ response.raise_for_status()
 
 ```
 
-```cpp
+```csharp
 
    var content = "email_address=" + Uri.EscapeDataString("<EMAILID>");
        content += "&account_number=" + Uri.EscapeDataString("1234567894321");
@@ -182,9 +183,9 @@ response.raise_for_status()
 
 ```json
 { 
-	"result" : "success", 
-	"qr_image" : "https://aplx.link/res?keyword=abcde", // QR 이미지 다운로드 경로
-	"short_url" : "https://aq.gy/f/abcde", // 계좌 정보 고유 URL
+  "result" : "success", 
+  "qr_image" : "https://aplx.link/res?keyword=abcde", // QR 이미지 다운로드 경로
+  "short_url" : "https://aq.gy/f/abcde", // 계좌 정보 고유 URL
   "account_id" : "abcde" // 계좌 정보 ID (삭제/수정시 사용)
 }
 
