@@ -6,6 +6,7 @@ language_tabs: # must be one of https://git.io/vQNgJ
   - php
   - javascript
   - python
+  - csharp
 
 toc_footers:
   - <a href='https://aqr.aplx.link'>AQR 홈페이지</a>
@@ -48,8 +49,8 @@ AQR 개발자를 위한 Open API사용법과 예제코드를 제공합니다.
 
 >
 
-AQR Open API는 AQR 개발자 Token을 파라메터로 입력해야 사용할 수 있습니다.
-개발자 Token은 아래의 AQR 계정 관리 사이트에 가입 및 로그인 후 "개인정보수정" 메뉴에서 확인 할 수 있습니다.
+AQR Open API는 AQR 개발자 Token을 파라메터로 입력해야 사용할 수 있습니다.<br>
+개발자 Token은 아래의 AQR 계정 관리 사이트에 가입 및 로그인 후 화면의 우측 상단 "개인정보수정" 메뉴에서 확인 할 수 있습니다.
 
 [AQR 계좌 정보 관리 사이트](https://aplx.link/manager).
 
@@ -144,13 +145,47 @@ response.raise_for_status()
 
 
 ```
+
+```csharp
+
+   var content = "email_address=" + Uri.EscapeDataString("<EMAILID>");
+       content += "&account_number=" + Uri.EscapeDataString("1234567894321");
+       content += "&bank_id=" + Uri.EscapeDataString("1");
+       content += "&account_owner=" + Uri.EscapeDataString("<OWNER NAME>");
+       content += "&phone_number=" + Uri.EscapeDataString("01012341234");
+       content += "&account_name=" + Uri.EscapeDataString("<ACCOUNT NAME>");
+       content += "&action=" + Uri.EscapeDataString("aqr_create");
+
+   byte[] data = Encoding.UTF8.GetBytes(content);
+   WebRequest request = WebRequest.Create(url);
+   request.Method = "POST";
+   request.ContentType = "application/json";
+   request.Headers.Add("Authorization", "AQR-DEVELOPER-TOKEN <DEVELOPER TOKEN>");
+   request.ContentLength = data.Length;
+
+   using (Stream stream = request.GetRequestStream())
+   {
+       stream.Write(data, 0, data.Length);
+   }
+
+   try
+   {
+       WebResponse response = await request.GetResponseAsync();
+   }
+   catch (WebException webException)
+   {
+   }
+
+
+```
+
 > 이 요청은 아래와 같이 JSON 구조로 응답합니다:
 
 ```json
 { 
-	"result" : "success", 
-	"qr_image" : "https://aplx.link/res?keyword=abcde", // QR 이미지 다운로드 경로
-	"short_url" : "https://aq.gy/f/abcde", // 계좌 정보 고유 URL
+  "result" : "success", 
+  "qr_image" : "https://aplx.link/res?keyword=abcde", // QR 이미지 다운로드 경로
+  "short_url" : "https://aq.gy/f/abcde", // 계좌 정보 고유 URL
   "account_id" : "abcde" // 계좌 정보 ID (삭제/수정시 사용)
 }
 
@@ -321,6 +356,33 @@ response = requests.post(url, headers=headers,
 response.raise_for_status()
 'response.json()
 
+```
+
+```csharp
+
+   var content = "email_address=" + Uri.EscapeDataString("<EMAILID>");
+       content += "&account_id=" + Uri.EscapeDataString("abcde");
+       content += "&action=" + Uri.EscapeDataString("aqr_delete");
+
+   byte[] data = Encoding.UTF8.GetBytes(content);
+   WebRequest request = WebRequest.Create(url);
+   request.Method = "POST";
+   request.ContentType = "application/json";
+   request.Headers.Add("Authorization", "AQR-DEVELOPER-TOKEN <DEVELOPER TOKEN>");
+   request.ContentLength = data.Length;
+
+   using (Stream stream = request.GetRequestStream())
+   {
+       stream.Write(data, 0, data.Length);
+   }
+
+   try
+   {
+       WebResponse response = await request.GetResponseAsync();
+   }
+   catch (WebException webException)
+   {
+   }
 
 ```
 > 이 요청은 아래와 같이 JSON 구조로 응답합니다:
