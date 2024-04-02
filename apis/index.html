@@ -366,6 +366,7 @@
 </blockquote>
 
 <p>AQR Open API는 AQR 개발자 Token을 파라메터로 입력해야 사용할 수 있습니다.<br>
+AQR 서비스의 &quot;Advanced&quot; 등급 또는 제휴사에 한해서 개발자 Token을 제공합니다.<br>
 개발자 Token은 아래의 AQR 계정 관리 사이트에 가입 및 로그인 후 화면의 우측 상단 &quot;개인정보수정&quot; 메뉴에서 확인 할 수 있습니다.</p>
 
 <p><a href="https://aplx.link/manager">AQR 계좌 정보 관리 사이트</a>.</p>
@@ -454,6 +455,7 @@ curl <span class="nt">-H</span> <span class="s2">"AQR-DEVELOPER-TOKEN: &lt;DEVEL
        <span class="n">content</span> <span class="p">+=</span> <span class="s">"&amp;account_name="</span> <span class="p">+</span> <span class="n">Uri</span><span class="p">.</span><span class="nf">EscapeDataString</span><span class="p">(</span><span class="s">"&lt;ACCOUNT NAME&gt;"</span><span class="p">);</span>
        <span class="n">content</span> <span class="p">+=</span> <span class="s">"&amp;action="</span> <span class="p">+</span> <span class="n">Uri</span><span class="p">.</span><span class="nf">EscapeDataString</span><span class="p">(</span><span class="s">"aqr_create"</span><span class="p">);</span>
 
+   <span class="kt">var</span> <span class="n">url</span> <span class="p">=</span> <span class="s">"https://aplx.link/api/"</span><span class="p">;</span>
    <span class="kt">byte</span><span class="p">[]</span> <span class="n">data</span> <span class="p">=</span> <span class="n">Encoding</span><span class="p">.</span><span class="n">UTF8</span><span class="p">.</span><span class="nf">GetBytes</span><span class="p">(</span><span class="n">content</span><span class="p">);</span>
    <span class="n">WebRequest</span> <span class="n">request</span> <span class="p">=</span> <span class="n">WebRequest</span><span class="p">.</span><span class="nf">Create</span><span class="p">(</span><span class="n">url</span><span class="p">);</span>
    <span class="n">request</span><span class="p">.</span><span class="n">Method</span> <span class="p">=</span> <span class="s">"POST"</span><span class="p">;</span>

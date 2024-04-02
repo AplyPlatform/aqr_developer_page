@@ -50,6 +50,7 @@ AQR 개발자를 위한 Open API사용법과 예제코드를 제공합니다.
 >
 
 AQR Open API는 AQR 개발자 Token을 파라메터로 입력해야 사용할 수 있습니다.<br>
+AQR 서비스의 "Advanced" 등급 또는 제휴사에 한해서 개발자 Token을 제공합니다.<br>
 개발자 Token은 아래의 AQR 계정 관리 사이트에 가입 및 로그인 후 화면의 우측 상단 "개인정보수정" 메뉴에서 확인 할 수 있습니다.
 
 [AQR 계좌 정보 관리 사이트](https://aplx.link/manager).
@@ -156,6 +157,7 @@ response.raise_for_status()
        content += "&account_name=" + Uri.EscapeDataString("<ACCOUNT NAME>");
        content += "&action=" + Uri.EscapeDataString("aqr_create");
 
+   var url = "https://aplx.link/api/";
    byte[] data = Encoding.UTF8.GetBytes(content);
    WebRequest request = WebRequest.Create(url);
    request.Method = "POST";
