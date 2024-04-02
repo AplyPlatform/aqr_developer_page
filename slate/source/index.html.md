@@ -211,7 +211,7 @@ account_number | 계좌 번호를 입력합니다.
 bank_id | 은행 id 를 입력합니다. (은행 id 테이블 참조)
 account_owner | 예금주 명을 입력합니다.
 phone_number | 예금주의 전화번호를 입력합니다.
-account_name | 생성할 계좌 정보의 이름을 입력합니다. (Optional)
+account_name | 생성할 계좌 정보의 이름을 입력합니다.
 
 ### 은행 id 테이블
 
