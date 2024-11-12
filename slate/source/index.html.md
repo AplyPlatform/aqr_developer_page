@@ -1,7 +1,7 @@
 ---
-title: AQR Open API Reference | AQR 오픈 API
+title: AQR API Reference | AQR API
 
-language_tabs: # must be one of https://git.io/vQNgJ
+language_tabs:
   - shell
   - php
   - javascript
@@ -22,12 +22,12 @@ search: true
 
 '계좌 정보, QR로 보호하세요.'
 
-AQR 개발자를 위한 Open API사용법과 예제코드를 제공합니다.
+AQR 개발자를 위한 API 사용법과 예제코드를 제공합니다.
 
 
 # Token 발급 받기
 
-> Open API 사용을 위해 AQR 개발자 Token을 발급 받으세요.
+> API 사용을 위해 AQR 개발자 Token을 발급 받으세요.
 
 
 ```shell
@@ -49,10 +49,10 @@ AQR 개발자를 위한 Open API사용법과 예제코드를 제공합니다.
 
 >
 
-AQR Open API는 AQR 개발자 Token을 파라메터로 입력해야 사용할 수 있습니다.<br>
-개발자 Token은 아래의 AQR 계정 관리 사이트에 가입 및 로그인 후 화면의 우측 상단 "개인정보수정" 메뉴에서 확인 할 수 있습니다.
+AQR API는 AQR 개발자 Token을 파라메터로 입력해야 사용할 수 있습니다.<br>
+개발자 Token은 AQR 서비스에 가입 및 로그인 후 화면의 우측 상단 "개인정보수정" 메뉴에서 확인 할 수 있습니다.
 
-[AQR 계좌 정보 관리 사이트](https://aplx.link/manager).
+[AQR 페이지 관리 사이트](https://aplx.link/manager).
 
 #계좌 정보 생성/삭제
 
