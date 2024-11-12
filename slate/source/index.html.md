@@ -47,10 +47,9 @@ AQR 개발자를 위한 API 사용법과 예제코드를 제공합니다.
 ```
 
 
->
-
-AQR API는 AQR 개발자 Token을 파라메터로 입력해야 사용할 수 있습니다.<br>
-개발자 Token은 AQR 서비스에 가입 및 로그인 후 화면의 우측 상단 "개인정보수정" 메뉴에서 확인 할 수 있습니다.
+AQR Open API는 AQR 개발자 Token을 파라메터로 입력해야 사용할 수 있습니다.<br>
+AQR 서비스의 "Advanced" 등급 또는 제휴사에 한해서 개발자 Token을 제공합니다.<br>
+개발자 Token은 아래의 AQR 계정 관리 사이트에 가입 및 로그인 후 화면의 우측 상단 "개인정보수정" 메뉴에서 확인 할 수 있습니다.
 
 [AQR 페이지 관리 사이트](https://aplx.link/manager).
 
@@ -156,6 +155,7 @@ response.raise_for_status()
        content += "&account_name=" + Uri.EscapeDataString("<ACCOUNT NAME>");
        content += "&action=" + Uri.EscapeDataString("aqr_create");
 
+   var url = "https://aplx.link/api/";
    byte[] data = Encoding.UTF8.GetBytes(content);
    WebRequest request = WebRequest.Create(url);
    request.Method = "POST";
@@ -209,7 +209,7 @@ account_number | 계좌 번호를 입력합니다.
 bank_id | 은행 id 를 입력합니다. (은행 id 테이블 참조)
 account_owner | 예금주 명을 입력합니다.
 phone_number | 예금주의 전화번호를 입력합니다.
-account_name | 생성할 계좌 정보의 이름을 입력합니다. (Optional)
+account_name | 생성할 계좌 정보의 이름을 입력합니다.
 
 ### 은행 id 테이블
 
