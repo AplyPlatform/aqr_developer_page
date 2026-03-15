@@ -13981,7 +13981,7 @@ body:after {
     z-index: 9998;
     content: "";
     opacity: 0;
-    cursor: url("../images/close.png"), pointer;
+    cursor: pointer;
 }
 
 body.off-canvas-sidebar-open:after {

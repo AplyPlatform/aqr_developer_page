@@ -296,6 +296,212 @@
       <script src="javascripts/all-b12a2749.js"></script>
 
     <link href="images/favicon-5931b2b3.ico" rel="icon" type="image/ico" />
+
+    <style media="screen">
+      /* ===== Light Theme Override ===== */
+
+      /* Base */
+      body {
+        background-color: #f8f9fb;
+        color: #334155;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      }
+
+      /* Sidebar */
+      .toc-wrapper {
+        background-color: #ffffff !important;
+        border-right: 1px solid #e2e8f0 !important;
+        box-shadow: 2px 0 8px rgba(0,0,0,0.04);
+      }
+
+      .toc-wrapper .logo {
+        padding: 20px;
+        background: #ffffff;
+      }
+
+      .toc-wrapper > .search input {
+        background: #f1f5f9 !important;
+        border: 1px solid #e2e8f0 !important;
+        color: #334155 !important;
+        border-radius: 6px;
+      }
+
+      .toc-wrapper > .search input::placeholder { color: #94a3b8; }
+      .toc-wrapper > .search:before { color: #94a3b8 !important; }
+
+      .toc-wrapper ul li a,
+      .toc-wrapper .toc-link {
+        color: #475569 !important;
+      }
+
+      .toc-wrapper .toc-h1 { color: #1e293b !important; font-weight: 600; }
+      .toc-wrapper .toc-h2 { color: #64748b !important; }
+
+      .toc-wrapper ul li a:hover,
+      .toc-wrapper .toc-link:hover { color: #3b82f6 !important; }
+
+      .toc-wrapper .toc-link.active,
+      .toc-wrapper li.toc-active > a { color: #3b82f6 !important; font-weight: 700; }
+
+      .toc-footer {
+        border-top: 1px solid #e2e8f0 !important;
+        background: #ffffff;
+      }
+      .toc-footer a { color: #94a3b8 !important; }
+      .toc-footer a:hover { color: #3b82f6 !important; }
+
+      /* Language Selector */
+      .lang-selector {
+        background: #f1f5f9 !important;
+        border-bottom: 2px solid #e2e8f0 !important;
+      }
+      .lang-selector a {
+        color: #64748b !important;
+        font-weight: 500;
+      }
+      .lang-selector a:hover { color: #334155 !important; background: #e2e8f0 !important; }
+      .lang-selector a.active {
+        background: #3b82f6 !important;
+        color: #ffffff !important;
+        border-radius: 4px;
+      }
+
+      /* Main layout */
+      .page-wrapper { background: #f8f9fb !important; }
+
+      .dark-box {
+        background: #f1f5f9 !important;
+        border-left: 1px solid #e2e8f0 !important;
+      }
+
+      /* Content area */
+      .content { color: #334155 !important; }
+
+      .content h1 {
+        background: #ffffff !important;
+        border-top: 1px solid #e2e8f0 !important;
+        border-bottom: 1px solid #e2e8f0 !important;
+        color: #1e293b !important;
+        font-size: 22px;
+        font-weight: 700;
+        padding: 16px 28px !important;
+      }
+
+      .content h2 {
+        color: #334155 !important;
+        border-top: 1px solid #e2e8f0 !important;
+        font-size: 18px;
+        font-weight: 600;
+        padding-top: 16px;
+      }
+
+      .content h3 {
+        color: #475569 !important;
+        font-size: 15px;
+        font-weight: 600;
+        text-transform: none;
+        letter-spacing: 0;
+      }
+
+      .content p { color: #475569 !important; line-height: 1.75; }
+
+      /* Aside/Blockquote */
+      .content blockquote {
+        background: #eff6ff !important;
+        border-top: none !important;
+        border-bottom: none !important;
+        border-left: 4px solid #3b82f6 !important;
+        border-radius: 0 6px 6px 0;
+        margin: 0 !important;
+      }
+      .content blockquote p { color: #1d4ed8 !important; font-weight: 500; }
+
+      /* Inline code */
+      .content code {
+        background: #f1f5f9 !important;
+        color: #e11d48 !important;
+        border: 1px solid #e2e8f0;
+        border-radius: 4px;
+        padding: 1px 6px;
+        font-size: 13px;
+      }
+
+      /* Code blocks */
+      .content pre, .content pre code {
+        background: #f8fafc !important;
+        color: #334155 !important;
+        border: 1px solid #e2e8f0 !important;
+        border-radius: 8px !important;
+      }
+      .content pre code { border: none !important; padding: 0; color: inherit !important; }
+
+      .highlight {
+        background: #f8fafc !important;
+        border-radius: 8px;
+        border: 1px solid #e2e8f0;
+      }
+      .highlight pre { background: transparent !important; border: none !important; border-radius: 0 !important; }
+
+      /* Tables */
+      .content table th {
+        background: #f1f5f9 !important;
+        color: #1e293b !important;
+        border-bottom: 2px solid #cbd5e1 !important;
+        font-weight: 600;
+        font-size: 13px;
+      }
+      .content table td {
+        color: #475569 !important;
+        border-bottom: 1px solid #f1f5f9 !important;
+      }
+      .content table tr:nth-child(odd) > td { background: #ffffff !important; }
+      .content table tr:nth-child(even) > td { background: #f8f9fb !important; }
+      .content table tr:hover > td { background: #eff6ff !important; }
+
+      /* Links */
+      .content a { color: #3b82f6 !important; }
+      .content a:hover { color: #1d4ed8 !important; text-decoration: underline; }
+
+      /* Nav button */
+      #nav-button { background: #ffffff; border: 1px solid #e2e8f0; border-radius: 4px; }
+      #nav-button span { background: #ffffff; color: #334155; }
+      #nav-button img { filter: invert(30%) sepia(50%) saturate(300%) hue-rotate(190deg); }
+
+      /* Search results */
+      .search-results { background: #ffffff !important; border: 1px solid #e2e8f0 !important; border-radius: 6px; }
+      .search-results li { border-bottom: 1px solid #f1f5f9 !important; }
+      .search-results a { color: #334155 !important; }
+      .search-results a:hover { background: #f1f5f9 !important; color: #3b82f6 !important; }
+
+      /* ===== Light Syntax Highlighting (GitHub Light) ===== */
+      .highlight { color: #24292e !important; }
+      .highlight .n, .highlight .py, .highlight .nx,
+      .highlight .vc, .highlight .nn, .highlight .ni, .highlight .bp,
+      .highlight .vg, .highlight .vi, .highlight .nv, .highlight .vm, .highlight .w { color: #24292e !important; }
+      .highlight .kc, .highlight .kd, .highlight .kr,
+      .highlight .no, .highlight .kt { color: #005cc5 !important; }
+      .highlight .k, .highlight .kv, .highlight .kn, .highlight .kp,
+      .highlight .o, .highlight .ow, .highlight .nt, .highlight .nl { color: #d73a49 !important; }
+      .highlight .na, .highlight .nc, .highlight .nd,
+      .highlight .ne, .highlight .nf, .highlight .fm { color: #6f42c1 !important; }
+      .highlight .s, .highlight .sa, .highlight .dl, .highlight .sd,
+      .highlight .s2, .highlight .sb, .highlight .sh,
+      .highlight .sx, .highlight .s1 { color: #032f62 !important; }
+      .highlight .sr { color: #22863a !important; }
+      .highlight .si { color: #e36209 !important; }
+      .highlight .se { color: #e36209 !important; }
+      .highlight .ss { color: #032f62 !important; }
+      .highlight .mf, .highlight .mh, .highlight .il, .highlight .mi,
+      .highlight .mo, .highlight .m, .highlight .mb, .highlight .mx,
+      .highlight .sc { color: #005cc5 !important; }
+      .highlight .cm, .highlight .cp, .highlight .c1, .highlight .cs,
+      .highlight .c, .highlight .ch, .highlight .cd, .highlight .cpf { color: #6a737d !important; font-style: italic; }
+      .highlight .err { color: #cb2431 !important; background: transparent !important; }
+      .highlight .gd { color: #b31d28 !important; background: #ffeef0 !important; }
+      .highlight .gi { color: #22863a !important; background: #f0fff4 !important; }
+      .highlight .gh { color: #24292e !important; font-weight: bold; }
+      .highlight .go, .highlight .gp, .highlight .gu { color: #6a737d !important; }
+    </style>
   </head>
 
   <body class="index" data-languages="[&quot;shell&quot;,&quot;php&quot;,&quot;javascript&quot;,&quot;python&quot;,&quot;csharp&quot;]">
@@ -487,7 +693,7 @@ curl <span class="nt">-H</span> <span class="s2">"AQR-DEVELOPER-TOKEN: &lt;DEVEL
   </span><span class="nl">"result"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w"> 
   </span><span class="nl">"qr_image"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"https://aplx.link/res?keyword=abcde"</span><span class="p">,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">QR</span><span class="w"> </span><span class="err">이미지</span><span class="w"> </span><span class="err">다운로드</span><span class="w"> </span><span class="err">경로</span><span class="w">
   </span><span class="nl">"short_url"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"https://aq.gy/f/abcde"</span><span class="p">,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">계좌</span><span class="w"> </span><span class="err">정보</span><span class="w"> </span><span class="err">고유</span><span class="w"> </span><span class="err">URL</span><span class="w">
-  </span><span class="nl">"account_id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"abcde"</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">계좌</span><span class="w"> </span><span class="err">정보</span><span class="w"> </span><span class="err">ID</span><span class="w"> </span><span class="err">(삭제/수정시</span><span class="w"> </span><span class="err">사용)</span><span class="w">
+  </span><span class="nl">"uniq_keyword"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"abcde"</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">계좌</span><span class="w"> </span><span class="err">정보</span><span class="w"> </span><span class="err">ID</span><span class="w"> </span><span class="err">(삭제/수정시</span><span class="w"> </span><span class="err">사용)</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
 </span></code></pre></div><h3 id='http'>HTTP 요청</h3>
@@ -789,11 +995,11 @@ curl <span class="nt">-H</span> <span class="s2">"AQR-DEVELOPER-TOKEN: &lt;DEVEL
 </tr>
 </tbody></table>
 <h2 id='5f5c3ab7d2'>계좌 정보 삭제하기</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>
-curl <span class="nt">-H</span> <span class="s2">"AQR-DEVELOPER-TOKEN: &lt;DEVELOPER TOKEN&gt;"</span> <span class="nt">-H</span> <span class="s2">"Content-type: application/x-www-form-urlencoded"</span> <span class="nt">-X</span> POST <span class="nt">-d</span> <span class="s1">'email_address=&lt;EMAILID&gt;&amp;account_id=abcde&amp;action=aqr_delete'</span> https://aplx.link/api/
+curl <span class="nt">-H</span> <span class="s2">"AQR-DEVELOPER-TOKEN: &lt;DEVELOPER TOKEN&gt;"</span> <span class="nt">-H</span> <span class="s2">"Content-type: application/x-www-form-urlencoded"</span> <span class="nt">-X</span> POST <span class="nt">-d</span> <span class="s1">'email_address=&lt;EMAILID&gt;&amp;uniq_keyword=abcde&amp;action=aqr_delete'</span> https://aplx.link/api/
 
 </code></pre></div><div class="highlight"><pre class="highlight php tab-php"><code>
 <span class="nv">$body</span><span class="p">[</span><span class="s1">'email_address'</span><span class="p">]</span> <span class="o">=</span> <span class="s1">'&lt;EMAILID&gt;'</span><span class="p">;</span>
-<span class="nv">$body</span><span class="p">[</span><span class="s1">'account_id'</span><span class="p">]</span> <span class="o">=</span> <span class="s1">'abcde'</span><span class="p">;</span>
+<span class="nv">$body</span><span class="p">[</span><span class="s1">'uniq_keyword'</span><span class="p">]</span> <span class="o">=</span> <span class="s1">'abcde'</span><span class="p">;</span>
 <span class="nv">$body</span><span class="p">[</span><span class="s1">'action'</span><span class="p">]</span> <span class="o">=</span> <span class="s1">'aqr_delete'</span><span class="p">;</span>
 
 <span class="nv">$headers</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span>
@@ -817,7 +1023,7 @@ curl <span class="nt">-H</span> <span class="s2">"AQR-DEVELOPER-TOKEN: &lt;DEVEL
 </code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code>
 <span class="kd">var</span> <span class="nx">formdata</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">FormData</span><span class="p">();</span>
 <span class="nx">formdata</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="dl">"</span><span class="s2">email_address</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">&lt;EMAILID&gt;</span><span class="dl">"</span><span class="p">);</span>
-<span class="nx">formdata</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="dl">"</span><span class="s2">account_id</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">abcde</span><span class="dl">"</span><span class="p">);</span>
+<span class="nx">formdata</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="dl">"</span><span class="s2">uniq_keyword</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">abcde</span><span class="dl">"</span><span class="p">);</span>
 <span class="nx">formdata</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="dl">"</span><span class="s2">action</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">aqr_delete</span><span class="dl">"</span><span class="p">);</span>
 
 <span class="nx">$</span><span class="p">.</span><span class="nx">ajax</span><span class="p">({</span><span class="na">url</span> <span class="p">:</span> <span class="dl">"</span><span class="s2">https://aplx.link/api/</span><span class="dl">"</span><span class="p">,</span>
@@ -848,7 +1054,7 @@ curl <span class="nt">-H</span> <span class="s2">"AQR-DEVELOPER-TOKEN: &lt;DEVEL
     <span class="s">'Content-Type'</span><span class="p">:</span> <span class="s">'application/x-www-form-urlencoded'</span><span class="p">,</span>
     <span class="s">'AQR-DEVELOPER-TOKEN'</span> <span class="p">:</span> <span class="s">'&lt;DEVELOPER TOKEN&gt;'</span>
 <span class="p">}</span>
-<span class="n">data</span> <span class="o">=</span> <span class="s">"email_address=&lt;EMAILID&gt;&amp;account_id=abcde&amp;action=aqr_delete"</span>
+<span class="n">data</span> <span class="o">=</span> <span class="s">"email_address=&lt;EMAILID&gt;&amp;uniq_keyword=abcde&amp;action=aqr_delete"</span>
 <span class="n">url</span> <span class="o">=</span> <span class="s">'https://aplx.link/api/'</span>
 <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="n">post</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span>
                          <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
@@ -857,7 +1063,7 @@ curl <span class="nt">-H</span> <span class="s2">"AQR-DEVELOPER-TOKEN: &lt;DEVEL
 
 </span></code></pre></div><div class="highlight"><pre class="highlight csharp tab-csharp"><code>
    <span class="kt">var</span> <span class="n">content</span> <span class="p">=</span> <span class="s">"email_address="</span> <span class="p">+</span> <span class="n">Uri</span><span class="p">.</span><span class="nf">EscapeDataString</span><span class="p">(</span><span class="s">"&lt;EMAILID&gt;"</span><span class="p">);</span>
-       <span class="n">content</span> <span class="p">+=</span> <span class="s">"&amp;account_id="</span> <span class="p">+</span> <span class="n">Uri</span><span class="p">.</span><span class="nf">EscapeDataString</span><span class="p">(</span><span class="s">"abcde"</span><span class="p">);</span>
+       <span class="n">content</span> <span class="p">+=</span> <span class="s">"&amp;uniq_keyword="</span> <span class="p">+</span> <span class="n">Uri</span><span class="p">.</span><span class="nf">EscapeDataString</span><span class="p">(</span><span class="s">"abcde"</span><span class="p">);</span>
        <span class="n">content</span> <span class="p">+=</span> <span class="s">"&amp;action="</span> <span class="p">+</span> <span class="n">Uri</span><span class="p">.</span><span class="nf">EscapeDataString</span><span class="p">(</span><span class="s">"aqr_delete"</span><span class="p">);</span>
 
    <span class="kt">byte</span><span class="p">[]</span> <span class="n">data</span> <span class="p">=</span> <span class="n">Encoding</span><span class="p">.</span><span class="n">UTF8</span><span class="p">.</span><span class="nf">GetBytes</span><span class="p">(</span><span class="n">content</span><span class="p">);</span>
@@ -918,8 +1124,8 @@ curl <span class="nt">-H</span> <span class="s2">"AQR-DEVELOPER-TOKEN: &lt;DEVEL
 <td>가입시 입력한 이메일 주소를 입력합니다.</td>
 </tr>
 <tr>
-<td>account_id</td>
-<td>계좌 생성시 확인한 &#39;account_id&#39;값을 입력합니다.</td>
+<td>uniq_keyword</td>
+<td>계좌 생성시 확인한 &#39;uniq_keyword&#39;값을 입력합니다.</td>
 </tr>
 </tbody></table>
 <h1 id='errors'>Errors</h1>

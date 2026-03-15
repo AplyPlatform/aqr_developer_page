@@ -20,10 +20,10 @@
     <meta name="description" content="A Gate to the New World">
     <meta name="author" content="APLY Inc.">
     <meta name="keywords"
-        content="송금, QR, 플리마켓, 대학, 축제, 팝업, 스토어, 이체, 안전, 보호, 예방, advanced, platform, mobile, software, service, emotion, emotional, 증강현실, AR, AI, 감성, 서비스, 소프트웨어, sw, vision, anomaly, detection, machine, ai, bigdata">
+        content="송금, 입금, 요청, QR, 플리마켓, 대학, 축제, 팝업, 스토어, 이체, 안전, 보호, 예방, advanced, platform, mobile, software, service, emotion, emotional, 증강현실, AR, AI, 감성, 서비스, 소프트웨어, sw, vision, anomaly, detection, machine, ai, bigdata">
     <meta name="description" content="AQR 개발자 페이지">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:description" content="AQR - 간편한 송금 지원 서비스">
+    <meta name="twitter:description" content="AQR - 간편한 입금요청">
     <meta name="twitter:title" content="AQR 개발자 페이지">
     <meta name="twitter:image" content="assets/img/aqr_og_image.png">
 
@@ -40,7 +40,7 @@
 
     <meta itemprop="name" content="AQR">
     <meta itemprop="image" content="assets/img/aqr_og_image.png">
-    <meta itemprop="description" content="AQR - 간편한 송금 지원 서비스">
+    <meta itemprop="description" content="AQR - 간편한 입금요청">
     <meta itemprop="keywords"
         content="송금, QR, 플리마켓, 대학, 축제, 팝업, 스토어, 이체, 안전, 보호, 예방, advanced, platform, mobile, software, service, emotion, emotional, 증강현실, AR, AI, 감성, 서비스, 소프트웨어, sw, vision, anomaly, detection, machine, ai, bigdata">
     <meta itemprop="url" content="https://aplx.aply.biz/aqr">
@@ -368,7 +368,8 @@
     <script src="assets/js/custom/jquery.youtube-background.js?v=1.0.7"></script>
     <script src="assets/js/custom/popper.min.js"></script>
     <script src="assets/js/bootstrap/bootstrap.min.js"></script>
-    <script src="assets/js/custom/plugins.min.js"></script>    
+    <script src="assets/js/custom/plugins.min.js"></script>
+    <script src="assets/js/custom/custom.js"></script>
     <script src="https://home.aply.biz/assets/js/aplyServices.js?v=20250131_01"></script>       
     <script>
         function setCookie(cName, cValue, cDay) {
@@ -388,13 +389,14 @@
         $(document).ready(function (e) {
             AAPI_setContactForm("aqrdevcontact");
 
+
             if (AAPI_isSet(getCookie("ref1"))) return;
             if (AAPI_isSet(document.referrer) == false) {
                 setCookie("ref1", "", 1)
                 return;
             }
 
-            setCookie("ref1", document.referrer + "&from=aqrdev", 1);
+            setCookie("ref1", document.referrer + "&from=aqrdev", 1);            
         });    
     </script>
 </body>
