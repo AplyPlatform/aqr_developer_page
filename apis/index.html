@@ -577,7 +577,7 @@
 
 <p><a href="https://aplx.link/square">AQR Square 가기</a></p>
 <h1 id='20db1de88c'>계좌 정보 생성/삭제</h1><h2 id='e509655454'>계좌 정보 생성하기</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>
-curl <span class="nt">-H</span> <span class="s2">"AQR-DEVELOPER-TOKEN: &lt;DEVELOPER TOKEN&gt;"</span> <span class="nt">-H</span> <span class="s2">"Content-type: application/x-www-form-urlencoded"</span> <span class="nt">-X</span> POST <span class="nt">-d</span> <span class="s1">'email_address=&lt;EMAILID&gt;&amp;account_number=1234567894321&amp;bank_id=1&amp;account_owner=&lt;OWNER NAME&gt;&amp;phone_number=01012341234&amp;account_name=&lt;ACCOUNT NAME&gt;&amp;action=aqr_create'</span> https://aplx.link/api/
+curl <span class="nt">-H</span> <span class="s2">"AQR-DEVELOPER-TOKEN: &lt;DEVELOPER TOKEN&gt;"</span> <span class="nt">-H</span> <span class="s2">"Content-type: application/x-www-form-urlencoded"</span> <span class="nt">-X</span> POST <span class="nt">-d</span> <span class="s1">'email_address=&lt;EMAILID&gt;&amp;account_number=1234567894321&amp;bank_id=1&amp;account_owner=&lt;OWNER NAME&gt;&amp;phone_number=01012341234&amp;account_name=&lt;ACCOUNT NAME&gt;&amp;action=create'</span> https://aplx.link/api/
 
 </code></pre></div><div class="highlight"><pre class="highlight php tab-php"><code>
 <span class="nv">$body</span><span class="p">[</span><span class="s1">'email_address'</span><span class="p">]</span> <span class="o">=</span> <span class="s1">'&lt;EMAILID&gt;'</span><span class="p">;</span>
@@ -586,7 +586,7 @@ curl <span class="nt">-H</span> <span class="s2">"AQR-DEVELOPER-TOKEN: &lt;DEVEL
 <span class="nv">$body</span><span class="p">[</span><span class="s1">'account_owner'</span><span class="p">]</span> <span class="o">=</span> <span class="s1">'&lt;OWNER NAME&gt;'</span><span class="p">;</span>
 <span class="nv">$body</span><span class="p">[</span><span class="s1">'phone_number'</span><span class="p">]</span> <span class="o">=</span> <span class="s1">'01012341234'</span><span class="p">;</span>
 <span class="nv">$body</span><span class="p">[</span><span class="s1">'account_name'</span><span class="p">]</span> <span class="o">=</span> <span class="s1">'&lt;ACCOUNT NAME&gt;'</span><span class="p">;</span>
-<span class="nv">$body</span><span class="p">[</span><span class="s1">'action'</span><span class="p">]</span> <span class="o">=</span> <span class="s1">'aqr_create'</span><span class="p">;</span>
+<span class="nv">$body</span><span class="p">[</span><span class="s1">'action'</span><span class="p">]</span> <span class="o">=</span> <span class="s1">'create'</span><span class="p">;</span>
 
 <span class="nv">$headers</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span>
         <span class="s1">'Content-Type: application/x-www-form-urlencoded'</span><span class="p">,</span>
@@ -614,7 +614,7 @@ curl <span class="nt">-H</span> <span class="s2">"AQR-DEVELOPER-TOKEN: &lt;DEVEL
 <span class="nx">formdata</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="dl">"</span><span class="s2">account_owner</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">&lt;OWNER NAME&gt;</span><span class="dl">"</span><span class="p">);</span>
 <span class="nx">formdata</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="dl">"</span><span class="s2">phone_number</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">01012341234</span><span class="dl">"</span><span class="p">);</span>
 <span class="nx">formdata</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="dl">"</span><span class="s2">account_name</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">&lt;ACCOUNT NAME&gt;</span><span class="dl">"</span><span class="p">);</span>
-<span class="nx">formdata</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="dl">"</span><span class="s2">action</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">aqr_create</span><span class="dl">"</span><span class="p">);</span>
+<span class="nx">formdata</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="dl">"</span><span class="s2">action</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">create</span><span class="dl">"</span><span class="p">);</span>
 
 <span class="nx">$</span><span class="p">.</span><span class="nx">ajax</span><span class="p">({</span><span class="na">url</span> <span class="p">:</span> <span class="dl">"</span><span class="s2">https://aplx.link/api/</span><span class="dl">"</span><span class="p">,</span>
        <span class="na">dataType</span> <span class="p">:</span> <span class="dl">"</span><span class="s2">json</span><span class="dl">"</span><span class="p">,</span>
@@ -644,7 +644,7 @@ curl <span class="nt">-H</span> <span class="s2">"AQR-DEVELOPER-TOKEN: &lt;DEVEL
     <span class="s">'Content-Type'</span><span class="p">:</span> <span class="s">'application/x-www-form-urlencoded'</span><span class="p">,</span>
     <span class="s">'AQR-DEVELOPER-TOKEN'</span> <span class="p">:</span> <span class="s">'&lt;DEVELOPER TOKEN&gt;'</span>
 <span class="p">}</span>
-<span class="n">data</span> <span class="o">=</span> <span class="s">"email_address=&lt;EMAILID&gt;&amp;account_number=1234567894321&amp;bank_id=1&amp;account_owner=&lt;OWNER NAME&gt;&amp;phone_number=01012341234&amp;account_name=&lt;ACCOUNT NAME&gt;&amp;action=aqr_create"</span>
+<span class="n">data</span> <span class="o">=</span> <span class="s">"email_address=&lt;EMAILID&gt;&amp;account_number=1234567894321&amp;bank_id=1&amp;account_owner=&lt;OWNER NAME&gt;&amp;phone_number=01012341234&amp;account_name=&lt;ACCOUNT NAME&gt;&amp;action=create"</span>
 <span class="n">url</span> <span class="o">=</span> <span class="s">'https://aplx.link/api/'</span>
 <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="n">post</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span>
                          <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
@@ -659,7 +659,7 @@ curl <span class="nt">-H</span> <span class="s2">"AQR-DEVELOPER-TOKEN: &lt;DEVEL
        <span class="n">content</span> <span class="p">+=</span> <span class="s">"&amp;account_owner="</span> <span class="p">+</span> <span class="n">Uri</span><span class="p">.</span><span class="nf">EscapeDataString</span><span class="p">(</span><span class="s">"&lt;OWNER NAME&gt;"</span><span class="p">);</span>
        <span class="n">content</span> <span class="p">+=</span> <span class="s">"&amp;phone_number="</span> <span class="p">+</span> <span class="n">Uri</span><span class="p">.</span><span class="nf">EscapeDataString</span><span class="p">(</span><span class="s">"01012341234"</span><span class="p">);</span>
        <span class="n">content</span> <span class="p">+=</span> <span class="s">"&amp;account_name="</span> <span class="p">+</span> <span class="n">Uri</span><span class="p">.</span><span class="nf">EscapeDataString</span><span class="p">(</span><span class="s">"&lt;ACCOUNT NAME&gt;"</span><span class="p">);</span>
-       <span class="n">content</span> <span class="p">+=</span> <span class="s">"&amp;action="</span> <span class="p">+</span> <span class="n">Uri</span><span class="p">.</span><span class="nf">EscapeDataString</span><span class="p">(</span><span class="s">"aqr_create"</span><span class="p">);</span>
+       <span class="n">content</span> <span class="p">+=</span> <span class="s">"&amp;action="</span> <span class="p">+</span> <span class="n">Uri</span><span class="p">.</span><span class="nf">EscapeDataString</span><span class="p">(</span><span class="s">"create"</span><span class="p">);</span>
 
    <span class="kt">var</span> <span class="n">url</span> <span class="p">=</span> <span class="s">"https://aplx.link/api/"</span><span class="p">;</span>
    <span class="kt">byte</span><span class="p">[]</span> <span class="n">data</span> <span class="p">=</span> <span class="n">Encoding</span><span class="p">.</span><span class="n">UTF8</span><span class="p">.</span><span class="nf">GetBytes</span><span class="p">(</span><span class="n">content</span><span class="p">);</span>
@@ -717,7 +717,7 @@ curl <span class="nt">-H</span> <span class="s2">"AQR-DEVELOPER-TOKEN: &lt;DEVEL
 </thead><tbody>
 <tr>
 <td>action</td>
-<td>&quot;aqr_create&quot;를 입력합니다.</td>
+<td>&quot;create&quot;를 입력합니다.</td>
 </tr>
 <tr>
 <td>email_address</td>
@@ -993,12 +993,12 @@ curl <span class="nt">-H</span> <span class="s2">"AQR-DEVELOPER-TOKEN: &lt;DEVEL
 </tr>
 </tbody></table>
 <h2 id='5f5c3ab7d2'>계좌 정보 삭제하기</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>
-curl <span class="nt">-H</span> <span class="s2">"AQR-DEVELOPER-TOKEN: &lt;DEVELOPER TOKEN&gt;"</span> <span class="nt">-H</span> <span class="s2">"Content-type: application/x-www-form-urlencoded"</span> <span class="nt">-X</span> POST <span class="nt">-d</span> <span class="s1">'email_address=&lt;EMAILID&gt;&amp;uniq_keyword=abcde&amp;action=aqr_delete'</span> https://aplx.link/api/
+curl <span class="nt">-H</span> <span class="s2">"AQR-DEVELOPER-TOKEN: &lt;DEVELOPER TOKEN&gt;"</span> <span class="nt">-H</span> <span class="s2">"Content-type: application/x-www-form-urlencoded"</span> <span class="nt">-X</span> POST <span class="nt">-d</span> <span class="s1">'email_address=&lt;EMAILID&gt;&amp;uniq_keyword=abcde&amp;action=delete'</span> https://aplx.link/api/
 
 </code></pre></div><div class="highlight"><pre class="highlight php tab-php"><code>
 <span class="nv">$body</span><span class="p">[</span><span class="s1">'email_address'</span><span class="p">]</span> <span class="o">=</span> <span class="s1">'&lt;EMAILID&gt;'</span><span class="p">;</span>
 <span class="nv">$body</span><span class="p">[</span><span class="s1">'uniq_keyword'</span><span class="p">]</span> <span class="o">=</span> <span class="s1">'abcde'</span><span class="p">;</span>
-<span class="nv">$body</span><span class="p">[</span><span class="s1">'action'</span><span class="p">]</span> <span class="o">=</span> <span class="s1">'aqr_delete'</span><span class="p">;</span>
+<span class="nv">$body</span><span class="p">[</span><span class="s1">'action'</span><span class="p">]</span> <span class="o">=</span> <span class="s1">'delete'</span><span class="p">;</span>
 
 <span class="nv">$headers</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span>
         <span class="s1">'Content-Type: application/x-www-form-urlencoded'</span><span class="p">,</span>
@@ -1022,7 +1022,7 @@ curl <span class="nt">-H</span> <span class="s2">"AQR-DEVELOPER-TOKEN: &lt;DEVEL
 <span class="kd">var</span> <span class="nx">formdata</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">FormData</span><span class="p">();</span>
 <span class="nx">formdata</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="dl">"</span><span class="s2">email_address</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">&lt;EMAILID&gt;</span><span class="dl">"</span><span class="p">);</span>
 <span class="nx">formdata</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="dl">"</span><span class="s2">uniq_keyword</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">abcde</span><span class="dl">"</span><span class="p">);</span>
-<span class="nx">formdata</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="dl">"</span><span class="s2">action</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">aqr_delete</span><span class="dl">"</span><span class="p">);</span>
+<span class="nx">formdata</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="dl">"</span><span class="s2">action</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">delete</span><span class="dl">"</span><span class="p">);</span>
 
 <span class="nx">$</span><span class="p">.</span><span class="nx">ajax</span><span class="p">({</span><span class="na">url</span> <span class="p">:</span> <span class="dl">"</span><span class="s2">https://aplx.link/api/</span><span class="dl">"</span><span class="p">,</span>
        <span class="na">dataType</span> <span class="p">:</span> <span class="dl">"</span><span class="s2">json</span><span class="dl">"</span><span class="p">,</span>
@@ -1052,7 +1052,7 @@ curl <span class="nt">-H</span> <span class="s2">"AQR-DEVELOPER-TOKEN: &lt;DEVEL
     <span class="s">'Content-Type'</span><span class="p">:</span> <span class="s">'application/x-www-form-urlencoded'</span><span class="p">,</span>
     <span class="s">'AQR-DEVELOPER-TOKEN'</span> <span class="p">:</span> <span class="s">'&lt;DEVELOPER TOKEN&gt;'</span>
 <span class="p">}</span>
-<span class="n">data</span> <span class="o">=</span> <span class="s">"email_address=&lt;EMAILID&gt;&amp;uniq_keyword=abcde&amp;action=aqr_delete"</span>
+<span class="n">data</span> <span class="o">=</span> <span class="s">"email_address=&lt;EMAILID&gt;&amp;uniq_keyword=abcde&amp;action=delete"</span>
 <span class="n">url</span> <span class="o">=</span> <span class="s">'https://aplx.link/api/'</span>
 <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="n">post</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span>
                          <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
@@ -1062,7 +1062,7 @@ curl <span class="nt">-H</span> <span class="s2">"AQR-DEVELOPER-TOKEN: &lt;DEVEL
 </span></code></pre></div><div class="highlight"><pre class="highlight csharp tab-csharp"><code>
    <span class="kt">var</span> <span class="n">content</span> <span class="p">=</span> <span class="s">"email_address="</span> <span class="p">+</span> <span class="n">Uri</span><span class="p">.</span><span class="nf">EscapeDataString</span><span class="p">(</span><span class="s">"&lt;EMAILID&gt;"</span><span class="p">);</span>
        <span class="n">content</span> <span class="p">+=</span> <span class="s">"&amp;uniq_keyword="</span> <span class="p">+</span> <span class="n">Uri</span><span class="p">.</span><span class="nf">EscapeDataString</span><span class="p">(</span><span class="s">"abcde"</span><span class="p">);</span>
-       <span class="n">content</span> <span class="p">+=</span> <span class="s">"&amp;action="</span> <span class="p">+</span> <span class="n">Uri</span><span class="p">.</span><span class="nf">EscapeDataString</span><span class="p">(</span><span class="s">"aqr_delete"</span><span class="p">);</span>
+       <span class="n">content</span> <span class="p">+=</span> <span class="s">"&amp;action="</span> <span class="p">+</span> <span class="n">Uri</span><span class="p">.</span><span class="nf">EscapeDataString</span><span class="p">(</span><span class="s">"delete"</span><span class="p">);</span>
 
    <span class="kt">byte</span><span class="p">[]</span> <span class="n">data</span> <span class="p">=</span> <span class="n">Encoding</span><span class="p">.</span><span class="n">UTF8</span><span class="p">.</span><span class="nf">GetBytes</span><span class="p">(</span><span class="n">content</span><span class="p">);</span>
    <span class="n">WebRequest</span> <span class="n">request</span> <span class="p">=</span> <span class="n">WebRequest</span><span class="p">.</span><span class="nf">Create</span><span class="p">(</span><span class="n">url</span><span class="p">);</span>
@@ -1115,7 +1115,7 @@ curl <span class="nt">-H</span> <span class="s2">"AQR-DEVELOPER-TOKEN: &lt;DEVEL
 </thead><tbody>
 <tr>
 <td>action</td>
-<td>&quot;aqr_delete&quot;를 입력합니다.</td>
+<td>&quot;delete&quot;를 입력합니다.</td>
 </tr>
 <tr>
 <td>email_address</td>
