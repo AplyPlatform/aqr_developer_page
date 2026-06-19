@@ -687,14 +687,17 @@ curl <span class="nt">-H</span> <span class="s2">"AQR-DEVELOPER-TOKEN: &lt;DEVEL
 <blockquote>
 <p>이 요청은 아래와 같이 JSON 구조로 응답합니다:</p>
 </blockquote>
-<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w"> 
-  </span><span class="nl">"result"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w"> 
-  </span><span class="nl">"qr_image"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"https://aplx.link/res?keyword=abcde"</span><span class="p">,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">QR</span><span class="w"> </span><span class="err">이미지</span><span class="w"> </span><span class="err">다운로드</span><span class="w"> </span><span class="err">경로</span><span class="w">
-  </span><span class="nl">"short_url"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"https://aq.gy/f/abcde"</span><span class="p">,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">계좌</span><span class="w"> </span><span class="err">정보</span><span class="w"> </span><span class="err">고유</span><span class="w"> </span><span class="err">URL</span><span class="w">
-  </span><span class="nl">"uniq_keyword"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"abcde"</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">계좌</span><span class="w"> </span><span class="err">정보</span><span class="w"> </span><span class="err">ID</span><span class="w"> </span><span class="err">(삭제/수정시</span><span class="w"> </span><span class="err">사용)</span><span class="w">
-</span><span class="p">}</span><span class="w">
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span>
+  <span class="w"></span><span class="nl">"result"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span>
+  <span class="p"></span><span class="nl">"data"</span> <span class="p">: {</span>
+   <span class="w"></span><span class="nl">"qr_image"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"https://aplx.link/res?keyword=abcde"</span><span class="p">,</span><span class="w"> </span><span class="err">// QR 이미지 다운로드 경로</span>
+   <span class="nl">"short_url"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"https://aq.gy/f/abcde"</span><span class="p">,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">계좌</span><span class="w"> </span><span class="err">정보</span><span class="w"> </span><span class="err">고유</span><span class="w"> </span><span class="err">URL</span><span class="w">
+   </span><span class="nl">"uniq_keyword"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"abcde"</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">계좌</span><span class="w"> </span><span class="err">정보</span><span class="w"> </span><span class="err">ID</span><span class="w"> </span><span class="err">(삭제/수정시</span><span class="w"> </span><span class="err">사용)</span>
+  <span class="p"></span><span class="p">}</span>
+<span class="p">}</span>
+<span class="w"></span></code></pre></div>
 
-</span></code></pre></div><h3 id='http'>HTTP 요청</h3>
+<h3 id='http'>HTTP 요청</h3>
 <p><code>POST https://aplx.link/api/</code></p>
 <h3 id='fcb1c7c88c'>파라메터</h3>
 <table><thead>
