@@ -1,1195 +1,656 @@
-
 <!doctype html>
-<html>
-  <head>
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-SLJDN45EBB"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
+<html lang="ko">
+<head>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-SLJDN45EBB"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-SLJDN45EBB');
+  </script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AQR API Reference</title>
+  <link rel="icon" href="images/favicon-5931b2b3.ico" type="image/ico">
+  <link rel="stylesheet" href="stylesheets/api-docs.css">
+</head>
+<body>
 
-      gtag('config', 'G-SLJDN45EBB');
-    </script>
-    <meta charset="utf-8">
-    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <title>AQR API Reference | AQR API</title>
+<!-- Header -->
+<header class="site-header">
+  <a href="https://aqr.aplx.link" class="header-logo">
+    <img src="images/logo-45083ab8.png" alt="AQR">
+    <span class="header-logo-text">AQR API</span>
+  </a>
+  <nav class="header-nav">
+    <a href="https://aqr.aplx.link">홈</a>
+    <a href="#" class="active">API 문서</a>
+    <a href="https://aplx.link/square">AQR Square</a>
+  </nav>
+</header>
 
-    <style media="screen">
-      .highlight table td { padding: 5px; }
-.highlight table pre { margin: 0; }
-.highlight .gh {
-  color: #999999;
-}
-.highlight .sr {
-  color: #f6aa11;
-}
-.highlight .go {
-  color: #888888;
-}
-.highlight .gp {
-  color: #555555;
-}
-.highlight .gs {
-}
-.highlight .gu {
-  color: #aaaaaa;
-}
-.highlight .nb {
-  color: #f6aa11;
-}
-.highlight .cm {
-  color: #75715e;
-}
-.highlight .cp {
-  color: #75715e;
-}
-.highlight .c1 {
-  color: #75715e;
-}
-.highlight .cs {
-  color: #75715e;
-}
-.highlight .c, .highlight .ch, .highlight .cd, .highlight .cpf {
-  color: #75715e;
-}
-.highlight .err {
-  color: #960050;
-}
-.highlight .gr {
-  color: #960050;
-}
-.highlight .gt {
-  color: #960050;
-}
-.highlight .gd {
-  color: #49483e;
-}
-.highlight .gi {
-  color: #49483e;
-}
-.highlight .ge {
-  color: #49483e;
-}
-.highlight .kc {
-  color: #66d9ef;
-}
-.highlight .kd {
-  color: #66d9ef;
-}
-.highlight .kr {
-  color: #66d9ef;
-}
-.highlight .no {
-  color: #66d9ef;
-}
-.highlight .kt {
-  color: #66d9ef;
-}
-.highlight .mf {
-  color: #ae81ff;
-}
-.highlight .mh {
-  color: #ae81ff;
-}
-.highlight .il {
-  color: #ae81ff;
-}
-.highlight .mi {
-  color: #ae81ff;
-}
-.highlight .mo {
-  color: #ae81ff;
-}
-.highlight .m, .highlight .mb, .highlight .mx {
-  color: #ae81ff;
-}
-.highlight .sc {
-  color: #ae81ff;
-}
-.highlight .se {
-  color: #ae81ff;
-}
-.highlight .ss {
-  color: #ae81ff;
-}
-.highlight .sd {
-  color: #e6db74;
-}
-.highlight .s2 {
-  color: #e6db74;
-}
-.highlight .sb {
-  color: #e6db74;
-}
-.highlight .sh {
-  color: #e6db74;
-}
-.highlight .si {
-  color: #e6db74;
-}
-.highlight .sx {
-  color: #e6db74;
-}
-.highlight .s1 {
-  color: #e6db74;
-}
-.highlight .s, .highlight .sa, .highlight .dl {
-  color: #e6db74;
-}
-.highlight .na {
-  color: #a6e22e;
-}
-.highlight .nc {
-  color: #a6e22e;
-}
-.highlight .nd {
-  color: #a6e22e;
-}
-.highlight .ne {
-  color: #a6e22e;
-}
-.highlight .nf, .highlight .fm {
-  color: #a6e22e;
-}
-.highlight .vc {
-  color: #ffffff;
-}
-.highlight .nn {
-  color: #ffffff;
-}
-.highlight .ni {
-  color: #ffffff;
-}
-.highlight .bp {
-  color: #ffffff;
-}
-.highlight .vg {
-  color: #ffffff;
-}
-.highlight .vi {
-  color: #ffffff;
-}
-.highlight .nv, .highlight .vm {
-  color: #ffffff;
-}
-.highlight .w {
-  color: #ffffff;
-}
-.highlight {
-  color: #ffffff;
-}
-.highlight .n, .highlight .py, .highlight .nx {
-  color: #ffffff;
-}
-.highlight .nl {
-  color: #f92672;
-}
-.highlight .ow {
-  color: #f92672;
-}
-.highlight .nt {
-  color: #f92672;
-}
-.highlight .k, .highlight .kv {
-  color: #f92672;
-}
-.highlight .kn {
-  color: #f92672;
-}
-.highlight .kp {
-  color: #f92672;
-}
-.highlight .o {
-  color: #f92672;
-}
-    </style>
-    <style media="print">
-      * {
-        -webkit-transition:none!important;
-        transition:none!important;
-      }
-      .highlight table td { padding: 5px; }
-.highlight table pre { margin: 0; }
-.highlight, .highlight .w {
-  color: #586e75;
-}
-.highlight .err {
-  color: #002b36;
-  background-color: #dc322f;
-}
-.highlight .c, .highlight .ch, .highlight .cd, .highlight .cm, .highlight .cpf, .highlight .c1, .highlight .cs {
-  color: #657b83;
-}
-.highlight .cp {
-  color: #b58900;
-}
-.highlight .nt {
-  color: #b58900;
-}
-.highlight .o, .highlight .ow {
-  color: #93a1a1;
-}
-.highlight .p, .highlight .pi {
-  color: #93a1a1;
-}
-.highlight .gi {
-  color: #859900;
-}
-.highlight .gd {
-  color: #dc322f;
-}
-.highlight .gh {
-  color: #268bd2;
-  background-color: #002b36;
-  font-weight: bold;
-}
-.highlight .k, .highlight .kn, .highlight .kp, .highlight .kr, .highlight .kv {
-  color: #6c71c4;
-}
-.highlight .kc {
-  color: #cb4b16;
-}
-.highlight .kt {
-  color: #cb4b16;
-}
-.highlight .kd {
-  color: #cb4b16;
-}
-.highlight .s, .highlight .sb, .highlight .sc, .highlight .dl, .highlight .sd, .highlight .s2, .highlight .sh, .highlight .sx, .highlight .s1 {
-  color: #859900;
-}
-.highlight .sa {
-  color: #6c71c4;
-}
-.highlight .sr {
-  color: #2aa198;
-}
-.highlight .si {
-  color: #d33682;
-}
-.highlight .se {
-  color: #d33682;
-}
-.highlight .nn {
-  color: #b58900;
-}
-.highlight .nc {
-  color: #b58900;
-}
-.highlight .no {
-  color: #b58900;
-}
-.highlight .na {
-  color: #268bd2;
-}
-.highlight .m, .highlight .mb, .highlight .mf, .highlight .mh, .highlight .mi, .highlight .il, .highlight .mo, .highlight .mx {
-  color: #859900;
-}
-.highlight .ss {
-  color: #859900;
-}
-    </style>
-    <link href="stylesheets/screen-ad100b18.css" rel="stylesheet" media="screen" />
-    <link href="stylesheets/print-953e3353.css" rel="stylesheet" media="print" />
-      <script src="javascripts/all-b12a2749.js"></script>
+<div class="layout">
 
-    <link href="images/favicon-5931b2b3.ico" rel="icon" type="image/ico" />
-
-    <style media="screen">
-      /* ===== Light Theme Override ===== */
-
-      /* Base */
-      body {
-        background-color: #f8f9fb;
-        color: #334155;
-        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-      }
-
-      /* Sidebar */
-      .toc-wrapper {
-        background-color: #ffffff !important;
-        border-right: 1px solid #e2e8f0 !important;
-        box-shadow: 2px 0 8px rgba(0,0,0,0.04);
-      }
-
-      .toc-wrapper .logo {
-        padding: 20px;
-        background: #ffffff;
-      }
-
-      .toc-wrapper > .search input {
-        background: #f1f5f9 !important;
-        border: 1px solid #e2e8f0 !important;
-        color: #334155 !important;
-        border-radius: 6px;
-      }
-
-      .toc-wrapper > .search input::placeholder { color: #94a3b8; }
-      .toc-wrapper > .search:before { color: #94a3b8 !important; }
-
-      .toc-wrapper ul li a,
-      .toc-wrapper .toc-link {
-        color: #475569 !important;
-      }
-
-      .toc-wrapper .toc-h1 { color: #1e293b !important; font-weight: 600; }
-      .toc-wrapper .toc-h2 { color: #64748b !important; }
-
-      .toc-wrapper ul li a:hover,
-      .toc-wrapper .toc-link:hover { color: #3b82f6 !important; }
-
-      .toc-wrapper .toc-link.active,
-      .toc-wrapper li.toc-active > a { color: #3b82f6 !important; font-weight: 700; }
-
-      .toc-footer {
-        border-top: 1px solid #e2e8f0 !important;
-        background: #ffffff;
-      }
-      .toc-footer a { color: #94a3b8 !important; }
-      .toc-footer a:hover { color: #3b82f6 !important; }
-
-      /* Language Selector */
-      .lang-selector {
-        background: #f1f5f9 !important;
-        border-bottom: 2px solid #e2e8f0 !important;
-      }
-      .lang-selector a {
-        color: #64748b !important;
-        font-weight: 500;
-      }
-      .lang-selector a:hover { color: #334155 !important; background: #e2e8f0 !important; }
-      .lang-selector a.active {
-        background: #3b82f6 !important;
-        color: #ffffff !important;
-        border-radius: 4px;
-      }
-
-      /* Main layout */
-      .page-wrapper { background: #f8f9fb !important; }
-
-      .dark-box {
-        background: #f1f5f9 !important;
-        border-left: 1px solid #e2e8f0 !important;
-      }
-
-      /* Content area */
-      .content { color: #334155 !important; }
-
-      .content h1 {
-        background: #ffffff !important;
-        border-top: 1px solid #e2e8f0 !important;
-        border-bottom: 1px solid #e2e8f0 !important;
-        color: #1e293b !important;
-        font-size: 22px;
-        font-weight: 700;
-        padding: 16px 28px !important;
-      }
-
-      .content h2 {
-        color: #334155 !important;
-        border-top: 1px solid #e2e8f0 !important;
-        font-size: 18px;
-        font-weight: 600;
-        padding-top: 16px;
-      }
-
-      .content h3 {
-        color: #475569 !important;
-        font-size: 15px;
-        font-weight: 600;
-        text-transform: none;
-        letter-spacing: 0;
-      }
-
-      .content p { color: #475569 !important; line-height: 1.75; }
-
-      /* Aside/Blockquote */
-      .content blockquote {
-        background: #eff6ff !important;
-        border-top: none !important;
-        border-bottom: none !important;
-        border-left: 4px solid #3b82f6 !important;
-        border-radius: 0 6px 6px 0;
-        margin: 0 !important;
-      }
-      .content blockquote p { color: #1d4ed8 !important; font-weight: 500; }
-
-      /* Inline code */
-      .content code {
-        background: #f1f5f9 !important;
-        color: #e11d48 !important;
-        border: 1px solid #e2e8f0;
-        border-radius: 4px;
-        padding: 1px 6px;
-        font-size: 13px;
-      }
-
-      /* Code blocks */
-      .content pre, .content pre code {
-        background: #f8fafc !important;
-        color: #334155 !important;
-        border: 1px solid #e2e8f0 !important;
-        border-radius: 8px !important;
-      }
-      .content pre code { border: none !important; padding: 0; color: inherit !important; }
-
-      .highlight {
-        background: #f8fafc !important;
-        border-radius: 8px;
-        border: 1px solid #e2e8f0;
-      }
-      .highlight pre { background: transparent !important; border: none !important; border-radius: 0 !important; }
-
-      /* Tables */
-      .content table th {
-        background: #f1f5f9 !important;
-        color: #1e293b !important;
-        border-bottom: 2px solid #cbd5e1 !important;
-        font-weight: 600;
-        font-size: 13px;
-      }
-      .content table td {
-        color: #475569 !important;
-        border-bottom: 1px solid #f1f5f9 !important;
-      }
-      .content table tr:nth-child(odd) > td { background: #ffffff !important; }
-      .content table tr:nth-child(even) > td { background: #f8f9fb !important; }
-      .content table tr:hover > td { background: #eff6ff !important; }
-
-      /* Links */
-      .content a { color: #3b82f6 !important; }
-      .content a:hover { color: #1d4ed8 !important; text-decoration: underline; }
-
-      /* Nav button */
-      #nav-button { background: #ffffff; border: 1px solid #e2e8f0; border-radius: 4px; }
-      #nav-button span { background: #ffffff; color: #334155; }
-      #nav-button img { filter: invert(30%) sepia(50%) saturate(300%) hue-rotate(190deg); }
-
-      /* Search results */
-      .search-results { background: #ffffff !important; border: 1px solid #e2e8f0 !important; border-radius: 6px; }
-      .search-results li { border-bottom: 1px solid #f1f5f9 !important; }
-      .search-results a { color: #334155 !important; }
-      .search-results a:hover { background: #f1f5f9 !important; color: #3b82f6 !important; }
-
-      /* ===== Light Syntax Highlighting (GitHub Light) ===== */
-      .highlight { color: #24292e !important; }
-      .highlight .n, .highlight .py, .highlight .nx,
-      .highlight .vc, .highlight .nn, .highlight .ni, .highlight .bp,
-      .highlight .vg, .highlight .vi, .highlight .nv, .highlight .vm, .highlight .w { color: #24292e !important; }
-      .highlight .kc, .highlight .kd, .highlight .kr,
-      .highlight .no, .highlight .kt { color: #005cc5 !important; }
-      .highlight .k, .highlight .kv, .highlight .kn, .highlight .kp,
-      .highlight .o, .highlight .ow, .highlight .nt, .highlight .nl { color: #d73a49 !important; }
-      .highlight .na, .highlight .nc, .highlight .nd,
-      .highlight .ne, .highlight .nf, .highlight .fm { color: #6f42c1 !important; }
-      .highlight .s, .highlight .sa, .highlight .dl, .highlight .sd,
-      .highlight .s2, .highlight .sb, .highlight .sh,
-      .highlight .sx, .highlight .s1 { color: #032f62 !important; }
-      .highlight .sr { color: #22863a !important; }
-      .highlight .si { color: #e36209 !important; }
-      .highlight .se { color: #e36209 !important; }
-      .highlight .ss { color: #032f62 !important; }
-      .highlight .mf, .highlight .mh, .highlight .il, .highlight .mi,
-      .highlight .mo, .highlight .m, .highlight .mb, .highlight .mx,
-      .highlight .sc { color: #005cc5 !important; }
-      .highlight .cm, .highlight .cp, .highlight .c1, .highlight .cs,
-      .highlight .c, .highlight .ch, .highlight .cd, .highlight .cpf { color: #6a737d !important; font-style: italic; }
-      .highlight .err { color: #cb2431 !important; background: transparent !important; }
-      .highlight .gd { color: #b31d28 !important; background: #ffeef0 !important; }
-      .highlight .gi { color: #22863a !important; background: #f0fff4 !important; }
-      .highlight .gh { color: #24292e !important; font-weight: bold; }
-      .highlight .go, .highlight .gp, .highlight .gu { color: #6a737d !important; }
-    </style>
-  </head>
-
-  <body class="index" data-languages="[&quot;shell&quot;,&quot;php&quot;,&quot;javascript&quot;,&quot;python&quot;,&quot;csharp&quot;]">
-    <a href="#" id="nav-button">
-      <span>
-        NAV
-        <img src="images/navbar-cad8cdcb.png" alt="" />
-      </span>
-    </a>
-    <div class="toc-wrapper">
-      <img src="images/logo-45083ab8.png" class="logo" alt="" />
-        <div class="lang-selector">
-              <a href="#" data-language-name="shell">shell</a>
-              <a href="#" data-language-name="php">php</a>
-              <a href="#" data-language-name="javascript">javascript</a>
-              <a href="#" data-language-name="python">python</a>
-              <a href="#" data-language-name="csharp">csharp</a>
-        </div>
-        <div class="search">
-          <input type="text" class="search" id="input-search" placeholder="Search">
-        </div>
-        <ul class="search-results"></ul>
-      <ul id="toc" class="toc-list-h1">
-          <li>
-            <a href="#fa255f0ccc" class="toc-h1 toc-link" data-title="소개">소개</a>
-          </li>
-          <li>
-            <a href="#token" class="toc-h1 toc-link" data-title="개발자 Token 발급 받기">개발자 Token 발급 받기</a>
-          </li>
-          <li>
-            <a href="#20db1de88c" class="toc-h1 toc-link" data-title="계좌 정보 생성/삭제">계좌 정보 생성/삭제</a>
-              <ul class="toc-list-h2">
-                  <li>
-                    <a href="#e509655454" class="toc-h2 toc-link" data-title="계좌 정보 생성하기">계좌 정보 생성하기</a>
-                  </li>
-                  <li>
-                    <a href="#5f5c3ab7d2" class="toc-h2 toc-link" data-title="계좌 정보 삭제하기">계좌 정보 삭제하기</a>
-                  </li>
-              </ul>
-          </li>
-          <li>
-            <a href="#errors" class="toc-h1 toc-link" data-title="Errors">Errors</a>
-          </li>
-      </ul>
-        <ul class="toc-footer">
-            <li><a href='https://aqr.aplx.link'>AQR 홈페이지</a></li>
-            <li><a href='https://github.com/lord/slate'>Documentation Powered by Slate</a></li>
-            <li>© <script>var cYear=(new Date()).getFullYear();document.write(cYear);</script> APLY Inc.</li>
-        </ul>
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <div class="sidebar-body">
+      <div class="sidebar-group-title">목차</div>
+      <nav class="sidebar-nav">
+        <a href="#intro" class="active">소개</a>
+        <a href="#token">개발자 Token 발급 받기</a>
+        <a href="#account-section">계좌 정보 생성/삭제</a>
+        <a href="#create" class="lvl2">계좌 정보 생성하기</a>
+        <a href="#delete" class="lvl2">계좌 정보 삭제하기</a>
+        <a href="#errors">Errors</a>
+      </nav>
     </div>
-    <div class="page-wrapper">
-      <div class="dark-box"></div>
-      <div class="content">
-        <h1 id='fa255f0ccc'>소개</h1>
-<p>다양한 페이. SNS 링크. 간편 송금.<br><b>&#39;하나의 QR과 URL에&#39;</b></p>
+    <div class="sidebar-footer">
+      <div><a href="https://aqr.aplx.link">AQR 홈페이지</a></div>
+      <div>© <span id="yr"></span> APLY Inc.</div>
+    </div>
+  </aside>
 
-<p>AQR 개발자를 위한 API 사용법과 예제코드를 제공합니다.</p>
-<h1 id='token'>개발자 Token 발급 받기</h1>
-<blockquote>
-<p>API 사용을 위해 AQR 개발자 Token을 발급 받으세요.</p>
-</blockquote>
-<div class="highlight"><pre class="highlight shell tab-shell"><code>
-</code></pre></div><div class="highlight"><pre class="highlight php tab-php"><code>
-</code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code>
-</code></pre></div><div class="highlight"><pre class="highlight python tab-python"><code>
-</code></pre></div>
+  <!-- Main -->
+  <main class="main">
 
-<p>AQR API는 AQR 개발자 Token을 파라메터로 입력해야 사용할 수 있습니다.<br>
-<br>
-<b>AQR 서비스의 "Advanced" 등급 또는 제휴사에 한해서 개발자 Token을 제공합니다.</b><br>
-개발자 Token은 아래의 AQR Square(페이지 관리 사이트)에 가입 및 로그인 후 화면의 우측 상단 &quot;개인정보수정&quot; 메뉴에서 확인 할 수 있습니다.<br>
-</p>
+    <!-- 소개 -->
+    <section id="intro" class="card">
+      <h1>AQR API Reference</h1>
+      <p>다양한 페이. SNS 링크. 간편 송금.<br><strong>'하나의 QR과 URL에'</strong></p>
+      <p>AQR 개발자를 위한 API 사용법과 예제코드를 제공합니다.</p>
+    </section>
 
-<p><a href="https://aplx.link/square">AQR Square 가기</a></p>
-<h1 id='20db1de88c'>계좌 정보 생성/삭제</h1><h2 id='e509655454'>계좌 정보 생성하기</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>
-curl <span class="nt">-H</span> <span class="s2">"AQR-DEVELOPER-TOKEN: &lt;DEVELOPER TOKEN&gt;"</span> <span class="nt">-H</span> <span class="s2">"Content-type: application/x-www-form-urlencoded"</span> <span class="nt">-X</span> POST <span class="nt">-d</span> <span class="s1">'email_address=&lt;EMAILID&gt;&amp;account_number=1234567894321&amp;bank_id=1&amp;account_owner=&lt;OWNER NAME&gt;&amp;phone_number=01012341234&amp;account_name=&lt;ACCOUNT NAME&gt;&amp;action=create'</span> https://aplx.link/api/
+    <!-- Token -->
+    <section id="token" class="card">
+      <h1>개발자 Token 발급 받기</h1>
+      <div class="info-box"><p>API 사용을 위해 AQR 개발자 Token을 발급 받으세요.</p></div>
+      <p>AQR API는 AQR 개발자 Token을 파라메터로 입력해야 사용할 수 있습니다.</p>
+      <p><strong>AQR 서비스의 "Advanced" 등급 또는 제휴사에 한해서 개발자 Token을 제공합니다.</strong><br>
+      개발자 Token은 아래의 AQR Square(페이지 관리 사이트)에 가입 및 로그인 후 화면의 우측 상단 "개인정보수정" 메뉴에서 확인 할 수 있습니다.</p>
+      <p><a href="https://aplx.link/square">AQR Square 가기 →</a></p>
+    </section>
 
-</code></pre></div><div class="highlight"><pre class="highlight php tab-php"><code>
-<span class="nv">$body</span><span class="p">[</span><span class="s1">'email_address'</span><span class="p">]</span> <span class="o">=</span> <span class="s1">'&lt;EMAILID&gt;'</span><span class="p">;</span>
-<span class="nv">$body</span><span class="p">[</span><span class="s1">'account_number'</span><span class="p">]</span> <span class="o">=</span> <span class="s1">'1234567894321'</span><span class="p">;</span>
-<span class="nv">$body</span><span class="p">[</span><span class="s1">'bank_id'</span><span class="p">]</span> <span class="o">=</span> <span class="s1">'1'</span><span class="p">;</span>
-<span class="nv">$body</span><span class="p">[</span><span class="s1">'account_owner'</span><span class="p">]</span> <span class="o">=</span> <span class="s1">'&lt;OWNER NAME&gt;'</span><span class="p">;</span>
-<span class="nv">$body</span><span class="p">[</span><span class="s1">'phone_number'</span><span class="p">]</span> <span class="o">=</span> <span class="s1">'01012341234'</span><span class="p">;</span>
-<span class="nv">$body</span><span class="p">[</span><span class="s1">'account_name'</span><span class="p">]</span> <span class="o">=</span> <span class="s1">'&lt;ACCOUNT NAME&gt;'</span><span class="p">;</span>
-<span class="nv">$body</span><span class="p">[</span><span class="s1">'action'</span><span class="p">]</span> <span class="o">=</span> <span class="s1">'create'</span><span class="p">;</span>
+    <!-- 계좌 정보 생성/삭제 -->
+    <section id="account-section" class="card">
+      <h1>계좌 정보 생성/삭제</h1>
 
-<span class="nv">$headers</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span>
-        <span class="s1">'Content-Type: application/x-www-form-urlencoded'</span><span class="p">,</span>
-        <span class="s1">'AQR-DEVELOPER-TOKEN: &lt;DEVELOPER TOKEN&gt;'</span>
-<span class="p">);</span>
+      <!-- ── 생성 ─────────────────────────────────────── -->
+      <div id="create" class="api-section">
+        <h2>계좌 정보 생성하기</h2>
 
-<span class="nv">$ch</span> <span class="o">=</span> <span class="nb">curl_init</span><span class="p">();</span>
-<span class="nb">curl_setopt</span><span class="p">(</span><span class="nv">$ch</span><span class="p">,</span> <span class="no">CURLOPT_URL</span><span class="p">,</span> <span class="s1">'https://aplx.link/api/'</span><span class="p">);</span>
-<span class="nb">curl_setopt</span><span class="p">(</span><span class="nv">$ch</span><span class="p">,</span> <span class="no">CURLOPT_HTTPHEADER</span><span class="p">,</span>  <span class="nv">$headers</span><span class="p">);</span>
-<span class="nb">curl_setopt</span><span class="p">(</span><span class="nv">$ch</span><span class="p">,</span> <span class="no">CURLOPT_POST</span><span class="p">,</span>    <span class="kc">true</span><span class="p">);</span>
-<span class="nb">curl_setopt</span><span class="p">(</span><span class="nv">$ch</span><span class="p">,</span> <span class="no">CURLOPT_RETURNTRANSFER</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>
-<span class="nb">curl_setopt</span><span class="p">(</span><span class="nv">$ch</span><span class="p">,</span> <span class="no">CURLOPT_SSL_VERIFYPEER</span><span class="p">,</span> <span class="kc">false</span><span class="p">);</span>
-<span class="nb">curl_setopt</span><span class="p">(</span><span class="nv">$ch</span><span class="p">,</span> <span class="no">CURLOPT_POSTFIELDS</span><span class="p">,</span><span class="nb">http_build_query</span><span class="p">(</span><span class="nv">$body</span><span class="p">));</span>
-<span class="nv">$response</span> <span class="o">=</span> <span class="nb">curl_exec</span><span class="p">(</span><span class="nv">$ch</span><span class="p">);</span>
-<span class="c1">//$json_list= json_decode($response, true);</span>
-<span class="nb">curl_close</span><span class="p">(</span><span class="nv">$ch</span><span class="p">);</span>
+        <div class="sec-title">기본 정보</div>
+        <div class="endpoint-box">
+          <span class="method post">POST</span>
+          <code>https://aplx.link/api/</code>
+        </div>
 
-<span class="k">echo</span> <span class="nv">$response</span><span class="p">;</span>
+        <div class="sec-title">요청 파라메터</div>
+        <div class="sub-label">Header</div>
+        <div class="tbl-wrap">
+          <table class="tbl">
+            <thead>
+              <tr>
+                <th style="width:190px">파라메터명</th>
+                <th>설명</th>
+                <th style="width:56px">필수</th>
+                <th style="width:76px">타입</th>
+                <th style="width:76px">최대길이</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><span class="pname">AQR-DEVELOPER-TOKEN</span></td>
+                <td>부여받은 개발자 Token 값을 헤더에 입력합니다.</td>
+                <td><span class="req-y">Y</span></td>
+                <td><span class="type">String</span></td>
+                <td>-</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
 
-</code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code>
-<span class="kd">var</span> <span class="nx">formdata</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">FormData</span><span class="p">();</span>
-<span class="nx">formdata</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="dl">"</span><span class="s2">email_address</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">&lt;EMAILID&gt;</span><span class="dl">"</span><span class="p">);</span>
-<span class="nx">formdata</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="dl">"</span><span class="s2">account_number</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">123456789432</span><span class="dl">"</span><span class="p">);</span>
-<span class="nx">formdata</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="dl">"</span><span class="s2">bank_id</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">1</span><span class="dl">"</span><span class="p">);</span>
-<span class="nx">formdata</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="dl">"</span><span class="s2">account_owner</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">&lt;OWNER NAME&gt;</span><span class="dl">"</span><span class="p">);</span>
-<span class="nx">formdata</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="dl">"</span><span class="s2">phone_number</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">01012341234</span><span class="dl">"</span><span class="p">);</span>
-<span class="nx">formdata</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="dl">"</span><span class="s2">account_name</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">&lt;ACCOUNT NAME&gt;</span><span class="dl">"</span><span class="p">);</span>
-<span class="nx">formdata</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="dl">"</span><span class="s2">action</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">create</span><span class="dl">"</span><span class="p">);</span>
+        <div class="sub-label" style="margin-top:12px">Body — application/x-www-form-urlencoded</div>
+        <div class="tbl-wrap">
+          <table class="tbl">
+            <thead>
+              <tr>
+                <th style="width:150px">파라메터명</th>
+                <th>설명</th>
+                <th style="width:56px">필수</th>
+                <th style="width:76px">타입</th>
+                <th style="width:76px">최대길이</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><span class="pname">action</span></td>
+                <td>"create"를 입력합니다.</td>
+                <td><span class="req-y">Y</span></td>
+                <td><span class="type">String</span></td>
+                <td>20</td>
+              </tr>
+              <tr>
+                <td><span class="pname">email_address</span></td>
+                <td>가입시 입력한 이메일 주소를 입력합니다.</td>
+                <td><span class="req-y">Y</span></td>
+                <td><span class="type">String</span></td>
+                <td>100</td>
+              </tr>
+              <tr>
+                <td><span class="pname">account_number</span></td>
+                <td>계좌 번호를 입력합니다.</td>
+                <td><span class="req-y">Y</span></td>
+                <td><span class="type">String</span></td>
+                <td>30</td>
+              </tr>
+              <tr>
+                <td><span class="pname">bank_id</span></td>
+                <td>은행 ID를 입력합니다. (아래 은행 ID 테이블 참조)</td>
+                <td><span class="req-y">Y</span></td>
+                <td><span class="type">Integer</span></td>
+                <td>-</td>
+              </tr>
+              <tr>
+                <td><span class="pname">account_owner</span></td>
+                <td>예금주 명을 입력합니다.</td>
+                <td><span class="req-y">Y</span></td>
+                <td><span class="type">String</span></td>
+                <td>50</td>
+              </tr>
+              <tr>
+                <td><span class="pname">phone_number</span></td>
+                <td>예금주의 전화번호를 입력합니다.</td>
+                <td><span class="req-y">Y</span></td>
+                <td><span class="type">String</span></td>
+                <td>20</td>
+              </tr>
+              <tr>
+                <td><span class="pname">account_name</span></td>
+                <td>생성할 계좌 정보의 이름을 입력합니다.</td>
+                <td><span class="req-y">Y</span></td>
+                <td><span class="type">String</span></td>
+                <td>100</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
 
-<span class="nx">$</span><span class="p">.</span><span class="nx">ajax</span><span class="p">({</span><span class="na">url</span> <span class="p">:</span> <span class="dl">"</span><span class="s2">https://aplx.link/api/</span><span class="dl">"</span><span class="p">,</span>
-       <span class="na">dataType</span> <span class="p">:</span> <span class="dl">"</span><span class="s2">json</span><span class="dl">"</span><span class="p">,</span>
-       <span class="na">contentType</span> <span class="p">:</span> <span class="dl">"</span><span class="s2">application/x-www-form-urlencoded</span><span class="dl">"</span><span class="p">,</span>
-       <span class="na">crossDomain</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
-       <span class="na">cache</span> <span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
-       <span class="na">data</span> <span class="p">:</span> <span class="nx">formdata</span><span class="p">,</span>
-       <span class="na">type</span> <span class="p">:</span> <span class="dl">"</span><span class="s2">POST</span><span class="dl">"</span><span class="p">,</span>
-       <span class="na">async</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
-       <span class="na">beforeSend</span><span class="p">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">request</span><span class="p">)</span> <span class="p">{</span>
-          <span class="nx">request</span><span class="p">.</span><span class="nx">setRequestHeader</span><span class="p">(</span><span class="dl">"</span><span class="s2">AQR-DEVELOPER-TOKEN</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">&lt;DEVELOPER TOKEN&gt;</span><span class="dl">"</span><span class="p">);</span>
-        <span class="p">},</span>
-       <span class="na">success</span> <span class="p">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">r</span><span class="p">)</span> <span class="p">{</span>
-         <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">r</span><span class="p">));</span>
-         <span class="k">if</span><span class="p">(</span><span class="nx">r</span><span class="p">.</span><span class="nx">result</span> <span class="o">==</span> <span class="dl">"</span><span class="s2">success</span><span class="dl">"</span><span class="p">)</span> <span class="p">{</span>
-           <span class="c1">//r.data</span>
-         <span class="p">}</span>
-       <span class="p">},</span>
-       <span class="na">error</span><span class="p">:</span><span class="kd">function</span><span class="p">(</span><span class="nx">request</span><span class="p">,</span><span class="nx">status</span><span class="p">,</span><span class="nx">error</span><span class="p">){</span>
-           <span class="nx">alert</span><span class="p">(</span><span class="dl">"</span><span class="s2">code:</span><span class="dl">"</span><span class="o">+</span><span class="nx">request</span><span class="p">.</span><span class="nx">status</span><span class="o">+</span><span class="dl">"</span><span class="se">\n</span><span class="dl">"</span><span class="o">+</span><span class="dl">"</span><span class="s2">message:</span><span class="dl">"</span><span class="o">+</span><span class="nx">request</span><span class="p">.</span><span class="nx">responseText</span><span class="o">+</span><span class="dl">"</span><span class="se">\n</span><span class="dl">"</span><span class="o">+</span><span class="dl">"</span><span class="s2">error:</span><span class="dl">"</span><span class="o">+</span><span class="nx">error</span><span class="p">);</span>
-       <span class="p">}</span>
-<span class="p">});</span>
-
-</code></pre></div><div class="highlight"><pre class="highlight python tab-python"><code>
-<span class="kn">import</span> <span class="nn">requests</span>
-<span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s">'Content-Type'</span><span class="p">:</span> <span class="s">'application/x-www-form-urlencoded'</span><span class="p">,</span>
-    <span class="s">'AQR-DEVELOPER-TOKEN'</span> <span class="p">:</span> <span class="s">'&lt;DEVELOPER TOKEN&gt;'</span>
-<span class="p">}</span>
-<span class="n">data</span> <span class="o">=</span> <span class="s">"email_address=&lt;EMAILID&gt;&amp;account_number=1234567894321&amp;bank_id=1&amp;account_owner=&lt;OWNER NAME&gt;&amp;phone_number=01012341234&amp;account_name=&lt;ACCOUNT NAME&gt;&amp;action=create"</span>
-<span class="n">url</span> <span class="o">=</span> <span class="s">'https://aplx.link/api/'</span>
-<span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="n">post</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span>
-                         <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
-<span class="n">response</span><span class="p">.</span><span class="n">raise_for_status</span><span class="p">()</span>
-<span class="s">'response.json()
-
-
-</span></code></pre></div><div class="highlight"><pre class="highlight csharp tab-csharp"><code>
-   <span class="kt">var</span> <span class="n">content</span> <span class="p">=</span> <span class="s">"email_address="</span> <span class="p">+</span> <span class="n">Uri</span><span class="p">.</span><span class="nf">EscapeDataString</span><span class="p">(</span><span class="s">"&lt;EMAILID&gt;"</span><span class="p">);</span>
-       <span class="n">content</span> <span class="p">+=</span> <span class="s">"&amp;account_number="</span> <span class="p">+</span> <span class="n">Uri</span><span class="p">.</span><span class="nf">EscapeDataString</span><span class="p">(</span><span class="s">"1234567894321"</span><span class="p">);</span>
-       <span class="n">content</span> <span class="p">+=</span> <span class="s">"&amp;bank_id="</span> <span class="p">+</span> <span class="n">Uri</span><span class="p">.</span><span class="nf">EscapeDataString</span><span class="p">(</span><span class="s">"1"</span><span class="p">);</span>
-       <span class="n">content</span> <span class="p">+=</span> <span class="s">"&amp;account_owner="</span> <span class="p">+</span> <span class="n">Uri</span><span class="p">.</span><span class="nf">EscapeDataString</span><span class="p">(</span><span class="s">"&lt;OWNER NAME&gt;"</span><span class="p">);</span>
-       <span class="n">content</span> <span class="p">+=</span> <span class="s">"&amp;phone_number="</span> <span class="p">+</span> <span class="n">Uri</span><span class="p">.</span><span class="nf">EscapeDataString</span><span class="p">(</span><span class="s">"01012341234"</span><span class="p">);</span>
-       <span class="n">content</span> <span class="p">+=</span> <span class="s">"&amp;account_name="</span> <span class="p">+</span> <span class="n">Uri</span><span class="p">.</span><span class="nf">EscapeDataString</span><span class="p">(</span><span class="s">"&lt;ACCOUNT NAME&gt;"</span><span class="p">);</span>
-       <span class="n">content</span> <span class="p">+=</span> <span class="s">"&amp;action="</span> <span class="p">+</span> <span class="n">Uri</span><span class="p">.</span><span class="nf">EscapeDataString</span><span class="p">(</span><span class="s">"create"</span><span class="p">);</span>
-
-   <span class="kt">var</span> <span class="n">url</span> <span class="p">=</span> <span class="s">"https://aplx.link/api/"</span><span class="p">;</span>
-   <span class="kt">byte</span><span class="p">[]</span> <span class="n">data</span> <span class="p">=</span> <span class="n">Encoding</span><span class="p">.</span><span class="n">UTF8</span><span class="p">.</span><span class="nf">GetBytes</span><span class="p">(</span><span class="n">content</span><span class="p">);</span>
-   <span class="n">WebRequest</span> <span class="n">request</span> <span class="p">=</span> <span class="n">WebRequest</span><span class="p">.</span><span class="nf">Create</span><span class="p">(</span><span class="n">url</span><span class="p">);</span>
-   <span class="n">request</span><span class="p">.</span><span class="n">Method</span> <span class="p">=</span> <span class="s">"POST"</span><span class="p">;</span>
-   <span class="n">request</span><span class="p">.</span><span class="n">ContentType</span> <span class="p">=</span> <span class="s">"application/json"</span><span class="p">;</span>
-   <span class="n">request</span><span class="p">.</span><span class="n">Headers</span><span class="p">.</span><span class="nf">Add</span><span class="p">(</span><span class="s">"AQR-DEVELOPER-TOKEN"</span><span class="p">,</span> <span class="s">"&lt;DEVELOPER TOKEN&gt;"</span><span class="p">);</span>
-   <span class="n">request</span><span class="p">.</span><span class="n">ContentLength</span> <span class="p">=</span> <span class="n">data</span><span class="p">.</span><span class="n">Length</span><span class="p">;</span>
-
-   <span class="k">using</span> <span class="p">(</span><span class="n">Stream</span> <span class="n">stream</span> <span class="p">=</span> <span class="n">request</span><span class="p">.</span><span class="nf">GetRequestStream</span><span class="p">())</span>
-   <span class="p">{</span>
-       <span class="n">stream</span><span class="p">.</span><span class="nf">Write</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="n">data</span><span class="p">.</span><span class="n">Length</span><span class="p">);</span>
-   <span class="p">}</span>
-
-   <span class="k">try</span>
-   <span class="p">{</span>
-       <span class="n">WebResponse</span> <span class="n">response</span> <span class="p">=</span> <span class="k">await</span> <span class="n">request</span><span class="p">.</span><span class="nf">GetResponseAsync</span><span class="p">();</span>
-   <span class="p">}</span>
-   <span class="k">catch</span> <span class="p">(</span><span class="n">WebException</span> <span class="n">webException</span><span class="p">)</span>
-   <span class="p">{</span>
-   <span class="p">}</span>
-
-
-</code></pre></div>
-<blockquote>
-<p>이 요청은 아래와 같이 JSON 구조로 응답합니다:</p>
-</blockquote>
-<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span>
-  <span class="w"></span><span class="nl">"result"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span>
-  <span class="p"></span><span class="nl">"data"</span> <span class="p">: {</span>
-   <span class="w"></span><span class="nl">"qr_image"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"https://aplx.link/res?keyword=abcde"</span><span class="p">,</span><span class="w"> </span><span class="err">// QR 이미지 다운로드 경로</span>
-   <span class="nl">"short_url"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"https://aq.gy/f/abcde"</span><span class="p">,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">계좌</span><span class="w"> </span><span class="err">정보</span><span class="w"> </span><span class="err">고유</span><span class="w"> </span><span class="err">URL</span><span class="w">
-   </span><span class="nl">"uniq_keyword"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"abcde"</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">계좌</span><span class="w"> </span><span class="err">정보</span><span class="w"> </span><span class="err">ID</span><span class="w"> </span><span class="err">(삭제/수정시</span><span class="w"> </span><span class="err">사용)</span>
-  <span class="p"></span><span class="p">}</span>
-<span class="p">}</span>
-<span class="w"></span></code></pre></div>
-
-<h3 id='http'>HTTP 요청</h3>
-<p><code>POST https://aplx.link/api/</code></p>
-<h3 id='fcb1c7c88c'>파라메터</h3>
-<table><thead>
-<tr>
-<th>헤더 파라메터</th>
-<th>설명</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>AQR-DEVELOPER-TOKEN</td>
-<td>부여받은 개발자 Token값을 헤더에 입력합니다.</td>
-</tr>
-</tbody></table>
-
-<table><thead>
-<tr>
-<th>POST 파라메터</th>
-<th>설명</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>action</td>
-<td>&quot;create&quot;를 입력합니다.</td>
-</tr>
-<tr>
-<td>email_address</td>
-<td>가입시 입력한 이메일 주소를 입력합니다.</td>
-</tr>
-<tr>
-<td>account_number</td>
-<td>계좌 번호를 입력합니다.</td>
-</tr>
-<tr>
-<td>bank_id</td>
-<td>은행 id 를 입력합니다. (은행 id 테이블 참조)</td>
-</tr>
-<tr>
-<td>account_owner</td>
-<td>예금주 명을 입력합니다.</td>
-</tr>
-<tr>
-<td>phone_number</td>
-<td>예금주의 전화번호를 입력합니다.</td>
-</tr>
-<tr>
-<td>account_name</td>
-<td>생성할 계좌 정보의 이름을 입력합니다.</td>
-</tr>
-</tbody></table>
-<h3 id='id'>은행 id 테이블</h3>
-<table><thead>
-<tr>
-<th>id</th>
-<th>은행명</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>0</td>
-<td>카카오뱅크</td>
-</tr>
-<tr>
-<td>1</td>
-<td>토스뱅크</td>
-</tr>
-<tr>
-<td>2</td>
-<td>케이뱅크</td>
-</tr>
-<tr>
-<td>3</td>
-<td>국민은행</td>
-</tr>
-<tr>
-<td>4</td>
-<td>기업은행</td>
-</tr>
-<tr>
-<td>5</td>
-<td>농협은행</td>
-</tr>
-<tr>
-<td>6</td>
-<td>신한은행</td>
-</tr>
-<tr>
-<td>7</td>
-<td>부산은행</td>
-</tr>
-<tr>
-<td>8</td>
-<td>우체국</td>
-</tr>
-<tr>
-<td>9</td>
-<td>새마을금고</td>
-</tr>
-<tr>
-<td>10</td>
-<td>산업은행</td>
-</tr>
-<tr>
-<td>11</td>
-<td>우리은행</td>
-</tr>
-<tr>
-<td>12</td>
-<td>하나은행</td>
-</tr>
-<tr>
-<td>13</td>
-<td>한국시티은행</td>
-</tr>
-<tr>
-<td>14</td>
-<td>SC제일은행</td>
-</tr>
-<tr>
-<td>15</td>
-<td>경남은행</td>
-</tr>
-<tr>
-<td>16</td>
-<td>광주은행</td>
-</tr>
-<tr>
-<td>17</td>
-<td>대구은행</td>
-</tr>
-<tr>
-<td>18</td>
-<td>도이치은행</td>
-</tr>
-<tr>
-<td>19</td>
-<td>뱅크오브아메리카</td>
-</tr>
-<tr>
-<td>20</td>
-<td>산림조합중앙회</td>
-</tr>
-<tr>
-<td>21</td>
-<td>저축은행</td>
-</tr>
-<tr>
-<td>22</td>
-<td>수협은행</td>
-</tr>
-<tr>
-<td>23</td>
-<td>신협중앙회</td>
-</tr>
-<tr>
-<td>24</td>
-<td>전북은행</td>
-</tr>
-<tr>
-<td>25</td>
-<td>제주은행</td>
-</tr>
-<tr>
-<td>26</td>
-<td>중국건설은행</td>
-</tr>
-<tr>
-<td>27</td>
-<td>중국공상은행</td>
-</tr>
-<tr>
-<td>28</td>
-<td>중국은행</td>
-</tr>
-<tr>
-<td>29</td>
-<td>BNP파리바은행</td>
-</tr>
-<tr>
-<td>30</td>
-<td>HSBC은행</td>
-</tr>
-<tr>
-<td>31</td>
-<td>JP모간체이스은행</td>
-</tr>
-<tr>
-<td>32</td>
-<td>DB금융투자</td>
-</tr>
-<tr>
-<td>33</td>
-<td>메리츠증권</td>
-</tr>
-<tr>
-<td>34</td>
-<td>부국증권</td>
-</tr>
-<tr>
-<td>35</td>
-<td>교보증권</td>
-</tr>
-<tr>
-<td>36</td>
-<td>대신증권</td>
-</tr>
-<tr>
-<td>37</td>
-<td>현대차증권</td>
-</tr>
-<tr>
-<td>38</td>
-<td>미레에셋증권</td>
-</tr>
-<tr>
-<td>39</td>
-<td>삼성증권</td>
-</tr>
-<tr>
-<td>40</td>
-<td>신영증권</td>
-</tr>
-<tr>
-<td>41</td>
-<td>신한투자증권</td>
-</tr>
-<tr>
-<td>42</td>
-<td>에스케이증권</td>
-</tr>
-<tr>
-<td>43</td>
-<td>유안타증권</td>
-</tr>
-<tr>
-<td>44</td>
-<td>유진투자증권</td>
-</tr>
-<tr>
-<td>45</td>
-<td>이베스트투자증권</td>
-</tr>
-<tr>
-<td>46</td>
-<td>케이프투자증권</td>
-</tr>
-<tr>
-<td>47</td>
-<td>키움증권</td>
-</tr>
-<tr>
-<td>48</td>
-<td>한국포스증권</td>
-</tr>
-<tr>
-<td>49</td>
-<td>하나증권</td>
-</tr>
-<tr>
-<td>50</td>
-<td>하이투자증권</td>
-</tr>
-<tr>
-<td>51</td>
-<td>한국투자증권</td>
-</tr>
-<tr>
-<td>52</td>
-<td>한화투자증권</td>
-</tr>
-<tr>
-<td>53</td>
-<td>KB증권</td>
-</tr>
-<tr>
-<td>54</td>
-<td>다올투자증권</td>
-</tr>
-<tr>
-<td>55</td>
-<td>BNK투자증권</td>
-</tr>
-<tr>
-<td>56</td>
-<td>NH투자증권</td>
-</tr>
-<tr>
-<td>57</td>
-<td>토스증권</td>
-</tr>
-<tr>
-<td>58</td>
-<td>카카오페이증권</td>
-</tr>
-<tr>
-<td>59</td>
-<td>IBK투자증권</td>
-</tr>
-</tbody></table>
-<h2 id='5f5c3ab7d2'>계좌 정보 삭제하기</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>
-curl <span class="nt">-H</span> <span class="s2">"AQR-DEVELOPER-TOKEN: &lt;DEVELOPER TOKEN&gt;"</span> <span class="nt">-H</span> <span class="s2">"Content-type: application/x-www-form-urlencoded"</span> <span class="nt">-X</span> POST <span class="nt">-d</span> <span class="s1">'email_address=&lt;EMAILID&gt;&amp;uniq_keyword=abcde&amp;action=delete'</span> https://aplx.link/api/
-
-</code></pre></div><div class="highlight"><pre class="highlight php tab-php"><code>
-<span class="nv">$body</span><span class="p">[</span><span class="s1">'email_address'</span><span class="p">]</span> <span class="o">=</span> <span class="s1">'&lt;EMAILID&gt;'</span><span class="p">;</span>
-<span class="nv">$body</span><span class="p">[</span><span class="s1">'uniq_keyword'</span><span class="p">]</span> <span class="o">=</span> <span class="s1">'abcde'</span><span class="p">;</span>
-<span class="nv">$body</span><span class="p">[</span><span class="s1">'action'</span><span class="p">]</span> <span class="o">=</span> <span class="s1">'delete'</span><span class="p">;</span>
-
-<span class="nv">$headers</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span>
-        <span class="s1">'Content-Type: application/x-www-form-urlencoded'</span><span class="p">,</span>
-        <span class="s1">'AQR-DEVELOPER-TOKEN: &lt;DEVELOPER TOKEN&gt;'</span>
-<span class="p">);</span>
-
-<span class="nv">$ch</span> <span class="o">=</span> <span class="nb">curl_init</span><span class="p">();</span>
-<span class="nb">curl_setopt</span><span class="p">(</span><span class="nv">$ch</span><span class="p">,</span> <span class="no">CURLOPT_URL</span><span class="p">,</span> <span class="s1">'https://aplx.link/api/'</span><span class="p">);</span>
-<span class="nb">curl_setopt</span><span class="p">(</span><span class="nv">$ch</span><span class="p">,</span> <span class="no">CURLOPT_HTTPHEADER</span><span class="p">,</span>  <span class="nv">$headers</span><span class="p">);</span>
-<span class="nb">curl_setopt</span><span class="p">(</span><span class="nv">$ch</span><span class="p">,</span> <span class="no">CURLOPT_POST</span><span class="p">,</span>    <span class="kc">true</span><span class="p">);</span>
-<span class="nb">curl_setopt</span><span class="p">(</span><span class="nv">$ch</span><span class="p">,</span> <span class="no">CURLOPT_RETURNTRANSFER</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>
-<span class="nb">curl_setopt</span><span class="p">(</span><span class="nv">$ch</span><span class="p">,</span> <span class="no">CURLOPT_SSL_VERIFYPEER</span><span class="p">,</span> <span class="kc">false</span><span class="p">);</span>
-<span class="nb">curl_setopt</span><span class="p">(</span><span class="nv">$ch</span><span class="p">,</span> <span class="no">CURLOPT_POSTFIELDS</span><span class="p">,</span><span class="nb">http_build_query</span><span class="p">(</span><span class="nv">$body</span><span class="p">));</span>
-<span class="nv">$response</span> <span class="o">=</span> <span class="nb">curl_exec</span><span class="p">(</span><span class="nv">$ch</span><span class="p">);</span>
-<span class="c1">//$json_list= json_decode($response, true);</span>
-<span class="nb">curl_close</span><span class="p">(</span><span class="nv">$ch</span><span class="p">);</span>
-
-<span class="k">echo</span> <span class="nv">$response</span><span class="p">;</span>
-
-</code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code>
-<span class="kd">var</span> <span class="nx">formdata</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">FormData</span><span class="p">();</span>
-<span class="nx">formdata</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="dl">"</span><span class="s2">email_address</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">&lt;EMAILID&gt;</span><span class="dl">"</span><span class="p">);</span>
-<span class="nx">formdata</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="dl">"</span><span class="s2">uniq_keyword</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">abcde</span><span class="dl">"</span><span class="p">);</span>
-<span class="nx">formdata</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="dl">"</span><span class="s2">action</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">delete</span><span class="dl">"</span><span class="p">);</span>
-
-<span class="nx">$</span><span class="p">.</span><span class="nx">ajax</span><span class="p">({</span><span class="na">url</span> <span class="p">:</span> <span class="dl">"</span><span class="s2">https://aplx.link/api/</span><span class="dl">"</span><span class="p">,</span>
-       <span class="na">dataType</span> <span class="p">:</span> <span class="dl">"</span><span class="s2">json</span><span class="dl">"</span><span class="p">,</span>
-       <span class="na">contentType</span> <span class="p">:</span> <span class="dl">"</span><span class="s2">application/x-www-form-urlencoded</span><span class="dl">"</span><span class="p">,</span>
-       <span class="na">crossDomain</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
-       <span class="na">cache</span> <span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
-       <span class="na">data</span> <span class="p">:</span> <span class="nx">formdata</span><span class="p">,</span>
-       <span class="na">type</span> <span class="p">:</span> <span class="dl">"</span><span class="s2">POST</span><span class="dl">"</span><span class="p">,</span>
-       <span class="na">async</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
-       <span class="na">beforeSend</span><span class="p">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">request</span><span class="p">)</span> <span class="p">{</span>
-          <span class="nx">request</span><span class="p">.</span><span class="nx">setRequestHeader</span><span class="p">(</span><span class="dl">"</span><span class="s2">AQR-DEVELOPER-TOKEN</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">&lt;DEVELOPER TOKEN&gt;</span><span class="dl">"</span><span class="p">);</span>
-        <span class="p">},</span>
-       <span class="na">success</span> <span class="p">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">r</span><span class="p">)</span> <span class="p">{</span>
-         <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">r</span><span class="p">));</span>
-         <span class="k">if</span><span class="p">(</span><span class="nx">r</span><span class="p">.</span><span class="nx">result</span> <span class="o">==</span> <span class="dl">"</span><span class="s2">success</span><span class="dl">"</span><span class="p">)</span> <span class="p">{</span>
-           <span class="c1">//r.data</span>
-         <span class="p">}</span>
-       <span class="p">},</span>
-       <span class="na">error</span><span class="p">:</span><span class="kd">function</span><span class="p">(</span><span class="nx">request</span><span class="p">,</span><span class="nx">status</span><span class="p">,</span><span class="nx">error</span><span class="p">){</span>
-           <span class="nx">alert</span><span class="p">(</span><span class="dl">"</span><span class="s2">code:</span><span class="dl">"</span><span class="o">+</span><span class="nx">request</span><span class="p">.</span><span class="nx">status</span><span class="o">+</span><span class="dl">"</span><span class="se">\n</span><span class="dl">"</span><span class="o">+</span><span class="dl">"</span><span class="s2">message:</span><span class="dl">"</span><span class="o">+</span><span class="nx">request</span><span class="p">.</span><span class="nx">responseText</span><span class="o">+</span><span class="dl">"</span><span class="se">\n</span><span class="dl">"</span><span class="o">+</span><span class="dl">"</span><span class="s2">error:</span><span class="dl">"</span><span class="o">+</span><span class="nx">error</span><span class="p">);</span>
-       <span class="p">}</span>
-<span class="p">});</span>
-
-</code></pre></div><div class="highlight"><pre class="highlight python tab-python"><code>
-<span class="kn">import</span> <span class="nn">requests</span>
-<span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s">'Content-Type'</span><span class="p">:</span> <span class="s">'application/x-www-form-urlencoded'</span><span class="p">,</span>
-    <span class="s">'AQR-DEVELOPER-TOKEN'</span> <span class="p">:</span> <span class="s">'&lt;DEVELOPER TOKEN&gt;'</span>
-<span class="p">}</span>
-<span class="n">data</span> <span class="o">=</span> <span class="s">"email_address=&lt;EMAILID&gt;&amp;uniq_keyword=abcde&amp;action=delete"</span>
-<span class="n">url</span> <span class="o">=</span> <span class="s">'https://aplx.link/api/'</span>
-<span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="n">post</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span>
-                         <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
-<span class="n">response</span><span class="p">.</span><span class="n">raise_for_status</span><span class="p">()</span>
-<span class="s">'response.json()
-
-</span></code></pre></div><div class="highlight"><pre class="highlight csharp tab-csharp"><code>
-   <span class="kt">var</span> <span class="n">content</span> <span class="p">=</span> <span class="s">"email_address="</span> <span class="p">+</span> <span class="n">Uri</span><span class="p">.</span><span class="nf">EscapeDataString</span><span class="p">(</span><span class="s">"&lt;EMAILID&gt;"</span><span class="p">);</span>
-       <span class="n">content</span> <span class="p">+=</span> <span class="s">"&amp;uniq_keyword="</span> <span class="p">+</span> <span class="n">Uri</span><span class="p">.</span><span class="nf">EscapeDataString</span><span class="p">(</span><span class="s">"abcde"</span><span class="p">);</span>
-       <span class="n">content</span> <span class="p">+=</span> <span class="s">"&amp;action="</span> <span class="p">+</span> <span class="n">Uri</span><span class="p">.</span><span class="nf">EscapeDataString</span><span class="p">(</span><span class="s">"delete"</span><span class="p">);</span>
-
-   <span class="kt">byte</span><span class="p">[]</span> <span class="n">data</span> <span class="p">=</span> <span class="n">Encoding</span><span class="p">.</span><span class="n">UTF8</span><span class="p">.</span><span class="nf">GetBytes</span><span class="p">(</span><span class="n">content</span><span class="p">);</span>
-   <span class="n">WebRequest</span> <span class="n">request</span> <span class="p">=</span> <span class="n">WebRequest</span><span class="p">.</span><span class="nf">Create</span><span class="p">(</span><span class="n">url</span><span class="p">);</span>
-   <span class="n">request</span><span class="p">.</span><span class="n">Method</span> <span class="p">=</span> <span class="s">"POST"</span><span class="p">;</span>
-   <span class="n">request</span><span class="p">.</span><span class="n">ContentType</span> <span class="p">=</span> <span class="s">"application/json"</span><span class="p">;</span>
-   <span class="n">request</span><span class="p">.</span><span class="n">Headers</span><span class="p">.</span><span class="nf">Add</span><span class="p">(</span><span class="s">"AQR-DEVELOPER-TOKEN"</span><span class="p">,</span> <span class="s">"&lt;DEVELOPER TOKEN&gt;"</span><span class="p">);</span>
-   <span class="n">request</span><span class="p">.</span><span class="n">ContentLength</span> <span class="p">=</span> <span class="n">data</span><span class="p">.</span><span class="n">Length</span><span class="p">;</span>
-
-   <span class="k">using</span> <span class="p">(</span><span class="n">Stream</span> <span class="n">stream</span> <span class="p">=</span> <span class="n">request</span><span class="p">.</span><span class="nf">GetRequestStream</span><span class="p">())</span>
-   <span class="p">{</span>
-       <span class="n">stream</span><span class="p">.</span><span class="nf">Write</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="n">data</span><span class="p">.</span><span class="n">Length</span><span class="p">);</span>
-   <span class="p">}</span>
-
-   <span class="k">try</span>
-   <span class="p">{</span>
-       <span class="n">WebResponse</span> <span class="n">response</span> <span class="p">=</span> <span class="k">await</span> <span class="n">request</span><span class="p">.</span><span class="nf">GetResponseAsync</span><span class="p">();</span>
-   <span class="p">}</span>
-   <span class="k">catch</span> <span class="p">(</span><span class="n">WebException</span> <span class="n">webException</span><span class="p">)</span>
-   <span class="p">{</span>
-   <span class="p">}</span>
-
-</code></pre></div>
-<blockquote>
-<p>이 요청은 아래와 같이 JSON 구조로 응답합니다:</p>
-</blockquote>
-<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w"> 
-    </span><span class="nl">"result"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="w">
-</span><span class="p">}</span><span class="w">
-
-</span></code></pre></div><h3 id='http-2'>HTTP 요청</h3>
-<p><code>POST https://aplx.link/api/</code></p>
-<h3 id='fcb1c7c88c-2'>파라메터</h3>
-<table><thead>
-<tr>
-<th>헤더 파라메터</th>
-<th>설명</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>AQR-DEVELOPER-TOKEN</td>
-<td>부여받은 개발자 Token값을 헤더에 입력합니다.</td>
-</tr>
-</tbody></table>
-
-<table><thead>
-<tr>
-<th>POST 파라메터</th>
-<th>설명</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>action</td>
-<td>&quot;delete&quot;를 입력합니다.</td>
-</tr>
-<tr>
-<td>email_address</td>
-<td>가입시 입력한 이메일 주소를 입력합니다.</td>
-</tr>
-<tr>
-<td>uniq_keyword</td>
-<td>계좌 생성시 확인한 &#39;uniq_keyword&#39;값을 입력합니다.</td>
-</tr>
-</tbody></table>
-<h1 id='errors'>Errors</h1>
-<p>AQR API uses the following error codes:</p>
-
-<table><thead>
-<tr>
-<th>Error Code</th>
-<th>Meaning</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>400</td>
-<td>Bad Request -- Your request is invalid.</td>
-</tr>
-<tr>
-<td>401</td>
-<td>Unauthorized -- Your API key is wrong.</td>
-</tr>
-<tr>
-<td>403</td>
-<td>Forbidden -- The API requested is hidden for administrators only.</td>
-</tr>
-<tr>
-<td>404</td>
-<td>Not Found -- The specified resource could not be found.</td>
-</tr>
-<tr>
-<td>405</td>
-<td>Method Not Allowed -- You tried to access a resource with an invalid method.</td>
-</tr>
-<tr>
-<td>406</td>
-<td>Not Acceptable -- You requested a format that isn&#39;t json.</td>
-</tr>
-<tr>
-<td>410</td>
-<td>Gone -- The resource requested has been removed from our servers.</td>
-</tr>
-<tr>
-<td>429</td>
-<td>Too Many Requests -- You&#39;re requesting too many resource! Slow down!</td>
-</tr>
-<tr>
-<td>500</td>
-<td>Internal Server Error -- We had a problem with our server. Try again later.</td>
-</tr>
-<tr>
-<td>503</td>
-<td>Service Unavailable -- We&#39;re temporarily offline for maintenance. Please try again later.</td>
-</tr>
-</tbody></table>
-
-      </div>
-      <div class="dark-box">
-          <div class="lang-selector">
-                <a href="#" data-language-name="shell">shell</a>
-                <a href="#" data-language-name="php">php</a>
-                <a href="#" data-language-name="javascript">javascript</a>
-                <a href="#" data-language-name="python">python</a>
-                <a href="#" data-language-name="csharp">csharp</a>
+        <div class="sec-title">요청 예시</div>
+        <div class="code-wrap">
+          <div class="code-tabs" id="ct-create">
+            <button class="code-tab active" data-pane="cc-shell">Shell</button>
+            <button class="code-tab" data-pane="cc-php">PHP</button>
+            <button class="code-tab" data-pane="cc-js">JavaScript</button>
+            <button class="code-tab" data-pane="cc-py">Python</button>
+            <button class="code-tab" data-pane="cc-cs">C#</button>
           </div>
+          <div class="code-pane active" id="cc-shell"><pre>curl -H "AQR-DEVELOPER-TOKEN: &lt;DEVELOPER TOKEN&gt;" \
+     -H "Content-type: application/x-www-form-urlencoded" \
+     -X POST \
+     -d 'email_address=&lt;EMAILID&gt;&amp;account_number=1234567894321&amp;bank_id=1&amp;account_owner=&lt;OWNER NAME&gt;&amp;phone_number=01012341234&amp;account_name=&lt;ACCOUNT NAME&gt;&amp;action=create' \
+     https://aplx.link/api/</pre></div>
+          <div class="code-pane" id="cc-php"><pre>$body['email_address'] = '&lt;EMAILID&gt;';
+$body['account_number'] = '1234567894321';
+$body['bank_id']        = '1';
+$body['account_owner']  = '&lt;OWNER NAME&gt;';
+$body['phone_number']   = '01012341234';
+$body['account_name']   = '&lt;ACCOUNT NAME&gt;';
+$body['action']         = 'create';
+
+$headers = array(
+    'Content-Type: application/x-www-form-urlencoded',
+    'AQR-DEVELOPER-TOKEN: &lt;DEVELOPER TOKEN&gt;'
+);
+
+$ch = curl_init();
+curl_setopt($ch, CURLOPT_URL,            'https://aplx.link/api/');
+curl_setopt($ch, CURLOPT_HTTPHEADER,     $headers);
+curl_setopt($ch, CURLOPT_POST,           true);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+curl_setopt($ch, CURLOPT_POSTFIELDS,     http_build_query($body));
+$response = curl_exec($ch);
+curl_close($ch);
+
+echo $response;</pre></div>
+          <div class="code-pane" id="cc-js"><pre>var formdata = new FormData();
+formdata.append("email_address",  "&lt;EMAILID&gt;");
+formdata.append("account_number", "123456789432");
+formdata.append("bank_id",        "1");
+formdata.append("account_owner",  "&lt;OWNER NAME&gt;");
+formdata.append("phone_number",   "01012341234");
+formdata.append("account_name",   "&lt;ACCOUNT NAME&gt;");
+formdata.append("action",         "create");
+
+$.ajax({
+  url:         "https://aplx.link/api/",
+  dataType:    "json",
+  contentType: "application/x-www-form-urlencoded",
+  crossDomain: true,
+  cache:       false,
+  data:        formdata,
+  type:        "POST",
+  async:       false,
+  beforeSend:  function(request) {
+    request.setRequestHeader("AQR-DEVELOPER-TOKEN", "&lt;DEVELOPER TOKEN&gt;");
+  },
+  success: function(r) {
+    console.log(JSON.stringify(r));
+    if (r.result == "success") {
+      // r.data
+    }
+  },
+  error: function(request, status, error) {
+    alert("code:" + request.status + "\nmessage:" + request.responseText + "\nerror:" + error);
+  }
+});</pre></div>
+          <div class="code-pane" id="cc-py"><pre>import requests
+
+headers = {
+    'Content-Type':        'application/x-www-form-urlencoded',
+    'AQR-DEVELOPER-TOKEN': '&lt;DEVELOPER TOKEN&gt;'
+}
+data = (
+    "email_address=&lt;EMAILID&gt;"
+    "&amp;account_number=1234567894321"
+    "&amp;bank_id=1"
+    "&amp;account_owner=&lt;OWNER NAME&gt;"
+    "&amp;phone_number=01012341234"
+    "&amp;account_name=&lt;ACCOUNT NAME&gt;"
+    "&amp;action=create"
+)
+response = requests.post('https://aplx.link/api/', headers=headers, data=data)
+response.raise_for_status()
+print(response.json())</pre></div>
+          <div class="code-pane" id="cc-cs"><pre>var content  = "email_address="   + Uri.EscapeDataString("&lt;EMAILID&gt;");
+    content += "&amp;account_number=" + Uri.EscapeDataString("1234567894321");
+    content += "&amp;bank_id="        + Uri.EscapeDataString("1");
+    content += "&amp;account_owner="  + Uri.EscapeDataString("&lt;OWNER NAME&gt;");
+    content += "&amp;phone_number="   + Uri.EscapeDataString("01012341234");
+    content += "&amp;account_name="   + Uri.EscapeDataString("&lt;ACCOUNT NAME&gt;");
+    content += "&amp;action="         + Uri.EscapeDataString("create");
+
+var url = "https://aplx.link/api/";
+byte[] data = Encoding.UTF8.GetBytes(content);
+WebRequest request = WebRequest.Create(url);
+request.Method        = "POST";
+request.ContentType   = "application/x-www-form-urlencoded";
+request.Headers.Add("AQR-DEVELOPER-TOKEN", "&lt;DEVELOPER TOKEN&gt;");
+request.ContentLength = data.Length;
+
+using (Stream stream = request.GetRequestStream())
+{
+    stream.Write(data, 0, data.Length);
+}
+
+try
+{
+    WebResponse response = await request.GetResponseAsync();
+}
+catch (WebException webException)
+{
+}</pre></div>
+        </div>
+
+        <div class="sec-title">응답 파라메터</div>
+        <div class="tbl-wrap">
+          <table class="tbl">
+            <thead>
+              <tr>
+                <th style="width:170px">파라메터명</th>
+                <th>설명</th>
+                <th style="width:76px">타입</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><span class="pname">result</span></td>
+                <td>처리 결과 ("success" 또는 "error")</td>
+                <td><span class="type">String</span></td>
+              </tr>
+              <tr>
+                <td><span class="pname">data.qr_image</span></td>
+                <td>QR 이미지 다운로드 경로</td>
+                <td><span class="type">String</span></td>
+              </tr>
+              <tr>
+                <td><span class="pname">data.short_url</span></td>
+                <td>계좌 정보 고유 URL</td>
+                <td><span class="type">String</span></td>
+              </tr>
+              <tr>
+                <td><span class="pname">data.uniq_keyword</span></td>
+                <td>계좌 정보 ID — 삭제/수정 시 사용</td>
+                <td><span class="type">String</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="sec-title">응답 예시</div>
+        <div class="json-wrap">
+          <div class="json-label">JSON Response</div>
+          <pre>{
+  <span class="jk">"result"</span>: <span class="js">"success"</span>,
+  <span class="jk">"data"</span>: {
+    <span class="jk">"qr_image"</span>:     <span class="js">"https://aplx.link/res?keyword=abcde"</span>,  <span class="jc">// QR 이미지 다운로드 경로</span>
+    <span class="jk">"short_url"</span>:    <span class="js">"https://aq.gy/f/abcde"</span>,                 <span class="jc">// 계좌 정보 고유 URL</span>
+    <span class="jk">"uniq_keyword"</span>: <span class="js">"abcde"</span>                                   <span class="jc">// 계좌 정보 ID (삭제/수정시 사용)</span>
+  }
+}</pre>
+        </div>
+
+        <div class="sec-title">은행 ID 테이블</div>
+        <div class="bank-grid">
+          <div class="tbl-wrap">
+            <table class="tbl">
+              <thead><tr><th style="width:48px">ID</th><th>은행명</th></tr></thead>
+              <tbody>
+                <tr><td>0</td><td>카카오뱅크</td></tr>
+                <tr><td>1</td><td>토스뱅크</td></tr>
+                <tr><td>2</td><td>케이뱅크</td></tr>
+                <tr><td>3</td><td>국민은행</td></tr>
+                <tr><td>4</td><td>기업은행</td></tr>
+                <tr><td>5</td><td>농협은행</td></tr>
+                <tr><td>6</td><td>신한은행</td></tr>
+                <tr><td>7</td><td>부산은행</td></tr>
+                <tr><td>8</td><td>우체국</td></tr>
+                <tr><td>9</td><td>새마을금고</td></tr>
+                <tr><td>10</td><td>산업은행</td></tr>
+                <tr><td>11</td><td>우리은행</td></tr>
+                <tr><td>12</td><td>하나은행</td></tr>
+                <tr><td>13</td><td>한국시티은행</td></tr>
+                <tr><td>14</td><td>SC제일은행</td></tr>
+                <tr><td>15</td><td>경남은행</td></tr>
+                <tr><td>16</td><td>광주은행</td></tr>
+                <tr><td>17</td><td>대구은행</td></tr>
+                <tr><td>18</td><td>도이치은행</td></tr>
+                <tr><td>19</td><td>뱅크오브아메리카</td></tr>
+                <tr><td>20</td><td>산림조합중앙회</td></tr>
+                <tr><td>21</td><td>저축은행</td></tr>
+                <tr><td>22</td><td>수협은행</td></tr>
+                <tr><td>23</td><td>신협중앙회</td></tr>
+                <tr><td>24</td><td>전북은행</td></tr>
+                <tr><td>25</td><td>제주은행</td></tr>
+                <tr><td>26</td><td>중국건설은행</td></tr>
+                <tr><td>27</td><td>중국공상은행</td></tr>
+                <tr><td>28</td><td>중국은행</td></tr>
+                <tr><td>29</td><td>BNP파리바은행</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="tbl-wrap">
+            <table class="tbl">
+              <thead><tr><th style="width:48px">ID</th><th>기관명</th></tr></thead>
+              <tbody>
+                <tr><td>30</td><td>HSBC은행</td></tr>
+                <tr><td>31</td><td>JP모간체이스은행</td></tr>
+                <tr><td>32</td><td>DB금융투자</td></tr>
+                <tr><td>33</td><td>메리츠증권</td></tr>
+                <tr><td>34</td><td>부국증권</td></tr>
+                <tr><td>35</td><td>교보증권</td></tr>
+                <tr><td>36</td><td>대신증권</td></tr>
+                <tr><td>37</td><td>현대차증권</td></tr>
+                <tr><td>38</td><td>미레에셋증권</td></tr>
+                <tr><td>39</td><td>삼성증권</td></tr>
+                <tr><td>40</td><td>신영증권</td></tr>
+                <tr><td>41</td><td>신한투자증권</td></tr>
+                <tr><td>42</td><td>에스케이증권</td></tr>
+                <tr><td>43</td><td>유안타증권</td></tr>
+                <tr><td>44</td><td>유진투자증권</td></tr>
+                <tr><td>45</td><td>이베스트투자증권</td></tr>
+                <tr><td>46</td><td>케이프투자증권</td></tr>
+                <tr><td>47</td><td>키움증권</td></tr>
+                <tr><td>48</td><td>한국포스증권</td></tr>
+                <tr><td>49</td><td>하나증권</td></tr>
+                <tr><td>50</td><td>하이투자증권</td></tr>
+                <tr><td>51</td><td>한국투자증권</td></tr>
+                <tr><td>52</td><td>한화투자증권</td></tr>
+                <tr><td>53</td><td>KB증권</td></tr>
+                <tr><td>54</td><td>다올투자증권</td></tr>
+                <tr><td>55</td><td>BNK투자증권</td></tr>
+                <tr><td>56</td><td>NH투자증권</td></tr>
+                <tr><td>57</td><td>토스증권</td></tr>
+                <tr><td>58</td><td>카카오페이증권</td></tr>
+                <tr><td>59</td><td>IBK투자증권</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div><!-- /create -->
+
+      <!-- ── 삭제 ─────────────────────────────────────── -->
+      <div id="delete" class="api-section">
+        <h2>계좌 정보 삭제하기</h2>
+
+        <div class="sec-title">기본 정보</div>
+        <div class="endpoint-box">
+          <span class="method post">POST</span>
+          <code>https://aplx.link/api/</code>
+        </div>
+
+        <div class="sec-title">요청 파라메터</div>
+        <div class="sub-label">Header</div>
+        <div class="tbl-wrap">
+          <table class="tbl">
+            <thead>
+              <tr>
+                <th style="width:190px">파라메터명</th>
+                <th>설명</th>
+                <th style="width:56px">필수</th>
+                <th style="width:76px">타입</th>
+                <th style="width:76px">최대길이</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><span class="pname">AQR-DEVELOPER-TOKEN</span></td>
+                <td>부여받은 개발자 Token 값을 헤더에 입력합니다.</td>
+                <td><span class="req-y">Y</span></td>
+                <td><span class="type">String</span></td>
+                <td>-</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="sub-label" style="margin-top:12px">Body — application/x-www-form-urlencoded</div>
+        <div class="tbl-wrap">
+          <table class="tbl">
+            <thead>
+              <tr>
+                <th style="width:150px">파라메터명</th>
+                <th>설명</th>
+                <th style="width:56px">필수</th>
+                <th style="width:76px">타입</th>
+                <th style="width:76px">최대길이</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><span class="pname">action</span></td>
+                <td>"delete"를 입력합니다.</td>
+                <td><span class="req-y">Y</span></td>
+                <td><span class="type">String</span></td>
+                <td>20</td>
+              </tr>
+              <tr>
+                <td><span class="pname">email_address</span></td>
+                <td>가입시 입력한 이메일 주소를 입력합니다.</td>
+                <td><span class="req-y">Y</span></td>
+                <td><span class="type">String</span></td>
+                <td>100</td>
+              </tr>
+              <tr>
+                <td><span class="pname">uniq_keyword</span></td>
+                <td>계좌 생성시 확인한 'uniq_keyword' 값을 입력합니다.</td>
+                <td><span class="req-y">Y</span></td>
+                <td><span class="type">String</span></td>
+                <td>20</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="sec-title">요청 예시</div>
+        <div class="code-wrap">
+          <div class="code-tabs" id="ct-delete">
+            <button class="code-tab active" data-pane="cd-shell">Shell</button>
+            <button class="code-tab" data-pane="cd-php">PHP</button>
+            <button class="code-tab" data-pane="cd-js">JavaScript</button>
+            <button class="code-tab" data-pane="cd-py">Python</button>
+            <button class="code-tab" data-pane="cd-cs">C#</button>
+          </div>
+          <div class="code-pane active" id="cd-shell"><pre>curl -H "AQR-DEVELOPER-TOKEN: &lt;DEVELOPER TOKEN&gt;" \
+     -H "Content-type: application/x-www-form-urlencoded" \
+     -X POST \
+     -d 'email_address=&lt;EMAILID&gt;&amp;uniq_keyword=abcde&amp;action=delete' \
+     https://aplx.link/api/</pre></div>
+          <div class="code-pane" id="cd-php"><pre>$body['email_address'] = '&lt;EMAILID&gt;';
+$body['uniq_keyword']  = 'abcde';
+$body['action']        = 'delete';
+
+$headers = array(
+    'Content-Type: application/x-www-form-urlencoded',
+    'AQR-DEVELOPER-TOKEN: &lt;DEVELOPER TOKEN&gt;'
+);
+
+$ch = curl_init();
+curl_setopt($ch, CURLOPT_URL,            'https://aplx.link/api/');
+curl_setopt($ch, CURLOPT_HTTPHEADER,     $headers);
+curl_setopt($ch, CURLOPT_POST,           true);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+curl_setopt($ch, CURLOPT_POSTFIELDS,     http_build_query($body));
+$response = curl_exec($ch);
+curl_close($ch);
+
+echo $response;</pre></div>
+          <div class="code-pane" id="cd-js"><pre>var formdata = new FormData();
+formdata.append("email_address", "&lt;EMAILID&gt;");
+formdata.append("uniq_keyword",  "abcde");
+formdata.append("action",        "delete");
+
+$.ajax({
+  url:         "https://aplx.link/api/",
+  dataType:    "json",
+  contentType: "application/x-www-form-urlencoded",
+  crossDomain: true,
+  cache:       false,
+  data:        formdata,
+  type:        "POST",
+  async:       false,
+  beforeSend:  function(request) {
+    request.setRequestHeader("AQR-DEVELOPER-TOKEN", "&lt;DEVELOPER TOKEN&gt;");
+  },
+  success: function(r) {
+    console.log(JSON.stringify(r));
+    if (r.result == "success") {
+      // success
+    }
+  },
+  error: function(request, status, error) {
+    alert("code:" + request.status + "\nmessage:" + request.responseText + "\nerror:" + error);
+  }
+});</pre></div>
+          <div class="code-pane" id="cd-py"><pre>import requests
+
+headers = {
+    'Content-Type':        'application/x-www-form-urlencoded',
+    'AQR-DEVELOPER-TOKEN': '&lt;DEVELOPER TOKEN&gt;'
+}
+data = "email_address=&lt;EMAILID&gt;&amp;uniq_keyword=abcde&amp;action=delete"
+response = requests.post('https://aplx.link/api/', headers=headers, data=data)
+response.raise_for_status()
+print(response.json())</pre></div>
+          <div class="code-pane" id="cd-cs"><pre>var content  = "email_address=" + Uri.EscapeDataString("&lt;EMAILID&gt;");
+    content += "&amp;uniq_keyword="  + Uri.EscapeDataString("abcde");
+    content += "&amp;action="        + Uri.EscapeDataString("delete");
+
+var url = "https://aplx.link/api/";
+byte[] data = Encoding.UTF8.GetBytes(content);
+WebRequest request = WebRequest.Create(url);
+request.Method        = "POST";
+request.ContentType   = "application/x-www-form-urlencoded";
+request.Headers.Add("AQR-DEVELOPER-TOKEN", "&lt;DEVELOPER TOKEN&gt;");
+request.ContentLength = data.Length;
+
+using (Stream stream = request.GetRequestStream())
+{
+    stream.Write(data, 0, data.Length);
+}
+
+try
+{
+    WebResponse response = await request.GetResponseAsync();
+}
+catch (WebException webException)
+{
+}</pre></div>
+        </div>
+
+        <div class="sec-title">응답 파라메터</div>
+        <div class="tbl-wrap">
+          <table class="tbl">
+            <thead>
+              <tr>
+                <th style="width:170px">파라메터명</th>
+                <th>설명</th>
+                <th style="width:76px">타입</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><span class="pname">result</span></td>
+                <td>처리 결과 ("success" 또는 "error")</td>
+                <td><span class="type">String</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="sec-title">응답 예시</div>
+        <div class="json-wrap">
+          <div class="json-label">JSON Response</div>
+          <pre>{
+  <span class="jk">"result"</span>: <span class="js">"success"</span>
+}</pre>
+        </div>
+      </div><!-- /delete -->
+
+    </section><!-- /account-section -->
+
+    <!-- Errors -->
+    <section id="errors" class="card">
+      <h1>Errors</h1>
+      <p>AQR API에서 사용하는 HTTP 에러 코드입니다.</p>
+      <div class="tbl-wrap">
+        <table class="tbl">
+          <thead>
+            <tr>
+              <th style="width:120px">Error Code</th>
+              <th>설명</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td><span class="err-badge">400</span></td><td>Bad Request — 요청이 잘못되었습니다.</td></tr>
+            <tr><td><span class="err-badge">401</span></td><td>Unauthorized — API 키가 잘못되었습니다.</td></tr>
+            <tr><td><span class="err-badge">403</span></td><td>Forbidden — 관리자 전용 API입니다.</td></tr>
+            <tr><td><span class="err-badge">404</span></td><td>Not Found — 요청한 리소스를 찾을 수 없습니다.</td></tr>
+            <tr><td><span class="err-badge">405</span></td><td>Method Not Allowed — 잘못된 HTTP 메서드를 사용하였습니다.</td></tr>
+            <tr><td><span class="err-badge">406</span></td><td>Not Acceptable — JSON 형식이 아닌 포맷을 요청하였습니다.</td></tr>
+            <tr><td><span class="err-badge">410</span></td><td>Gone — 요청한 리소스가 서버에서 삭제되었습니다.</td></tr>
+            <tr><td><span class="err-badge">429</span></td><td>Too Many Requests — 요청 횟수가 너무 많습니다. 잠시 후 다시 시도하세요.</td></tr>
+            <tr><td><span class="err-badge">500</span></td><td>Internal Server Error — 서버 오류가 발생하였습니다. 잠시 후 다시 시도하세요.</td></tr>
+            <tr><td><span class="err-badge">503</span></td><td>Service Unavailable — 서비스 점검 중입니다. 잠시 후 다시 시도하세요.</td></tr>
+          </tbody>
+        </table>
       </div>
-    </div>
-  </body>
+    </section>
+
+  </main>
+</div>
+
+<script src="javascripts/api-docs.js"></script>
+</body>
 </html>
