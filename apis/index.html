@@ -18,15 +18,17 @@
 
 <!-- Header -->
 <header class="site-header">
-  <a href="https://aqr.aplx.link" class="header-logo">
-    <img src="images/logo-45083ab8.png" alt="AQR">
-    <span class="header-logo-text">AQR API</span>
+  <a href="https://aqr.aplx.link" class="header-brand">
+    <span class="wordmark">AQR API</span>
+    <span class="header-ko">개발자 문서</span>
   </a>
   <nav class="header-nav">
     <a href="https://aqr.aplx.link">홈</a>
     <a href="#" class="active">API 문서</a>
-    <a href="https://aplx.link/square">AQR Square</a>
   </nav>
+  <div class="header-actions">
+    <a class="btn sm" href="https://aplx.link/square">AQR Square</a>
+  </div>
 </header>
 
 <div class="layout">
@@ -38,15 +40,23 @@
       <nav class="sidebar-nav">
         <a href="#intro" class="active">소개</a>
         <a href="#token">개발자 Token 발급 받기</a>
+        <a href="#common">공통 사항</a>
         <a href="#account-section">계좌 정보 생성/삭제</a>
         <a href="#create" class="lvl2">계좌 정보 생성하기</a>
         <a href="#delete" class="lvl2">계좌 정보 삭제하기</a>
+        <a href="#page-section">페이지 조회/수정</a>
+        <a href="#list" class="lvl2">페이지 목록 가져오기</a>
+        <a href="#detail" class="lvl2">페이지 상세정보 가져오기</a>
+        <a href="#update" class="lvl2">페이지 정보 업데이트</a>
+        <a href="#update-qr-style" class="lvl2">QR 스타일 업데이트</a>
+        <a href="#bulk-section">대량 처리 · 슬롯</a>
+        <a href="#create-bulk" class="lvl2">페이지 정보 대량 생성</a>
+        <a href="#delete-bulk" class="lvl2">페이지 대량 삭제</a>
+        <a href="#slot-count" class="lvl2">등록 가능한 슬롯 수</a>
+        <a href="#stats-section">통계</a>
+        <a href="#stats" class="lvl2">페이지 사용 통계</a>
         <a href="#errors">Errors</a>
       </nav>
-    </div>
-    <div class="sidebar-footer">
-      <div><a href="https://aqr.aplx.link">AQR 홈페이지</a></div>
-      <div>© <span id="yr"></span> APLY Inc.</div>
     </div>
   </aside>
 
@@ -54,10 +64,11 @@
   <main class="main">
 
     <!-- 소개 -->
-    <section id="intro" class="card">
+    <section id="intro" class="card intro">
+      <span class="eyebrow">AQR Developer API</span>
       <h1>AQR API Reference</h1>
-      <p>다양한 페이. SNS 링크. 간편 송금.<br><strong>'하나의 QR과 URL에'</strong></p>
-      <p>AQR 개발자를 위한 API 사용법과 예제코드를 제공합니다.</p>
+      <p class="lead">다양한 페이. SNS 링크. 간편 송금.<br><strong>'하나의 QR과 URL에'</strong></p>
+      <p class="lead">AQR 개발자를 위한 API 사용법과 예제코드를 제공합니다.</p>
     </section>
 
     <!-- Token -->
@@ -68,6 +79,289 @@
       <p><strong>AQR 서비스의 "Advanced" 등급 또는 제휴사에 한해서 개발자 Token을 제공합니다.</strong><br>
       개발자 Token은 아래의 AQR Square(페이지 관리 사이트)에 가입 및 로그인 후 화면의 우측 상단 "개인정보수정" 메뉴에서 확인 할 수 있습니다.</p>
       <p><a href="https://aplx.link/square">AQR Square 가기 →</a></p>
+    </section>
+
+    <!-- 공통 사항 -->
+    <section id="common" class="card">
+      <h1>공통 사항</h1>
+      <p>모든 API 는 같은 주소로 <code>POST</code> 요청을 보내고, 본문의 <code>action</code> 값으로 기능을 고릅니다.</p>
+      <div class="info-box"><p>API 를 호출하는 서버의 IP 가 AQR 에 등록되어 있어야 합니다. 등록되지 않은 IP 에서 호출하면 403 으로 거절합니다.<br>
+      개발자 Token 이 드러나지 않도록 브라우저가 아닌 서버에서 호출하세요.</p></div>
+
+      <div class="sec-title">요청</div>
+        <div class="tbl-wrap">
+          <table class="tbl">
+            <thead>
+              <tr>
+                <th style="width:190px">항목</th>
+                <th>설명</th>
+                <th style="width:76px">타입</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><span class="pname">POST https://aplx.link/api/</span></td>
+                <td>모든 API 의 주소입니다.</td>
+                <td><span class="type">-</span></td>
+              </tr>
+              <tr>
+                <td><span class="pname">AQR-DEVELOPER-TOKEN</span></td>
+                <td>헤더 — 부여받은 개발자 Token</td>
+                <td><span class="type">String</span></td>
+              </tr>
+              <tr>
+                <td><span class="pname">action</span></td>
+                <td>본문 — 기능 이름 (create / delete / list / detail / update / update_qr_style / create_bulk / delete_bulk / slot_count / stats)</td>
+                <td><span class="type">String</span></td>
+              </tr>
+              <tr>
+                <td><span class="pname">email_address</span></td>
+                <td>본문 — 가입시 입력한 이메일 주소. Token 과 함께 회원을 확인합니다.</td>
+                <td><span class="type">String</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+      <p>본문은 <code>application/x-www-form-urlencoded</code> 로 보냅니다. 파일을 함께 보낼 때(QR 스타일 업데이트)만 <code>multipart/form-data</code> 를 씁니다.</p>
+
+      <div class="sec-title">응답</div>
+      <p>응답은 JSON 이며, 처리 결과에 맞는 HTTP 상태 코드(<a href="#errors">Errors</a>)를 함께 보냅니다.</p>
+        <div class="tbl-wrap">
+          <table class="tbl">
+            <thead>
+              <tr>
+                <th style="width:190px">파라미터명</th>
+                <th>설명</th>
+                <th style="width:76px">타입</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><span class="pname">result</span></td>
+                <td>처리 결과 ("success" 또는 "error")</td>
+                <td><span class="type">String</span></td>
+              </tr>
+              <tr>
+                <td><span class="pname">message</span></td>
+                <td>처리 결과가 "error"일 경우 오류 내용</td>
+                <td><span class="type">String</span></td>
+              </tr>
+              <tr>
+                <td><span class="pname">sendstatus</span></td>
+                <td>결과 코드 (0 = 성공, 음수 = 실패)</td>
+                <td><span class="type">Integer</span></td>
+              </tr>
+              <tr>
+                <td><span class="pname">data</span></td>
+                <td>기능별 결과 데이터 (없는 기능도 있습니다)</td>
+                <td><span class="type">Object</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+      <div class="sec-title">페이지 ID (uniq_keyword)</div>
+      <p>페이지(계좌 정보)는 생성할 때 받은 <code>uniq_keyword</code> 로 가리킵니다. 목록 · 상세 응답에도 들어 있습니다.
+      내 페이지가 아니거나 없는 uniq_keyword 를 보내면 404 로 답합니다.</p>
+
+      <div id="page-object" class="sec-title">페이지 객체</div>
+      <p>목록 · 상세 · 수정 응답에 쓰이는 페이지 정보입니다. 목록에는 기본 항목만, 상세와 수정 응답에는 상세 항목까지 들어 있습니다.</p>
+      <div class="sub-label">기본 항목</div>
+        <div class="tbl-wrap">
+          <table class="tbl">
+            <thead>
+              <tr>
+                <th style="width:190px">항목명</th>
+                <th>설명</th>
+                <th style="width:76px">타입</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><span class="pname">uniq_keyword</span></td>
+                <td>페이지 ID — 조회 · 수정 · 삭제 시 사용합니다.</td>
+                <td><span class="type">String</span></td>
+              </tr>
+              <tr>
+                <td><span class="pname">short_url</span></td>
+                <td>페이지 고유 URL</td>
+                <td><span class="type">String</span></td>
+              </tr>
+              <tr>
+                <td><span class="pname">qr_image</span></td>
+                <td>QR 이미지 다운로드 경로</td>
+                <td><span class="type">String</span></td>
+              </tr>
+              <tr>
+                <td><span class="pname">account_number</span></td>
+                <td>계좌번호</td>
+                <td><span class="type">String</span></td>
+              </tr>
+              <tr>
+                <td><span class="pname">bank_id</span></td>
+                <td>은행 ID (<a href="#bank-table">은행 ID 테이블</a>). 목록에 없는 은행이면 -1</td>
+                <td><span class="type">Integer</span></td>
+              </tr>
+              <tr>
+                <td><span class="pname">bank_name</span></td>
+                <td>은행명</td>
+                <td><span class="type">String</span></td>
+              </tr>
+              <tr>
+                <td><span class="pname">account_owner</span></td>
+                <td>예금주 명</td>
+                <td><span class="type">String</span></td>
+              </tr>
+              <tr>
+                <td><span class="pname">account_name</span></td>
+                <td>페이지(계좌 정보) 이름</td>
+                <td><span class="type">String</span></td>
+              </tr>
+              <tr>
+                <td><span class="pname">bank_branch_name</span></td>
+                <td>은행 지점명</td>
+                <td><span class="type">String</span></td>
+              </tr>
+              <tr>
+                <td><span class="pname">mask_owner</span></td>
+                <td>예금주명 일부 감추기 (Y / N)</td>
+                <td><span class="type">String</span></td>
+              </tr>
+              <tr>
+                <td><span class="pname">account_visible</span></td>
+                <td>계좌 정보 표시 (Y / N)</td>
+                <td><span class="type">String</span></td>
+              </tr>
+              <tr>
+                <td><span class="pname">template_name</span></td>
+                <td>템플릿 이름 (default / wedding / condolence / others / etc / custom.*)</td>
+                <td><span class="type">String</span></td>
+              </tr>
+              <tr>
+                <td><span class="pname">timeout_stamp</span></td>
+                <td>페이지 표시 기한 (Unix time, 밀리초). 0 이면 기한 없음</td>
+                <td><span class="type">Integer</span></td>
+              </tr>
+              <tr>
+                <td><span class="pname">manage_duedate</span></td>
+                <td>슬롯 만료일 (Unix time, 밀리초). 0 이면 만료 없는 무료 슬롯</td>
+                <td><span class="type">Integer</span></td>
+              </tr>
+              <tr>
+                <td><span class="pname">price</span></td>
+                <td>입금 요청 금액. 빈 값이면 없음</td>
+                <td><span class="type">String</span></td>
+              </tr>
+              <tr>
+                <td><span class="pname">tag</span></td>
+                <td>검색용 태그</td>
+                <td><span class="type">String</span></td>
+              </tr>
+              <tr>
+                <td><span class="pname">regdate</span></td>
+                <td>등록 시각 (Unix time, 밀리초)</td>
+                <td><span class="type">Integer</span></td>
+              </tr>
+              <tr>
+                <td><span class="pname">last_update</span></td>
+                <td>마지막 수정 시각 (Unix time, 밀리초)</td>
+                <td><span class="type">Integer</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+      <div class="sub-label" style="margin-top:12px">상세 항목 (detail · update 응답)</div>
+        <div class="tbl-wrap">
+          <table class="tbl">
+            <thead>
+              <tr>
+                <th style="width:190px">항목명</th>
+                <th>설명</th>
+                <th style="width:76px">타입</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><span class="pname">phone_number</span></td>
+                <td>예금주 전화번호</td>
+                <td><span class="type">String</span></td>
+              </tr>
+              <tr>
+                <td><span class="pname">advanced_url_name</span></td>
+                <td>고급 고유 URL 이름 (없으면 빈 값)</td>
+                <td><span class="type">String</span></td>
+              </tr>
+              <tr>
+                <td><span class="pname">lib_url</span></td>
+                <td>링크 버튼 설정 (JSON 문자열, <a href="#json-format">형식</a>)</td>
+                <td><span class="type">String</span></td>
+              </tr>
+              <tr>
+                <td><span class="pname">pay_list</span></td>
+                <td>페이앱 설정 (JSON 문자열, <a href="#json-format">형식</a>)</td>
+                <td><span class="type">String</span></td>
+              </tr>
+              <tr>
+                <td><span class="pname">receipt_email</span></td>
+                <td>현금영수증 요청 설정 (JSON 문자열, <a href="#json-format">형식</a>)</td>
+                <td><span class="type">String</span></td>
+              </tr>
+              <tr>
+                <td><span class="pname">template_params</span></td>
+                <td>템플릿 상세 설정 (JSON 문자열)</td>
+                <td><span class="type">String</span></td>
+              </tr>
+              <tr>
+                <td><span class="pname">qr_style</span></td>
+                <td>{"fgcolor","bgcolor","shape"} 형식의 QR 스타일 (JSON 문자열)</td>
+                <td><span class="type">String</span></td>
+              </tr>
+              <tr>
+                <td><span class="pname">icon_image_url</span></td>
+                <td>페이지 아이콘 이미지 주소 (없으면 빈 값)</td>
+                <td><span class="type">String</span></td>
+              </tr>
+              <tr>
+                <td><span class="pname">qr_icon_image_url</span></td>
+                <td>QR 가운데 이미지 주소 (없으면 빈 값)</td>
+                <td><span class="type">String</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+      <div id="json-format" class="sec-title">JSON 설정 값 형식</div>
+      <p>아래 항목은 JSON 을 문자열로 만들어 보냅니다. 상세 조회로 받은 값을 고쳐 보내면 가장 안전합니다.</p>
+        <div class="tbl-wrap">
+          <table class="tbl">
+            <thead>
+              <tr>
+                <th style="width:190px">항목명</th>
+                <th>설명</th>
+                <th style="width:76px">타입</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><span class="pname">lib_url</span></td>
+                <td>{"data":[{"kind":"etc","title":"버튼 이름","url":"https://..."}]}<br>kind : etc(일반 링크) · phone(전화, url 에 번호) · email(url 에 이메일) · text(글자만, url 없음) · like(좋아요, 1개만) · youtube_embed(YouTube 주소) 등.<br>title 은 100자, url 은 255자 이내입니다.</td>
+                <td><span class="type">JSON</span></td>
+              </tr>
+              <tr>
+                <td><span class="pname">pay_list</span></td>
+                <td>{"kakao_pay":"https://qr.kakaopay.com/...", "paypal_pay":"https://paypal.me/... 또는 이메일"} — 쓰는 페이앱만 넣습니다.</td>
+                <td><span class="type">JSON</span></td>
+              </tr>
+              <tr>
+                <td><span class="pname">receipt_email</span></td>
+                <td>{"url":"받을 이메일 또는 https://주소", "items":["email","citizen"]} — items 는 요청 화면에서 받을 항목입니다.</td>
+                <td><span class="type">JSON</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
     </section>
 
     <!-- 계좌 정보 생성/삭제 -->
@@ -309,7 +603,7 @@ catch (WebException webException)
                 <td><span class="type">String</span></td>
               </tr>
               <tr>
-                <td><span class="pname">reason</span></td>
+                <td><span class="pname">message</span></td>
                 <td>처리 결과가 "error"일 경우 오류 내용</td>
                 <td><span class="type">String</span></td>
               </tr>
@@ -338,14 +632,14 @@ catch (WebException webException)
           <pre>{
   <span class="jk">"result"</span>: <span class="js">"success"</span>,
   <span class="jk">"data"</span>: {
-    <span class="jk">"qr_image"</span>:     <span class="js">"https://aplx.link/res/api/abcde"</span>,  <span class="jc">// QR 이미지 다운로드 경로</span>
-    <span class="jk">"short_url"</span>:    <span class="js">"https://aq.gy/f/abcde"</span>,                 <span class="jc">// 계좌 정보 고유 URL</span>
+    <span class="jk">"qr_image"</span>:     <span class="js">"https://aplx.link/res?keyword=abcde"</span>,  <span class="jc">// QR 이미지 다운로드 경로</span>
+    <span class="jk">"short_url"</span>:    <span class="js">"https://aq.gy/abcde"</span>,                 <span class="jc">// 계좌 정보 고유 URL</span>
     <span class="jk">"uniq_keyword"</span>: <span class="js">"abcde"</span>                                   <span class="jc">// 계좌 정보 ID (삭제/수정시 사용)</span>
   }
 }</pre>
         </div>
 
-        <div class="sec-title">은행 ID 테이블</div>
+        <div id="bank-table" class="sec-title">은행 ID 테이블</div>
         <div class="bank-grid">
           <div class="tbl-wrap">
             <table class="tbl">
@@ -611,7 +905,7 @@ catch (WebException webException)
                 <td><span class="type">String</span></td>
               </tr>
               <tr>
-                <td><span class="pname">reason</span></td>
+                <td><span class="pname">message</span></td>
                 <td>처리 결과가 "error"일 경우 오류 내용</td>
                 <td><span class="type">String</span></td>
               </tr>
@@ -629,6 +923,2178 @@ catch (WebException webException)
       </div><!-- /delete -->
 
     </section><!-- /account-section -->
+
+    <!-- 페이지 조회/수정 -->
+    <section id="page-section" class="card">
+      <h1>페이지 조회/수정</h1>
+
+      <!-- ── 페이지 목록 가져오기 ─────────────────────────────────────── -->
+      <div id="list" class="api-section">
+        <h2>페이지 목록 가져오기</h2>
+        <p>내 페이지 목록을 최근 등록 순으로 가져옵니다. 검색어를 주면 은행명 · 예금주 · 페이지 이름 · 태그 · 계좌번호로 찾습니다.</p>
+
+        <div class="sec-title">기본 정보</div>
+        <div class="endpoint-box">
+          <span class="method post">POST</span>
+          <code>https://aplx.link/api/</code>
+        </div>
+
+        <div class="sec-title">요청 파라미터</div>
+        <div class="sub-label">Header</div>
+        <div class="tbl-wrap">
+          <table class="tbl">
+            <thead>
+              <tr>
+                <th style="width:190px">파라미터명</th>
+                <th>설명</th>
+                <th style="width:56px">필수</th>
+                <th style="width:76px">타입</th>
+                <th style="width:76px">최대길이</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><span class="pname">AQR-DEVELOPER-TOKEN</span></td>
+                <td>부여받은 개발자 Token 값을 헤더에 입력합니다.</td>
+                <td><span class="req-y">Y</span></td>
+                <td><span class="type">String</span></td>
+                <td>-</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="sub-label" style="margin-top:12px">Body — application/x-www-form-urlencoded</div>
+        <div class="tbl-wrap">
+          <table class="tbl">
+            <thead>
+              <tr>
+                <th style="width:150px">파라미터명</th>
+                <th>설명</th>
+                <th style="width:56px">필수</th>
+                <th style="width:76px">타입</th>
+                <th style="width:76px">최대길이</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><span class="pname">action</span></td>
+                <td>"list"를 입력합니다.</td>
+                <td><span class="req-y">Y</span></td>
+                <td><span class="type">String</span></td>
+                <td>20</td>
+              </tr>
+              <tr>
+                <td><span class="pname">email_address</span></td>
+                <td>가입시 입력한 이메일 주소를 입력합니다.</td>
+                <td><span class="req-y">Y</span></td>
+                <td><span class="type">String</span></td>
+                <td>100</td>
+              </tr>
+              <tr>
+                <td><span class="pname">page</span></td>
+                <td>가져올 페이지 번호 (1부터, 기본 1)</td>
+                <td><span class="req-n">N</span></td>
+                <td><span class="type">Integer</span></td>
+                <td>-</td>
+              </tr>
+              <tr>
+                <td><span class="pname">items_per_page</span></td>
+                <td>한 번에 가져올 개수 (기본 10, 최대 100)</td>
+                <td><span class="req-n">N</span></td>
+                <td><span class="type">Integer</span></td>
+                <td>-</td>
+              </tr>
+              <tr>
+                <td><span class="pname">search_key</span></td>
+                <td>검색어. 계좌번호는 전체 번호가 일치해야 찾습니다.</td>
+                <td><span class="req-n">N</span></td>
+                <td><span class="type">String</span></td>
+                <td>100</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="sec-title">요청 예시</div>
+        <div class="code-wrap">
+          <div class="code-tabs" id="ct-list">
+            <button class="code-tab active" data-pane="clist-shell">Shell</button>
+            <button class="code-tab" data-pane="clist-php">PHP</button>
+            <button class="code-tab" data-pane="clist-js">JavaScript</button>
+            <button class="code-tab" data-pane="clist-py">Python</button>
+          </div>
+          <div class="code-pane active" id="clist-shell"><pre>curl -H "AQR-DEVELOPER-TOKEN: &lt;DEVELOPER TOKEN&gt;" \
+     -X POST \
+     --data-urlencode 'action=list' \
+     --data-urlencode 'email_address=&lt;EMAILID&gt;' \
+     --data-urlencode 'page=1' \
+     --data-urlencode 'items_per_page=20' \
+     https://aplx.link/api/</pre></div>
+          <div class="code-pane" id="clist-php"><pre>$body['action']          = 'list';
+$body['email_address']   = '&lt;EMAILID&gt;';
+$body['page']            = '1';
+$body['items_per_page']  = '20';
+
+$ch = curl_init();
+curl_setopt($ch, CURLOPT_URL,            'https://aplx.link/api/');
+curl_setopt($ch, CURLOPT_HTTPHEADER,     array('AQR-DEVELOPER-TOKEN: &lt;DEVELOPER TOKEN&gt;'));
+curl_setopt($ch, CURLOPT_POST,           true);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+curl_setopt($ch, CURLOPT_POSTFIELDS,     http_build_query($body));
+$response = json_decode(curl_exec($ch), true);
+$status   = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+curl_close($ch);
+
+if ($response['result'] == 'success') {
+    // $response['data']
+}</pre></div>
+          <div class="code-pane" id="clist-js"><pre>// Node.js 18+ (fetch 내장, async 함수 안에서). 개발자 Token 이 드러나므로 브라우저에서 직접 호출하지 마세요.
+const body = new URLSearchParams();
+body.append("action", "list");
+body.append("email_address", "&lt;EMAILID&gt;");
+body.append("page", "1");
+body.append("items_per_page", "20");
+
+const res = await fetch("https://aplx.link/api/", {
+  method:  "POST",
+  headers: { "AQR-DEVELOPER-TOKEN": "&lt;DEVELOPER TOKEN&gt;" },
+  body:    body
+});
+const r = await res.json();
+if (r.result == "success") {
+  // r.data
+}</pre></div>
+          <div class="code-pane" id="clist-py"><pre>import requests
+
+headers = {'AQR-DEVELOPER-TOKEN': '&lt;DEVELOPER TOKEN&gt;'}
+data = {
+    'action': 'list',
+    'email_address': '&lt;EMAILID&gt;',
+    'page': '1',
+    'items_per_page': '20',
+}
+response = requests.post('https://aplx.link/api/', headers=headers, data=data)
+r = response.json()
+if r['result'] == 'success':
+    print(r['data'])</pre></div>
+        </div>
+
+        <div class="sec-title">응답 파라미터</div>
+        <div class="tbl-wrap">
+          <table class="tbl">
+            <thead>
+              <tr>
+                <th style="width:190px">파라미터명</th>
+                <th>설명</th>
+                <th style="width:76px">타입</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><span class="pname">result</span></td>
+                <td>처리 결과 ("success" 또는 "error")</td>
+                <td><span class="type">String</span></td>
+              </tr>
+              <tr>
+                <td><span class="pname">message</span></td>
+                <td>처리 결과가 "error"일 경우 오류 내용</td>
+                <td><span class="type">String</span></td>
+              </tr>
+              <tr>
+                <td><span class="pname">sendstatus</span></td>
+                <td>결과 코드 (0 = 성공, 음수 = 실패. 아래 Errors 참조)</td>
+                <td><span class="type">Integer</span></td>
+              </tr>
+              <tr>
+                <td><span class="pname">data.pages[]</span></td>
+                <td>페이지 객체 목록 (<a href="#page-object">페이지 객체</a>의 기본 항목)</td>
+                <td><span class="type">Array</span></td>
+              </tr>
+              <tr>
+                <td><span class="pname">data.page</span></td>
+                <td>현재 페이지 번호</td>
+                <td><span class="type">Integer</span></td>
+              </tr>
+              <tr>
+                <td><span class="pname">data.total_pages</span></td>
+                <td>전체 페이지 수</td>
+                <td><span class="type">Integer</span></td>
+              </tr>
+              <tr>
+                <td><span class="pname">data.total_count</span></td>
+                <td>조건에 맞는 전체 페이지(계좌 정보) 수</td>
+                <td><span class="type">Integer</span></td>
+              </tr>
+              <tr>
+                <td><span class="pname">data.accounts</span></td>
+                <td>등록된 페이지 수</td>
+                <td><span class="type">Integer</span></td>
+              </tr>
+              <tr>
+                <td><span class="pname">data.account_limit</span></td>
+                <td>등록할 수 있는 최대 페이지 수 (슬롯 수)</td>
+                <td><span class="type">Integer</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="sec-title">응답 예시</div>
+        <div class="json-wrap">
+          <div class="json-label">JSON Response</div>
+          <pre>{
+  <span class="jk">"result"</span>: <span class="js">"success"</span>,
+  <span class="jk">"message"</span>: <span class="js">"success"</span>,
+  <span class="jk">"sendstatus"</span>: 0,
+  <span class="jk">"data"</span>: {
+    <span class="jk">"pages"</span>: [
+      {
+        <span class="jk">"uniq_keyword"</span>: <span class="js">"abcde"</span>,
+        <span class="jk">"short_url"</span>: <span class="js">"https://aq.gy/abcde"</span>,
+        <span class="jk">"qr_image"</span>: <span class="js">"https://aplx.link/res?keyword=abcde"</span>,
+        <span class="jk">"account_number"</span>: <span class="js">"1234567894321"</span>,
+        <span class="jk">"bank_id"</span>: 3,
+        <span class="jk">"bank_name"</span>: <span class="js">"국민은행"</span>,
+        <span class="jk">"account_owner"</span>: <span class="js">"홍길동"</span>,
+        <span class="jk">"account_name"</span>: <span class="js">"길동상회"</span>,
+        <span class="jk">"bank_branch_name"</span>: <span class="js">""</span>,
+        <span class="jk">"mask_owner"</span>: <span class="js">"N"</span>,
+        <span class="jk">"account_visible"</span>: <span class="js">"Y"</span>,
+        <span class="jk">"template_name"</span>: <span class="js">"default"</span>,
+        <span class="jk">"timeout_stamp"</span>: 0,
+        <span class="jk">"manage_duedate"</span>: 0,
+        <span class="jk">"price"</span>: <span class="js">""</span>,
+        <span class="jk">"tag"</span>: <span class="js">""</span>,
+        <span class="jk">"regdate"</span>: 1761190000000,
+        <span class="jk">"last_update"</span>: 1761190000000
+      }
+    ],
+    <span class="jk">"page"</span>: 1,
+    <span class="jk">"total_pages"</span>: 1,
+    <span class="jk">"total_count"</span>: 1,
+    <span class="jk">"accounts"</span>: 1,
+    <span class="jk">"account_limit"</span>: 3
+  }
+}</pre>
+        </div>
+      </div><!-- /list -->
+
+      <!-- ── 페이지 상세정보 가져오기 ─────────────────────────────────────── -->
+      <div id="detail" class="api-section">
+        <h2>페이지 상세정보 가져오기</h2>
+        <p>페이지 하나의 전체 정보를 가져옵니다. 목록의 기본 항목에 더해 링크 버튼 · 페이앱 · 현금영수증 · 템플릿 · QR 스타일 설정과 이미지 주소를 함께 돌려줍니다.</p>
+
+        <div class="sec-title">기본 정보</div>
+        <div class="endpoint-box">
+          <span class="method post">POST</span>
+          <code>https://aplx.link/api/</code>
+        </div>
+
+        <div class="sec-title">요청 파라미터</div>
+        <div class="sub-label">Header</div>
+        <div class="tbl-wrap">
+          <table class="tbl">
+            <thead>
+              <tr>
+                <th style="width:190px">파라미터명</th>
+                <th>설명</th>
+                <th style="width:56px">필수</th>
+                <th style="width:76px">타입</th>
+                <th style="width:76px">최대길이</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><span class="pname">AQR-DEVELOPER-TOKEN</span></td>
+                <td>부여받은 개발자 Token 값을 헤더에 입력합니다.</td>
+                <td><span class="req-y">Y</span></td>
+                <td><span class="type">String</span></td>
+                <td>-</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="sub-label" style="margin-top:12px">Body — application/x-www-form-urlencoded</div>
+        <div class="tbl-wrap">
+          <table class="tbl">
+            <thead>
+              <tr>
+                <th style="width:150px">파라미터명</th>
+                <th>설명</th>
+                <th style="width:56px">필수</th>
+                <th style="width:76px">타입</th>
+                <th style="width:76px">최대길이</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><span class="pname">action</span></td>
+                <td>"detail"를 입력합니다.</td>
+                <td><span class="req-y">Y</span></td>
+                <td><span class="type">String</span></td>
+                <td>20</td>
+              </tr>
+              <tr>
+                <td><span class="pname">email_address</span></td>
+                <td>가입시 입력한 이메일 주소를 입력합니다.</td>
+                <td><span class="req-y">Y</span></td>
+                <td><span class="type">String</span></td>
+                <td>100</td>
+              </tr>
+              <tr>
+                <td><span class="pname">uniq_keyword</span></td>
+                <td>생성 시 받은 'uniq_keyword' 값을 입력합니다.</td>
+                <td><span class="req-y">Y</span></td>
+                <td><span class="type">String</span></td>
+                <td>20</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="sec-title">요청 예시</div>
+        <div class="code-wrap">
+          <div class="code-tabs" id="ct-detail">
+            <button class="code-tab active" data-pane="cdetail-shell">Shell</button>
+            <button class="code-tab" data-pane="cdetail-php">PHP</button>
+            <button class="code-tab" data-pane="cdetail-js">JavaScript</button>
+            <button class="code-tab" data-pane="cdetail-py">Python</button>
+          </div>
+          <div class="code-pane active" id="cdetail-shell"><pre>curl -H "AQR-DEVELOPER-TOKEN: &lt;DEVELOPER TOKEN&gt;" \
+     -X POST \
+     --data-urlencode 'action=detail' \
+     --data-urlencode 'email_address=&lt;EMAILID&gt;' \
+     --data-urlencode 'uniq_keyword=abcde' \
+     https://aplx.link/api/</pre></div>
+          <div class="code-pane" id="cdetail-php"><pre>$body['action']         = 'detail';
+$body['email_address']  = '&lt;EMAILID&gt;';
+$body['uniq_keyword']   = 'abcde';
+
+$ch = curl_init();
+curl_setopt($ch, CURLOPT_URL,            'https://aplx.link/api/');
+curl_setopt($ch, CURLOPT_HTTPHEADER,     array('AQR-DEVELOPER-TOKEN: &lt;DEVELOPER TOKEN&gt;'));
+curl_setopt($ch, CURLOPT_POST,           true);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+curl_setopt($ch, CURLOPT_POSTFIELDS,     http_build_query($body));
+$response = json_decode(curl_exec($ch), true);
+$status   = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+curl_close($ch);
+
+if ($response['result'] == 'success') {
+    // $response['data']
+}</pre></div>
+          <div class="code-pane" id="cdetail-js"><pre>// Node.js 18+ (fetch 내장, async 함수 안에서). 개발자 Token 이 드러나므로 브라우저에서 직접 호출하지 마세요.
+const body = new URLSearchParams();
+body.append("action", "detail");
+body.append("email_address", "&lt;EMAILID&gt;");
+body.append("uniq_keyword", "abcde");
+
+const res = await fetch("https://aplx.link/api/", {
+  method:  "POST",
+  headers: { "AQR-DEVELOPER-TOKEN": "&lt;DEVELOPER TOKEN&gt;" },
+  body:    body
+});
+const r = await res.json();
+if (r.result == "success") {
+  // r.data
+}</pre></div>
+          <div class="code-pane" id="cdetail-py"><pre>import requests
+
+headers = {'AQR-DEVELOPER-TOKEN': '&lt;DEVELOPER TOKEN&gt;'}
+data = {
+    'action': 'detail',
+    'email_address': '&lt;EMAILID&gt;',
+    'uniq_keyword': 'abcde',
+}
+response = requests.post('https://aplx.link/api/', headers=headers, data=data)
+r = response.json()
+if r['result'] == 'success':
+    print(r['data'])</pre></div>
+        </div>
+
+        <div class="sec-title">응답 파라미터</div>
+        <div class="tbl-wrap">
+          <table class="tbl">
+            <thead>
+              <tr>
+                <th style="width:190px">파라미터명</th>
+                <th>설명</th>
+                <th style="width:76px">타입</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><span class="pname">result</span></td>
+                <td>처리 결과 ("success" 또는 "error")</td>
+                <td><span class="type">String</span></td>
+              </tr>
+              <tr>
+                <td><span class="pname">message</span></td>
+                <td>처리 결과가 "error"일 경우 오류 내용</td>
+                <td><span class="type">String</span></td>
+              </tr>
+              <tr>
+                <td><span class="pname">sendstatus</span></td>
+                <td>결과 코드 (0 = 성공, 음수 = 실패. 아래 Errors 참조)</td>
+                <td><span class="type">Integer</span></td>
+              </tr>
+              <tr>
+                <td><span class="pname">data</span></td>
+                <td><a href="#page-object">페이지 객체</a> (기본 항목 + 상세 항목)</td>
+                <td><span class="type">Object</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="sec-title">응답 예시</div>
+        <div class="json-wrap">
+          <div class="json-label">JSON Response</div>
+          <pre>{
+  <span class="jk">"result"</span>: <span class="js">"success"</span>,
+  <span class="jk">"message"</span>: <span class="js">"success"</span>,
+  <span class="jk">"sendstatus"</span>: 0,
+  <span class="jk">"data"</span>: {
+    <span class="jk">"uniq_keyword"</span>: <span class="js">"abcde"</span>,
+    <span class="jk">"short_url"</span>: <span class="js">"https://aq.gy/abcde"</span>,
+    <span class="jk">"qr_image"</span>: <span class="js">"https://aplx.link/res?keyword=abcde"</span>,
+    <span class="jk">"account_number"</span>: <span class="js">"1234567894321"</span>,
+    <span class="jk">"bank_id"</span>: 3,
+    <span class="jk">"bank_name"</span>: <span class="js">"국민은행"</span>,
+    <span class="jk">"account_owner"</span>: <span class="js">"홍길동"</span>,
+    <span class="jk">"account_name"</span>: <span class="js">"길동상회"</span>,
+    <span class="jk">"bank_branch_name"</span>: <span class="js">""</span>,
+    <span class="jk">"mask_owner"</span>: <span class="js">"N"</span>,
+    <span class="jk">"account_visible"</span>: <span class="js">"Y"</span>,
+    <span class="jk">"template_name"</span>: <span class="js">"default"</span>,
+    <span class="jk">"timeout_stamp"</span>: 0,
+    <span class="jk">"manage_duedate"</span>: 0,
+    <span class="jk">"price"</span>: <span class="js">""</span>,
+    <span class="jk">"tag"</span>: <span class="js">""</span>,
+    <span class="jk">"regdate"</span>: 1761190000000,
+    <span class="jk">"last_update"</span>: 1761190000000,
+    <span class="jk">"phone_number"</span>: <span class="js">"01012341234"</span>,
+    <span class="jk">"advanced_url_name"</span>: <span class="js">""</span>,
+    <span class="jk">"lib_url"</span>: <span class="js">"{\"data\":[{\"kind\":\"etc\",\"title\":\"홈페이지\",\"url\":\"https://example.com\"}]}"</span>,
+    <span class="jk">"pay_list"</span>: <span class="js">""</span>,
+    <span class="jk">"receipt_email"</span>: <span class="js">""</span>,
+    <span class="jk">"template_params"</span>: <span class="js">""</span>,
+    <span class="jk">"qr_style"</span>: <span class="js">"{\"fgcolor\":\"#000000\",\"bgcolor\":\"#ffffff\",\"shape\":\"extra-rounded\"}"</span>,
+    <span class="jk">"icon_image_url"</span>: <span class="js">""</span>,
+    <span class="jk">"qr_icon_image_url"</span>: <span class="js">""</span>
+  }
+}</pre>
+        </div>
+
+        <div class="sec-title">주요 오류</div>
+        <div class="tbl-wrap">
+          <table class="tbl">
+            <thead>
+              <tr>
+                <th style="width:150px">HTTP / sendstatus</th>
+                <th>설명</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td><span class="err-badge">404 / -2</span></td><td>uniq_keyword 에 해당하는 내 페이지가 없습니다.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div><!-- /detail -->
+
+      <!-- ── 페이지 정보 업데이트 ─────────────────────────────────────── -->
+      <div id="update" class="api-section">
+        <h2>페이지 정보 업데이트</h2>
+        <p>페이지 정보를 수정합니다. <strong>보낸 항목만 바뀌고</strong>, 보내지 않은 항목은 지금 값을 그대로 둡니다. 수정에 성공하면 수정된 페이지의 전체 정보를 돌려줍니다.</p>
+        <div class="info-box"><p>값을 지우려면 파라미터를 빈 값으로 보내세요. (예: <code>timeout_stamp=</code> → 표시 기한 없음, <code>lib_url=</code> → 링크 버튼 모두 삭제)<br>계좌 고정 페이지는 계좌번호 · 은행 · 예금주를 바꿀 수 없습니다(403). 페이지 아이콘과 커스텀 템플릿 배경 이미지는 AQR Square 에서만 바꿀 수 있습니다.</p></div>
+
+        <div class="sec-title">기본 정보</div>
+        <div class="endpoint-box">
+          <span class="method post">POST</span>
+          <code>https://aplx.link/api/</code>
+        </div>
+
+        <div class="sec-title">요청 파라미터</div>
+        <div class="sub-label">Header</div>
+        <div class="tbl-wrap">
+          <table class="tbl">
+            <thead>
+              <tr>
+                <th style="width:190px">파라미터명</th>
+                <th>설명</th>
+                <th style="width:56px">필수</th>
+                <th style="width:76px">타입</th>
+                <th style="width:76px">최대길이</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><span class="pname">AQR-DEVELOPER-TOKEN</span></td>
+                <td>부여받은 개발자 Token 값을 헤더에 입력합니다.</td>
+                <td><span class="req-y">Y</span></td>
+                <td><span class="type">String</span></td>
+                <td>-</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="sub-label" style="margin-top:12px">Body — application/x-www-form-urlencoded</div>
+        <div class="tbl-wrap">
+          <table class="tbl">
+            <thead>
+              <tr>
+                <th style="width:150px">파라미터명</th>
+                <th>설명</th>
+                <th style="width:56px">필수</th>
+                <th style="width:76px">타입</th>
+                <th style="width:76px">최대길이</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><span class="pname">action</span></td>
+                <td>"update"를 입력합니다.</td>
+                <td><span class="req-y">Y</span></td>
+                <td><span class="type">String</span></td>
+                <td>20</td>
+              </tr>
+              <tr>
+                <td><span class="pname">email_address</span></td>
+                <td>가입시 입력한 이메일 주소를 입력합니다.</td>
+                <td><span class="req-y">Y</span></td>
+                <td><span class="type">String</span></td>
+                <td>100</td>
+              </tr>
+              <tr>
+                <td><span class="pname">uniq_keyword</span></td>
+                <td>생성 시 받은 'uniq_keyword' 값을 입력합니다.</td>
+                <td><span class="req-y">Y</span></td>
+                <td><span class="type">String</span></td>
+                <td>20</td>
+              </tr>
+              <tr>
+                <td><span class="pname">account_number</span></td>
+                <td>계좌번호 (숫자, - 는 무시)</td>
+                <td><span class="req-n">N</span></td>
+                <td><span class="type">String</span></td>
+                <td>30</td>
+              </tr>
+              <tr>
+                <td><span class="pname">bank_id</span></td>
+                <td>은행 ID (<a href="#bank-table">은행 ID 테이블</a> 참조)</td>
+                <td><span class="req-n">N</span></td>
+                <td><span class="type">Integer</span></td>
+                <td>-</td>
+              </tr>
+              <tr>
+                <td><span class="pname">account_owner</span></td>
+                <td>예금주 명</td>
+                <td><span class="req-n">N</span></td>
+                <td><span class="type">String</span></td>
+                <td>50</td>
+              </tr>
+              <tr>
+                <td><span class="pname">account_name</span></td>
+                <td>페이지(계좌 정보) 이름</td>
+                <td><span class="req-n">N</span></td>
+                <td><span class="type">String</span></td>
+                <td>100</td>
+              </tr>
+              <tr>
+                <td><span class="pname">bank_branch_name</span></td>
+                <td>은행 지점명</td>
+                <td><span class="req-n">N</span></td>
+                <td><span class="type">String</span></td>
+                <td>100</td>
+              </tr>
+              <tr>
+                <td><span class="pname">mask_owner</span></td>
+                <td>예금주명 일부 감추기 (Y / N)</td>
+                <td><span class="req-n">N</span></td>
+                <td><span class="type">String</span></td>
+                <td>1</td>
+              </tr>
+              <tr>
+                <td><span class="pname">account_visible</span></td>
+                <td>계좌 정보 표시 (Y / N)</td>
+                <td><span class="req-n">N</span></td>
+                <td><span class="type">String</span></td>
+                <td>1</td>
+              </tr>
+              <tr>
+                <td><span class="pname">timeout_stamp</span></td>
+                <td>페이지 표시 기한 (Unix time, 밀리초). 0 또는 빈 값이면 기한 없음</td>
+                <td><span class="req-n">N</span></td>
+                <td><span class="type">Integer</span></td>
+                <td>-</td>
+              </tr>
+              <tr>
+                <td><span class="pname">price</span></td>
+                <td>입금 요청 금액 (숫자). 빈 값이면 금액 없음</td>
+                <td><span class="req-n">N</span></td>
+                <td><span class="type">String</span></td>
+                <td>20</td>
+              </tr>
+              <tr>
+                <td><span class="pname">lib_url</span></td>
+                <td>링크 버튼 설정 (JSON 문자열, <a href="#json-format">형식</a>)</td>
+                <td><span class="req-n">N</span></td>
+                <td><span class="type">String</span></td>
+                <td>-</td>
+              </tr>
+              <tr>
+                <td><span class="pname">pay_list</span></td>
+                <td>페이앱 설정 (JSON 문자열, <a href="#json-format">형식</a>)</td>
+                <td><span class="req-n">N</span></td>
+                <td><span class="type">String</span></td>
+                <td>-</td>
+              </tr>
+              <tr>
+                <td><span class="pname">receipt_email</span></td>
+                <td>현금영수증 요청 설정 (JSON 문자열, <a href="#json-format">형식</a>)</td>
+                <td><span class="req-n">N</span></td>
+                <td><span class="type">String</span></td>
+                <td>-</td>
+              </tr>
+              <tr>
+                <td><span class="pname">template_params</span></td>
+                <td>템플릿 상세 설정 (JSON 문자열). 상세 조회의 template_params 를 고쳐서 보냅니다.</td>
+                <td><span class="req-n">N</span></td>
+                <td><span class="type">String</span></td>
+                <td>1500</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="sec-title">요청 예시</div>
+        <div class="code-wrap">
+          <div class="code-tabs" id="ct-update">
+            <button class="code-tab active" data-pane="cupdate-shell">Shell</button>
+            <button class="code-tab" data-pane="cupdate-php">PHP</button>
+            <button class="code-tab" data-pane="cupdate-js">JavaScript</button>
+            <button class="code-tab" data-pane="cupdate-py">Python</button>
+          </div>
+          <div class="code-pane active" id="cupdate-shell"><pre>curl -H "AQR-DEVELOPER-TOKEN: &lt;DEVELOPER TOKEN&gt;" \
+     -X POST \
+     --data-urlencode 'action=update' \
+     --data-urlencode 'email_address=&lt;EMAILID&gt;' \
+     --data-urlencode 'uniq_keyword=abcde' \
+     --data-urlencode 'account_name=길동상회 본점' \
+     --data-urlencode 'price=10000' \
+     --data-urlencode 'lib_url={"data": [{"kind": "etc", "title": "홈페이지", "url": "https://example.com"}]}' \
+     https://aplx.link/api/</pre></div>
+          <div class="code-pane" id="cupdate-php"><pre>$body['action']         = 'update';
+$body['email_address']  = '&lt;EMAILID&gt;';
+$body['uniq_keyword']   = 'abcde';
+$body['account_name']   = '길동상회 본점';
+$body['price']          = '10000';
+$body['lib_url']        = json_encode(array(
+    'data' =&gt; array(
+        array(
+            'kind' =&gt; 'etc',
+            'title' =&gt; '홈페이지',
+            'url' =&gt; 'https://example.com'
+        )
+    )
+), JSON_UNESCAPED_UNICODE);
+
+$ch = curl_init();
+curl_setopt($ch, CURLOPT_URL,            'https://aplx.link/api/');
+curl_setopt($ch, CURLOPT_HTTPHEADER,     array('AQR-DEVELOPER-TOKEN: &lt;DEVELOPER TOKEN&gt;'));
+curl_setopt($ch, CURLOPT_POST,           true);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+curl_setopt($ch, CURLOPT_POSTFIELDS,     http_build_query($body));
+$response = json_decode(curl_exec($ch), true);
+$status   = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+curl_close($ch);
+
+if ($response['result'] == 'success') {
+    // $response['data']
+}</pre></div>
+          <div class="code-pane" id="cupdate-js"><pre>// Node.js 18+ (fetch 내장, async 함수 안에서). 개발자 Token 이 드러나므로 브라우저에서 직접 호출하지 마세요.
+const body = new URLSearchParams();
+body.append("action", "update");
+body.append("email_address", "&lt;EMAILID&gt;");
+body.append("uniq_keyword", "abcde");
+body.append("account_name", "길동상회 본점");
+body.append("price", "10000");
+body.append("lib_url", JSON.stringify({
+  "data": [
+    {
+      "kind": "etc",
+      "title": "홈페이지",
+      "url": "https://example.com"
+    }
+  ]
+}));
+
+const res = await fetch("https://aplx.link/api/", {
+  method:  "POST",
+  headers: { "AQR-DEVELOPER-TOKEN": "&lt;DEVELOPER TOKEN&gt;" },
+  body:    body
+});
+const r = await res.json();
+if (r.result == "success") {
+  // r.data
+}</pre></div>
+          <div class="code-pane" id="cupdate-py"><pre>import json
+import requests
+
+headers = {'AQR-DEVELOPER-TOKEN': '&lt;DEVELOPER TOKEN&gt;'}
+data = {
+    'action': 'update',
+    'email_address': '&lt;EMAILID&gt;',
+    'uniq_keyword': 'abcde',
+    'account_name': '길동상회 본점',
+    'price': '10000',
+    'lib_url': json.dumps({
+        "data": [
+            {
+                "kind": "etc",
+                "title": "홈페이지",
+                "url": "https://example.com"
+            }
+        ]
+    }, ensure_ascii=False),
+}
+response = requests.post('https://aplx.link/api/', headers=headers, data=data)
+r = response.json()
+if r['result'] == 'success':
+    print(r['data'])</pre></div>
+        </div>
+
+        <div class="sec-title">응답 파라미터</div>
+        <div class="tbl-wrap">
+          <table class="tbl">
+            <thead>
+              <tr>
+                <th style="width:190px">파라미터명</th>
+                <th>설명</th>
+                <th style="width:76px">타입</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><span class="pname">result</span></td>
+                <td>처리 결과 ("success" 또는 "error")</td>
+                <td><span class="type">String</span></td>
+              </tr>
+              <tr>
+                <td><span class="pname">message</span></td>
+                <td>처리 결과가 "error"일 경우 오류 내용</td>
+                <td><span class="type">String</span></td>
+              </tr>
+              <tr>
+                <td><span class="pname">sendstatus</span></td>
+                <td>결과 코드 (0 = 성공, 음수 = 실패. 아래 Errors 참조)</td>
+                <td><span class="type">Integer</span></td>
+              </tr>
+              <tr>
+                <td><span class="pname">data</span></td>
+                <td>수정된 <a href="#page-object">페이지 객체</a> (상세 항목 포함)</td>
+                <td><span class="type">Object</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="sec-title">응답 예시</div>
+        <div class="json-wrap">
+          <div class="json-label">JSON Response</div>
+          <pre>{
+  <span class="jk">"result"</span>: <span class="js">"success"</span>,
+  <span class="jk">"message"</span>: <span class="js">"success"</span>,
+  <span class="jk">"sendstatus"</span>: 0,
+  <span class="jk">"data"</span>: {
+    <span class="jk">"uniq_keyword"</span>: <span class="js">"abcde"</span>,
+    <span class="jk">"account_name"</span>: <span class="js">"길동상회 본점"</span>,
+    <span class="jk">"price"</span>: <span class="js">"10000"</span>,
+    <span class="jk">"lib_url"</span>: <span class="js">"{\"data\":[{\"kind\":\"etc\",\"title\":\"홈페이지\",\"url\":\"https://example.com\"}]}"</span>,
+    <span class="jk">"..."</span>: <span class="js">"..."</span>,  <span class="jc">// 그 밖의 항목은 상세정보 가져오기와 같습니다</span>
+    <span class="jk">"last_update"</span>: 1761193600000
+  }
+}</pre>
+        </div>
+
+        <div class="sec-title">주요 오류</div>
+        <div class="tbl-wrap">
+          <table class="tbl">
+            <thead>
+              <tr>
+                <th style="width:150px">HTTP / sendstatus</th>
+                <th>설명</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td><span class="err-badge">400 / -6</span></td><td>값의 형식이 잘못되었습니다. (계좌번호 · 은행 · 링크 버튼 · 영수증 형식 등)</td></tr>
+              <tr><td><span class="err-badge">400 / -7</span></td><td>사용할 수 없는 페이지 이름입니다.</td></tr>
+              <tr><td><span class="err-badge">400 / -8</span></td><td>바뀐 항목이 없습니다.</td></tr>
+              <tr><td><span class="err-badge">403 / -2</span></td><td>계좌 정보를 바꿀 수 없는 페이지입니다.</td></tr>
+              <tr><td><span class="err-badge">404 / -2</span></td><td>uniq_keyword 에 해당하는 내 페이지가 없습니다.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div><!-- /update -->
+
+      <!-- ── QR 스타일 업데이트 ─────────────────────────────────────── -->
+      <div id="update-qr-style" class="api-section">
+        <h2>QR 스타일 업데이트</h2>
+        <p>QR 코드의 점 색 · 배경색 · 점 모양과 가운데 이미지를 바꿉니다. 보낸 항목만 바뀝니다.</p>
+        <div class="info-box"><p>가운데 이미지를 바꿀 때는 <code>multipart/form-data</code> 로 보내야 합니다. 1MB 이하의 이미지 파일만 받습니다.</p></div>
+
+        <div class="sec-title">기본 정보</div>
+        <div class="endpoint-box">
+          <span class="method post">POST</span>
+          <code>https://aplx.link/api/</code>
+        </div>
+
+        <div class="sec-title">요청 파라미터</div>
+        <div class="sub-label">Header</div>
+        <div class="tbl-wrap">
+          <table class="tbl">
+            <thead>
+              <tr>
+                <th style="width:190px">파라미터명</th>
+                <th>설명</th>
+                <th style="width:56px">필수</th>
+                <th style="width:76px">타입</th>
+                <th style="width:76px">최대길이</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><span class="pname">AQR-DEVELOPER-TOKEN</span></td>
+                <td>부여받은 개발자 Token 값을 헤더에 입력합니다.</td>
+                <td><span class="req-y">Y</span></td>
+                <td><span class="type">String</span></td>
+                <td>-</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="sub-label" style="margin-top:12px">Body — application/x-www-form-urlencoded 또는 multipart/form-data</div>
+        <div class="tbl-wrap">
+          <table class="tbl">
+            <thead>
+              <tr>
+                <th style="width:150px">파라미터명</th>
+                <th>설명</th>
+                <th style="width:56px">필수</th>
+                <th style="width:76px">타입</th>
+                <th style="width:76px">최대길이</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><span class="pname">action</span></td>
+                <td>"update_qr_style"를 입력합니다.</td>
+                <td><span class="req-y">Y</span></td>
+                <td><span class="type">String</span></td>
+                <td>20</td>
+              </tr>
+              <tr>
+                <td><span class="pname">email_address</span></td>
+                <td>가입시 입력한 이메일 주소를 입력합니다.</td>
+                <td><span class="req-y">Y</span></td>
+                <td><span class="type">String</span></td>
+                <td>100</td>
+              </tr>
+              <tr>
+                <td><span class="pname">uniq_keyword</span></td>
+                <td>생성 시 받은 'uniq_keyword' 값을 입력합니다.</td>
+                <td><span class="req-y">Y</span></td>
+                <td><span class="type">String</span></td>
+                <td>20</td>
+              </tr>
+              <tr>
+                <td><span class="pname">fg_color</span></td>
+                <td>QR 점 색 (#RRGGBB)</td>
+                <td><span class="req-n">N</span></td>
+                <td><span class="type">String</span></td>
+                <td>7</td>
+              </tr>
+              <tr>
+                <td><span class="pname">bg_color</span></td>
+                <td>QR 배경색 (#RRGGBB)</td>
+                <td><span class="req-n">N</span></td>
+                <td><span class="type">String</span></td>
+                <td>7</td>
+              </tr>
+              <tr>
+                <td><span class="pname">shape</span></td>
+                <td>점 모양 : "dots"(원) / "square"(사각) / "extra-rounded"(둥근 사각)</td>
+                <td><span class="req-n">N</span></td>
+                <td><span class="type">String</span></td>
+                <td>20</td>
+              </tr>
+              <tr>
+                <td><span class="pname">qr_icon_image</span></td>
+                <td>QR 가운데에 넣을 이미지 파일 (multipart/form-data, 1MB 이하)</td>
+                <td><span class="req-n">N</span></td>
+                <td><span class="type">File</span></td>
+                <td>1MB</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="sec-title">요청 예시</div>
+        <div class="code-wrap">
+          <div class="code-tabs" id="ct-update-qr-style">
+            <button class="code-tab active" data-pane="cupdate-qr-style-shell">Shell</button>
+            <button class="code-tab" data-pane="cupdate-qr-style-php">PHP</button>
+            <button class="code-tab" data-pane="cupdate-qr-style-js">JavaScript</button>
+            <button class="code-tab" data-pane="cupdate-qr-style-py">Python</button>
+          </div>
+          <div class="code-pane active" id="cupdate-qr-style-shell"><pre>curl -H "AQR-DEVELOPER-TOKEN: &lt;DEVELOPER TOKEN&gt;" \
+     -X POST \
+     -F 'action=update_qr_style' \
+     -F 'email_address=&lt;EMAILID&gt;' \
+     -F 'uniq_keyword=abcde' \
+     -F 'fg_color=#1c8b7e' \
+     -F 'shape=dots' \
+     -F 'qr_icon_image=@./logo.png' \
+     https://aplx.link/api/</pre></div>
+          <div class="code-pane" id="cupdate-qr-style-php"><pre>$body['action']         = 'update_qr_style';
+$body['email_address']  = '&lt;EMAILID&gt;';
+$body['uniq_keyword']   = 'abcde';
+$body['fg_color']       = '#1c8b7e';
+$body['shape']          = 'dots';
+$body['qr_icon_image'] = new CURLFile('./logo.png', 'image/png');   // multipart/form-data 로 보낸다
+
+$ch = curl_init();
+curl_setopt($ch, CURLOPT_URL,            'https://aplx.link/api/');
+curl_setopt($ch, CURLOPT_HTTPHEADER,     array('AQR-DEVELOPER-TOKEN: &lt;DEVELOPER TOKEN&gt;'));
+curl_setopt($ch, CURLOPT_POST,           true);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+curl_setopt($ch, CURLOPT_POSTFIELDS,     $body);
+$response = json_decode(curl_exec($ch), true);
+$status   = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+curl_close($ch);
+
+if ($response['result'] == 'success') {
+    // $response['data']
+}</pre></div>
+          <div class="code-pane" id="cupdate-qr-style-js"><pre>// Node.js 18+ (fetch 내장, async 함수 안에서). 개발자 Token 이 드러나므로 브라우저에서 직접 호출하지 마세요.
+const fs = require("fs");
+const body = new FormData();
+body.append("action", "update_qr_style");
+body.append("email_address", "&lt;EMAILID&gt;");
+body.append("uniq_keyword", "abcde");
+body.append("fg_color", "#1c8b7e");
+body.append("shape", "dots");
+body.append("qr_icon_image", new Blob([fs.readFileSync("./logo.png")]), "logo.png");
+
+const res = await fetch("https://aplx.link/api/", {
+  method:  "POST",
+  headers: { "AQR-DEVELOPER-TOKEN": "&lt;DEVELOPER TOKEN&gt;" },
+  body:    body
+});
+const r = await res.json();
+if (r.result == "success") {
+  // r.data
+}</pre></div>
+          <div class="code-pane" id="cupdate-qr-style-py"><pre>import requests
+
+headers = {'AQR-DEVELOPER-TOKEN': '&lt;DEVELOPER TOKEN&gt;'}
+data = {
+    'action': 'update_qr_style',
+    'email_address': '&lt;EMAILID&gt;',
+    'uniq_keyword': 'abcde',
+    'fg_color': '#1c8b7e',
+    'shape': 'dots',
+}
+files = {'qr_icon_image': open('./logo.png', 'rb')}
+response = requests.post('https://aplx.link/api/', headers=headers, data=data, files=files)
+r = response.json()
+if r['result'] == 'success':
+    print(r['data'])</pre></div>
+        </div>
+
+        <div class="sec-title">응답 파라미터</div>
+        <div class="tbl-wrap">
+          <table class="tbl">
+            <thead>
+              <tr>
+                <th style="width:190px">파라미터명</th>
+                <th>설명</th>
+                <th style="width:76px">타입</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><span class="pname">result</span></td>
+                <td>처리 결과 ("success" 또는 "error")</td>
+                <td><span class="type">String</span></td>
+              </tr>
+              <tr>
+                <td><span class="pname">message</span></td>
+                <td>처리 결과가 "error"일 경우 오류 내용</td>
+                <td><span class="type">String</span></td>
+              </tr>
+              <tr>
+                <td><span class="pname">sendstatus</span></td>
+                <td>결과 코드 (0 = 성공, 음수 = 실패. 아래 Errors 참조)</td>
+                <td><span class="type">Integer</span></td>
+              </tr>
+              <tr>
+                <td><span class="pname">data.uniq_keyword</span></td>
+                <td>페이지 ID</td>
+                <td><span class="type">String</span></td>
+              </tr>
+              <tr>
+                <td><span class="pname">data.qr_style.fgcolor</span></td>
+                <td>QR 점 색</td>
+                <td><span class="type">String</span></td>
+              </tr>
+              <tr>
+                <td><span class="pname">data.qr_style.bgcolor</span></td>
+                <td>QR 배경색</td>
+                <td><span class="type">String</span></td>
+              </tr>
+              <tr>
+                <td><span class="pname">data.qr_style.shape</span></td>
+                <td>점 모양</td>
+                <td><span class="type">String</span></td>
+              </tr>
+              <tr>
+                <td><span class="pname">data.qr_image</span></td>
+                <td>QR 이미지 다운로드 경로</td>
+                <td><span class="type">String</span></td>
+              </tr>
+              <tr>
+                <td><span class="pname">data.qr_icon_image_url</span></td>
+                <td>QR 가운데 이미지 주소 (없으면 빈 값)</td>
+                <td><span class="type">String</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="sec-title">응답 예시</div>
+        <div class="json-wrap">
+          <div class="json-label">JSON Response</div>
+          <pre>{
+  <span class="jk">"result"</span>: <span class="js">"success"</span>,
+  <span class="jk">"message"</span>: <span class="js">"success"</span>,
+  <span class="jk">"sendstatus"</span>: 0,
+  <span class="jk">"data"</span>: {
+    <span class="jk">"uniq_keyword"</span>: <span class="js">"abcde"</span>,
+    <span class="jk">"qr_style"</span>: {
+      <span class="jk">"fgcolor"</span>: <span class="js">"#1c8b7e"</span>,
+      <span class="jk">"bgcolor"</span>: <span class="js">"#ffffff"</span>,
+      <span class="jk">"shape"</span>: <span class="js">"dots"</span>
+    },
+    <span class="jk">"qr_image"</span>: <span class="js">"https://aplx.link/res?keyword=abcde"</span>,
+    <span class="jk">"qr_icon_image_url"</span>: <span class="js">"https://aplx.link/res/files/attach/..."</span>
+  }
+}</pre>
+        </div>
+
+        <div class="sec-title">주요 오류</div>
+        <div class="tbl-wrap">
+          <table class="tbl">
+            <thead>
+              <tr>
+                <th style="width:150px">HTTP / sendstatus</th>
+                <th>설명</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td><span class="err-badge">400 / -6</span></td><td>색 · 모양 값이나 이미지 파일이 잘못되었습니다.</td></tr>
+              <tr><td><span class="err-badge">400 / -8</span></td><td>바뀐 항목이 없습니다.</td></tr>
+              <tr><td><span class="err-badge">404 / -2</span></td><td>uniq_keyword 에 해당하는 내 페이지가 없습니다.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div><!-- /update-qr-style -->
+
+    </section><!-- /page-section -->
+
+    <!-- 대량 처리 · 슬롯 -->
+    <section id="bulk-section" class="card">
+      <h1>대량 처리 · 슬롯</h1>
+
+      <!-- ── 페이지 정보 대량 생성 ─────────────────────────────────────── -->
+      <div id="create-bulk" class="api-section">
+        <h2>페이지 정보 대량 생성</h2>
+        <p>여러 페이지를 한 번에 만듭니다. <strong>한 요청의 페이지는 모두 만들어지거나 하나도 만들어지지 않습니다.</strong> 어느 항목이 잘못되었는지는 오류 응답의 <code>data.index</code>(0부터)로 알려 줍니다.</p>
+        <div class="info-box"><p>한 번에 최대 <strong>50개</strong>까지 보낼 수 있습니다. 더 많으면 나눠서 보내세요.<br>비어 있는 슬롯 수보다 많이 보내면 429 로 거절합니다. 먼저 <a href="#slot-count">등록 가능한 슬롯 수</a>를 확인하세요.<br>대량 생성 권한이 있는 계정만 쓸 수 있습니다(없으면 403). 권한은 AQR 에 문의해 주세요.</p></div>
+
+        <div class="sec-title">기본 정보</div>
+        <div class="endpoint-box">
+          <span class="method post">POST</span>
+          <code>https://aplx.link/api/</code>
+        </div>
+
+        <div class="sec-title">요청 파라미터</div>
+        <div class="sub-label">Header</div>
+        <div class="tbl-wrap">
+          <table class="tbl">
+            <thead>
+              <tr>
+                <th style="width:190px">파라미터명</th>
+                <th>설명</th>
+                <th style="width:56px">필수</th>
+                <th style="width:76px">타입</th>
+                <th style="width:76px">최대길이</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><span class="pname">AQR-DEVELOPER-TOKEN</span></td>
+                <td>부여받은 개발자 Token 값을 헤더에 입력합니다.</td>
+                <td><span class="req-y">Y</span></td>
+                <td><span class="type">String</span></td>
+                <td>-</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="sub-label" style="margin-top:12px">Body — application/x-www-form-urlencoded</div>
+        <div class="tbl-wrap">
+          <table class="tbl">
+            <thead>
+              <tr>
+                <th style="width:150px">파라미터명</th>
+                <th>설명</th>
+                <th style="width:56px">필수</th>
+                <th style="width:76px">타입</th>
+                <th style="width:76px">최대길이</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><span class="pname">action</span></td>
+                <td>"create_bulk"를 입력합니다.</td>
+                <td><span class="req-y">Y</span></td>
+                <td><span class="type">String</span></td>
+                <td>20</td>
+              </tr>
+              <tr>
+                <td><span class="pname">email_address</span></td>
+                <td>가입시 입력한 이메일 주소를 입력합니다.</td>
+                <td><span class="req-y">Y</span></td>
+                <td><span class="type">String</span></td>
+                <td>100</td>
+              </tr>
+              <tr>
+                <td><span class="pname">pages</span></td>
+                <td>만들 페이지 목록 (JSON 배열 문자열). 각 항목은 아래 표를 따릅니다.</td>
+                <td><span class="req-y">Y</span></td>
+                <td><span class="type">String</span></td>
+                <td>50개</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="sub-label" style="margin-top:12px">pages[] 항목</div>
+        <div class="tbl-wrap">
+          <table class="tbl">
+            <thead>
+              <tr>
+                <th style="width:190px">항목명</th>
+                <th>설명</th>
+                <th style="width:76px">타입</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><span class="pname">account_number</span></td>
+                <td>계좌번호 (숫자, - 는 무시) — 필수</td>
+                <td><span class="type">String</span></td>
+              </tr>
+              <tr>
+                <td><span class="pname">bank_id</span></td>
+                <td>은행 ID (<a href="#bank-table">은행 ID 테이블</a>) — 필수</td>
+                <td><span class="type">Integer</span></td>
+              </tr>
+              <tr>
+                <td><span class="pname">account_owner</span></td>
+                <td>예금주 명 — 필수</td>
+                <td><span class="type">String</span></td>
+              </tr>
+              <tr>
+                <td><span class="pname">account_name</span></td>
+                <td>페이지(계좌 정보) 이름 — 필수</td>
+                <td><span class="type">String</span></td>
+              </tr>
+              <tr>
+                <td><span class="pname">phone_number</span></td>
+                <td>예금주 전화번호. 생략하면 회원 정보의 전화번호</td>
+                <td><span class="type">String</span></td>
+              </tr>
+              <tr>
+                <td><span class="pname">mask_owner</span></td>
+                <td>예금주명 일부 감추기 (Y / N, 기본 N)</td>
+                <td><span class="type">String</span></td>
+              </tr>
+              <tr>
+                <td><span class="pname">template_name</span></td>
+                <td>템플릿 : "default"(기본) / "wedding"(결혼) / "condolence"(부의) / "others"(기타 축하) / "etc"(프리미엄)</td>
+                <td><span class="type">String</span></td>
+              </tr>
+              <tr>
+                <td><span class="pname">timeout_stamp</span></td>
+                <td>페이지 표시 기한 (Unix time, 밀리초). 생략하면 기한 없음</td>
+                <td><span class="type">Integer</span></td>
+              </tr>
+              <tr>
+                <td><span class="pname">lib_url</span></td>
+                <td>링크 버튼 설정 (<a href="#json-format">형식</a>). 객체 또는 JSON 문자열</td>
+                <td><span class="type">Object</span></td>
+              </tr>
+              <tr>
+                <td><span class="pname">tag</span></td>
+                <td>검색용 태그</td>
+                <td><span class="type">String</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="sec-title">요청 예시</div>
+        <div class="code-wrap">
+          <div class="code-tabs" id="ct-create-bulk">
+            <button class="code-tab active" data-pane="ccreate-bulk-shell">Shell</button>
+            <button class="code-tab" data-pane="ccreate-bulk-php">PHP</button>
+            <button class="code-tab" data-pane="ccreate-bulk-js">JavaScript</button>
+            <button class="code-tab" data-pane="ccreate-bulk-py">Python</button>
+          </div>
+          <div class="code-pane active" id="ccreate-bulk-shell"><pre>curl -H "AQR-DEVELOPER-TOKEN: &lt;DEVELOPER TOKEN&gt;" \
+     -X POST \
+     --data-urlencode 'action=create_bulk' \
+     --data-urlencode 'email_address=&lt;EMAILID&gt;' \
+     --data-urlencode 'pages=[{"account_number": "1234567894321", "bank_id": 3, "account_owner": "홍길동", "account_name": "길동상회 1호점"}, {"account_number": "9876543210", "bank_id": 6, "account_owner": "홍길동", "account_name": "길동상회 2호점", "mask_owner": "Y"}]' \
+     https://aplx.link/api/</pre></div>
+          <div class="code-pane" id="ccreate-bulk-php"><pre>$body['action']         = 'create_bulk';
+$body['email_address']  = '&lt;EMAILID&gt;';
+$body['pages']          = json_encode(array(
+    array(
+        'account_number' =&gt; '1234567894321',
+        'bank_id' =&gt; '3',
+        'account_owner' =&gt; '홍길동',
+        'account_name' =&gt; '길동상회 1호점'
+    ),
+    array(
+        'account_number' =&gt; '9876543210',
+        'bank_id' =&gt; '6',
+        'account_owner' =&gt; '홍길동',
+        'account_name' =&gt; '길동상회 2호점',
+        'mask_owner' =&gt; 'Y'
+    )
+), JSON_UNESCAPED_UNICODE);
+
+$ch = curl_init();
+curl_setopt($ch, CURLOPT_URL,            'https://aplx.link/api/');
+curl_setopt($ch, CURLOPT_HTTPHEADER,     array('AQR-DEVELOPER-TOKEN: &lt;DEVELOPER TOKEN&gt;'));
+curl_setopt($ch, CURLOPT_POST,           true);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+curl_setopt($ch, CURLOPT_POSTFIELDS,     http_build_query($body));
+$response = json_decode(curl_exec($ch), true);
+$status   = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+curl_close($ch);
+
+if ($response['result'] == 'success') {
+    // $response['data']
+}</pre></div>
+          <div class="code-pane" id="ccreate-bulk-js"><pre>// Node.js 18+ (fetch 내장, async 함수 안에서). 개발자 Token 이 드러나므로 브라우저에서 직접 호출하지 마세요.
+const body = new URLSearchParams();
+body.append("action", "create_bulk");
+body.append("email_address", "&lt;EMAILID&gt;");
+body.append("pages", JSON.stringify([
+  {
+    "account_number": "1234567894321",
+    "bank_id": 3,
+    "account_owner": "홍길동",
+    "account_name": "길동상회 1호점"
+  },
+  {
+    "account_number": "9876543210",
+    "bank_id": 6,
+    "account_owner": "홍길동",
+    "account_name": "길동상회 2호점",
+    "mask_owner": "Y"
+  }
+]));
+
+const res = await fetch("https://aplx.link/api/", {
+  method:  "POST",
+  headers: { "AQR-DEVELOPER-TOKEN": "&lt;DEVELOPER TOKEN&gt;" },
+  body:    body
+});
+const r = await res.json();
+if (r.result == "success") {
+  // r.data
+}</pre></div>
+          <div class="code-pane" id="ccreate-bulk-py"><pre>import json
+import requests
+
+headers = {'AQR-DEVELOPER-TOKEN': '&lt;DEVELOPER TOKEN&gt;'}
+data = {
+    'action': 'create_bulk',
+    'email_address': '&lt;EMAILID&gt;',
+    'pages': json.dumps([
+        {
+            "account_number": "1234567894321",
+            "bank_id": 3,
+            "account_owner": "홍길동",
+            "account_name": "길동상회 1호점"
+        },
+        {
+            "account_number": "9876543210",
+            "bank_id": 6,
+            "account_owner": "홍길동",
+            "account_name": "길동상회 2호점",
+            "mask_owner": "Y"
+        }
+    ], ensure_ascii=False),
+}
+response = requests.post('https://aplx.link/api/', headers=headers, data=data)
+r = response.json()
+if r['result'] == 'success':
+    print(r['data'])</pre></div>
+        </div>
+
+        <div class="sec-title">응답 파라미터</div>
+        <div class="tbl-wrap">
+          <table class="tbl">
+            <thead>
+              <tr>
+                <th style="width:190px">파라미터명</th>
+                <th>설명</th>
+                <th style="width:76px">타입</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><span class="pname">result</span></td>
+                <td>처리 결과 ("success" 또는 "error")</td>
+                <td><span class="type">String</span></td>
+              </tr>
+              <tr>
+                <td><span class="pname">message</span></td>
+                <td>처리 결과가 "error"일 경우 오류 내용</td>
+                <td><span class="type">String</span></td>
+              </tr>
+              <tr>
+                <td><span class="pname">sendstatus</span></td>
+                <td>결과 코드 (0 = 성공, 음수 = 실패. 아래 Errors 참조)</td>
+                <td><span class="type">Integer</span></td>
+              </tr>
+              <tr>
+                <td><span class="pname">data.created_count</span></td>
+                <td>만든 페이지 수</td>
+                <td><span class="type">Integer</span></td>
+              </tr>
+              <tr>
+                <td><span class="pname">data.pages[].uniq_keyword</span></td>
+                <td>페이지 ID — 조회/수정/삭제 시 사용 (요청 순서와 같습니다)</td>
+                <td><span class="type">String</span></td>
+              </tr>
+              <tr>
+                <td><span class="pname">data.pages[].short_url</span></td>
+                <td>페이지 고유 URL</td>
+                <td><span class="type">String</span></td>
+              </tr>
+              <tr>
+                <td><span class="pname">data.pages[].qr_image</span></td>
+                <td>QR 이미지 다운로드 경로</td>
+                <td><span class="type">String</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="sec-title">응답 예시</div>
+        <div class="json-wrap">
+          <div class="json-label">JSON Response</div>
+          <pre>{
+  <span class="jk">"result"</span>: <span class="js">"success"</span>,
+  <span class="jk">"message"</span>: <span class="js">"success"</span>,
+  <span class="jk">"sendstatus"</span>: 0,
+  <span class="jk">"data"</span>: {
+    <span class="jk">"created_count"</span>: 2,
+    <span class="jk">"pages"</span>: [
+      { <span class="jk">"uniq_keyword"</span>: <span class="js">"abcde"</span>, <span class="jk">"short_url"</span>: <span class="js">"https://aq.gy/abcde"</span>, <span class="jk">"qr_image"</span>: <span class="js">"https://aplx.link/res?keyword=abcde"</span> },
+      { <span class="jk">"uniq_keyword"</span>: <span class="js">"fghij"</span>, <span class="jk">"short_url"</span>: <span class="js">"https://aq.gy/fghij"</span>, <span class="jk">"qr_image"</span>: <span class="js">"https://aplx.link/res?keyword=fghij"</span> }
+    ]
+  }
+}</pre>
+        </div>
+
+        <div class="sec-title">주요 오류</div>
+        <div class="tbl-wrap">
+          <table class="tbl">
+            <thead>
+              <tr>
+                <th style="width:150px">HTTP / sendstatus</th>
+                <th>설명</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td><span class="err-badge">400 / -6</span></td><td>항목 값이 잘못되었습니다. data.index 가 잘못된 항목의 순번(0부터)입니다.</td></tr>
+              <tr><td><span class="err-badge">403 / -1</span></td><td>대량 생성 권한이 없습니다.</td></tr>
+              <tr><td><span class="err-badge">429 / -7</span></td><td>비어 있는 슬롯이 모자랍니다. data.free 가 지금 비어 있는 슬롯 수입니다.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div><!-- /create-bulk -->
+
+      <!-- ── 페이지 대량 삭제 ─────────────────────────────────────── -->
+      <div id="delete-bulk" class="api-section">
+        <h2>페이지 대량 삭제</h2>
+        <p>여러 페이지를 한 번에 삭제합니다. 삭제한 페이지의 슬롯은 비워져 다시 쓸 수 있습니다.</p>
+        <div class="info-box"><p>지우기 전에 목록 전체가 내 페이지인지 먼저 확인합니다. <strong>하나라도 없으면 아무것도 지우지 않고</strong> 404 로 답합니다.<br>삭제는 페이지마다 확정되므로, 중간에 실패하면 그때까지 지운 페이지는 되돌아가지 않습니다. 응답의 <code>data.deleted</code> 와 <code>data.failed_uniq_keyword</code> 로 어디까지 지웠는지 확인하세요.<br>삭제는 되돌릴 수 없습니다.</p></div>
+
+        <div class="sec-title">기본 정보</div>
+        <div class="endpoint-box">
+          <span class="method post">POST</span>
+          <code>https://aplx.link/api/</code>
+        </div>
+
+        <div class="sec-title">요청 파라미터</div>
+        <div class="sub-label">Header</div>
+        <div class="tbl-wrap">
+          <table class="tbl">
+            <thead>
+              <tr>
+                <th style="width:190px">파라미터명</th>
+                <th>설명</th>
+                <th style="width:56px">필수</th>
+                <th style="width:76px">타입</th>
+                <th style="width:76px">최대길이</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><span class="pname">AQR-DEVELOPER-TOKEN</span></td>
+                <td>부여받은 개발자 Token 값을 헤더에 입력합니다.</td>
+                <td><span class="req-y">Y</span></td>
+                <td><span class="type">String</span></td>
+                <td>-</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="sub-label" style="margin-top:12px">Body — application/x-www-form-urlencoded</div>
+        <div class="tbl-wrap">
+          <table class="tbl">
+            <thead>
+              <tr>
+                <th style="width:150px">파라미터명</th>
+                <th>설명</th>
+                <th style="width:56px">필수</th>
+                <th style="width:76px">타입</th>
+                <th style="width:76px">최대길이</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><span class="pname">action</span></td>
+                <td>"delete_bulk"를 입력합니다.</td>
+                <td><span class="req-y">Y</span></td>
+                <td><span class="type">String</span></td>
+                <td>20</td>
+              </tr>
+              <tr>
+                <td><span class="pname">email_address</span></td>
+                <td>가입시 입력한 이메일 주소를 입력합니다.</td>
+                <td><span class="req-y">Y</span></td>
+                <td><span class="type">String</span></td>
+                <td>100</td>
+              </tr>
+              <tr>
+                <td><span class="pname">uniq_keywords</span></td>
+                <td>삭제할 페이지의 uniq_keyword 를 쉼표(,)로 이어 입력합니다. 최대 50개</td>
+                <td><span class="req-y">Y</span></td>
+                <td><span class="type">String</span></td>
+                <td>50개</td>
+              </tr>
+              <tr>
+                <td><span class="pname">force</span></td>
+                <td>"Y" 이면 연동 계좌 해지에 실패해도 페이지를 삭제합니다. (409 응답을 받았을 때만 사용)</td>
+                <td><span class="req-n">N</span></td>
+                <td><span class="type">String</span></td>
+                <td>1</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="sec-title">요청 예시</div>
+        <div class="code-wrap">
+          <div class="code-tabs" id="ct-delete-bulk">
+            <button class="code-tab active" data-pane="cdelete-bulk-shell">Shell</button>
+            <button class="code-tab" data-pane="cdelete-bulk-php">PHP</button>
+            <button class="code-tab" data-pane="cdelete-bulk-js">JavaScript</button>
+            <button class="code-tab" data-pane="cdelete-bulk-py">Python</button>
+          </div>
+          <div class="code-pane active" id="cdelete-bulk-shell"><pre>curl -H "AQR-DEVELOPER-TOKEN: &lt;DEVELOPER TOKEN&gt;" \
+     -X POST \
+     --data-urlencode 'action=delete_bulk' \
+     --data-urlencode 'email_address=&lt;EMAILID&gt;' \
+     --data-urlencode 'uniq_keywords=abcde,fghij' \
+     https://aplx.link/api/</pre></div>
+          <div class="code-pane" id="cdelete-bulk-php"><pre>$body['action']         = 'delete_bulk';
+$body['email_address']  = '&lt;EMAILID&gt;';
+$body['uniq_keywords']  = 'abcde,fghij';
+
+$ch = curl_init();
+curl_setopt($ch, CURLOPT_URL,            'https://aplx.link/api/');
+curl_setopt($ch, CURLOPT_HTTPHEADER,     array('AQR-DEVELOPER-TOKEN: &lt;DEVELOPER TOKEN&gt;'));
+curl_setopt($ch, CURLOPT_POST,           true);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+curl_setopt($ch, CURLOPT_POSTFIELDS,     http_build_query($body));
+$response = json_decode(curl_exec($ch), true);
+$status   = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+curl_close($ch);
+
+if ($response['result'] == 'success') {
+    // $response['data']
+}</pre></div>
+          <div class="code-pane" id="cdelete-bulk-js"><pre>// Node.js 18+ (fetch 내장, async 함수 안에서). 개발자 Token 이 드러나므로 브라우저에서 직접 호출하지 마세요.
+const body = new URLSearchParams();
+body.append("action", "delete_bulk");
+body.append("email_address", "&lt;EMAILID&gt;");
+body.append("uniq_keywords", "abcde,fghij");
+
+const res = await fetch("https://aplx.link/api/", {
+  method:  "POST",
+  headers: { "AQR-DEVELOPER-TOKEN": "&lt;DEVELOPER TOKEN&gt;" },
+  body:    body
+});
+const r = await res.json();
+if (r.result == "success") {
+  // r.data
+}</pre></div>
+          <div class="code-pane" id="cdelete-bulk-py"><pre>import requests
+
+headers = {'AQR-DEVELOPER-TOKEN': '&lt;DEVELOPER TOKEN&gt;'}
+data = {
+    'action': 'delete_bulk',
+    'email_address': '&lt;EMAILID&gt;',
+    'uniq_keywords': 'abcde,fghij',
+}
+response = requests.post('https://aplx.link/api/', headers=headers, data=data)
+r = response.json()
+if r['result'] == 'success':
+    print(r['data'])</pre></div>
+        </div>
+
+        <div class="sec-title">응답 파라미터</div>
+        <div class="tbl-wrap">
+          <table class="tbl">
+            <thead>
+              <tr>
+                <th style="width:190px">파라미터명</th>
+                <th>설명</th>
+                <th style="width:76px">타입</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><span class="pname">result</span></td>
+                <td>처리 결과 ("success" 또는 "error")</td>
+                <td><span class="type">String</span></td>
+              </tr>
+              <tr>
+                <td><span class="pname">message</span></td>
+                <td>처리 결과가 "error"일 경우 오류 내용</td>
+                <td><span class="type">String</span></td>
+              </tr>
+              <tr>
+                <td><span class="pname">sendstatus</span></td>
+                <td>결과 코드 (0 = 성공, 음수 = 실패. 아래 Errors 참조)</td>
+                <td><span class="type">Integer</span></td>
+              </tr>
+              <tr>
+                <td><span class="pname">data.deleted[]</span></td>
+                <td>삭제한 페이지의 uniq_keyword 목록</td>
+                <td><span class="type">Array</span></td>
+              </tr>
+              <tr>
+                <td><span class="pname">data.deleted_count</span></td>
+                <td>삭제한 페이지 수</td>
+                <td><span class="type">Integer</span></td>
+              </tr>
+              <tr>
+                <td><span class="pname">data.failed_uniq_keyword</span></td>
+                <td>실패했을 때 멈춘 페이지의 uniq_keyword (실패 응답에만 있음)</td>
+                <td><span class="type">String</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="sec-title">응답 예시</div>
+        <div class="json-wrap">
+          <div class="json-label">JSON Response</div>
+          <pre>{
+  <span class="jk">"result"</span>: <span class="js">"success"</span>,
+  <span class="jk">"message"</span>: <span class="js">"success"</span>,
+  <span class="jk">"sendstatus"</span>: 0,
+  <span class="jk">"data"</span>: {
+    <span class="jk">"deleted"</span>: [<span class="js">"abcde"</span>, <span class="js">"fghij"</span>],
+    <span class="jk">"deleted_count"</span>: 2
+  }
+}</pre>
+        </div>
+
+        <div class="sec-title">주요 오류</div>
+        <div class="tbl-wrap">
+          <table class="tbl">
+            <thead>
+              <tr>
+                <th style="width:150px">HTTP / sendstatus</th>
+                <th>설명</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td><span class="err-badge">404 / -2</span></td><td>목록 중 내 페이지가 아닌 uniq_keyword 가 있습니다. 아무것도 지우지 않았습니다.</td></tr>
+              <tr><td><span class="err-badge">409 / -901</span></td><td>연동된 계좌 해지에 실패해 멈췄습니다. 확인 후 force=Y 로 다시 요청할 수 있습니다.</td></tr>
+              <tr><td><span class="err-badge">500 / -1</span></td><td>삭제 중 오류로 멈췄습니다. data.deleted 까지는 삭제되었습니다.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div><!-- /delete-bulk -->
+
+      <!-- ── 등록 가능한 페이지 슬롯 수 가져오기 ─────────────────────────────────────── -->
+      <div id="slot-count" class="api-section">
+        <h2>등록 가능한 페이지 슬롯 수 가져오기</h2>
+        <p>지금 새 페이지를 만들 수 있는 슬롯 수를 가져옵니다. 비어 있는 무료 슬롯과, 아직 만료되지 않은 비어 있는 유료 슬롯을 셉니다.</p>
+        <div class="info-box"><p>확인한 뒤 다른 곳에서 페이지를 만들면 수가 줄 수 있습니다. 생성 요청은 그 시점에 다시 확인합니다.</p></div>
+
+        <div class="sec-title">기본 정보</div>
+        <div class="endpoint-box">
+          <span class="method post">POST</span>
+          <code>https://aplx.link/api/</code>
+        </div>
+
+        <div class="sec-title">요청 파라미터</div>
+        <div class="sub-label">Header</div>
+        <div class="tbl-wrap">
+          <table class="tbl">
+            <thead>
+              <tr>
+                <th style="width:190px">파라미터명</th>
+                <th>설명</th>
+                <th style="width:56px">필수</th>
+                <th style="width:76px">타입</th>
+                <th style="width:76px">최대길이</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><span class="pname">AQR-DEVELOPER-TOKEN</span></td>
+                <td>부여받은 개발자 Token 값을 헤더에 입력합니다.</td>
+                <td><span class="req-y">Y</span></td>
+                <td><span class="type">String</span></td>
+                <td>-</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="sub-label" style="margin-top:12px">Body — application/x-www-form-urlencoded</div>
+        <div class="tbl-wrap">
+          <table class="tbl">
+            <thead>
+              <tr>
+                <th style="width:150px">파라미터명</th>
+                <th>설명</th>
+                <th style="width:56px">필수</th>
+                <th style="width:76px">타입</th>
+                <th style="width:76px">최대길이</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><span class="pname">action</span></td>
+                <td>"slot_count"를 입력합니다.</td>
+                <td><span class="req-y">Y</span></td>
+                <td><span class="type">String</span></td>
+                <td>20</td>
+              </tr>
+              <tr>
+                <td><span class="pname">email_address</span></td>
+                <td>가입시 입력한 이메일 주소를 입력합니다.</td>
+                <td><span class="req-y">Y</span></td>
+                <td><span class="type">String</span></td>
+                <td>100</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="sec-title">요청 예시</div>
+        <div class="code-wrap">
+          <div class="code-tabs" id="ct-slot-count">
+            <button class="code-tab active" data-pane="cslot-count-shell">Shell</button>
+            <button class="code-tab" data-pane="cslot-count-php">PHP</button>
+            <button class="code-tab" data-pane="cslot-count-js">JavaScript</button>
+            <button class="code-tab" data-pane="cslot-count-py">Python</button>
+          </div>
+          <div class="code-pane active" id="cslot-count-shell"><pre>curl -H "AQR-DEVELOPER-TOKEN: &lt;DEVELOPER TOKEN&gt;" \
+     -X POST \
+     --data-urlencode 'action=slot_count' \
+     --data-urlencode 'email_address=&lt;EMAILID&gt;' \
+     https://aplx.link/api/</pre></div>
+          <div class="code-pane" id="cslot-count-php"><pre>$body['action']         = 'slot_count';
+$body['email_address']  = '&lt;EMAILID&gt;';
+
+$ch = curl_init();
+curl_setopt($ch, CURLOPT_URL,            'https://aplx.link/api/');
+curl_setopt($ch, CURLOPT_HTTPHEADER,     array('AQR-DEVELOPER-TOKEN: &lt;DEVELOPER TOKEN&gt;'));
+curl_setopt($ch, CURLOPT_POST,           true);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+curl_setopt($ch, CURLOPT_POSTFIELDS,     http_build_query($body));
+$response = json_decode(curl_exec($ch), true);
+$status   = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+curl_close($ch);
+
+if ($response['result'] == 'success') {
+    // $response['data']
+}</pre></div>
+          <div class="code-pane" id="cslot-count-js"><pre>// Node.js 18+ (fetch 내장, async 함수 안에서). 개발자 Token 이 드러나므로 브라우저에서 직접 호출하지 마세요.
+const body = new URLSearchParams();
+body.append("action", "slot_count");
+body.append("email_address", "&lt;EMAILID&gt;");
+
+const res = await fetch("https://aplx.link/api/", {
+  method:  "POST",
+  headers: { "AQR-DEVELOPER-TOKEN": "&lt;DEVELOPER TOKEN&gt;" },
+  body:    body
+});
+const r = await res.json();
+if (r.result == "success") {
+  // r.data
+}</pre></div>
+          <div class="code-pane" id="cslot-count-py"><pre>import requests
+
+headers = {'AQR-DEVELOPER-TOKEN': '&lt;DEVELOPER TOKEN&gt;'}
+data = {
+    'action': 'slot_count',
+    'email_address': '&lt;EMAILID&gt;',
+}
+response = requests.post('https://aplx.link/api/', headers=headers, data=data)
+r = response.json()
+if r['result'] == 'success':
+    print(r['data'])</pre></div>
+        </div>
+
+        <div class="sec-title">응답 파라미터</div>
+        <div class="tbl-wrap">
+          <table class="tbl">
+            <thead>
+              <tr>
+                <th style="width:190px">파라미터명</th>
+                <th>설명</th>
+                <th style="width:76px">타입</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><span class="pname">result</span></td>
+                <td>처리 결과 ("success" 또는 "error")</td>
+                <td><span class="type">String</span></td>
+              </tr>
+              <tr>
+                <td><span class="pname">message</span></td>
+                <td>처리 결과가 "error"일 경우 오류 내용</td>
+                <td><span class="type">String</span></td>
+              </tr>
+              <tr>
+                <td><span class="pname">sendstatus</span></td>
+                <td>결과 코드 (0 = 성공, 음수 = 실패. 아래 Errors 참조)</td>
+                <td><span class="type">Integer</span></td>
+              </tr>
+              <tr>
+                <td><span class="pname">data.free</span></td>
+                <td>지금 페이지를 만들 수 있는 슬롯 수</td>
+                <td><span class="type">Integer</span></td>
+              </tr>
+              <tr>
+                <td><span class="pname">data.accounts</span></td>
+                <td>등록된 페이지 수</td>
+                <td><span class="type">Integer</span></td>
+              </tr>
+              <tr>
+                <td><span class="pname">data.account_limit</span></td>
+                <td>보유한 전체 슬롯 수</td>
+                <td><span class="type">Integer</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="sec-title">응답 예시</div>
+        <div class="json-wrap">
+          <div class="json-label">JSON Response</div>
+          <pre>{
+  <span class="jk">"result"</span>: <span class="js">"success"</span>,
+  <span class="jk">"message"</span>: <span class="js">"success"</span>,
+  <span class="jk">"sendstatus"</span>: 0,
+  <span class="jk">"data"</span>: {
+    <span class="jk">"free"</span>: 2,
+    <span class="jk">"accounts"</span>: 1,
+    <span class="jk">"account_limit"</span>: 3
+  }
+}</pre>
+        </div>
+      </div><!-- /slot-count -->
+
+    </section><!-- /bulk-section -->
+
+    <!-- 통계 -->
+    <section id="stats-section" class="card">
+      <h1>통계</h1>
+
+      <!-- ── 페이지 사용 통계 가져오기 ─────────────────────────────────────── -->
+      <div id="stats" class="api-section">
+        <h2>페이지 사용 통계 가져오기</h2>
+        <p>내 모든 페이지를 합친 사용 통계를 가져옵니다. AQR Square 의 "페이지 사용 통계" 화면과 같은 값입니다. 전체 기간의 조회 구간별 페이지 수와, 주(일요일~토요일)마다의 조회수 · 좋아요 수를 돌려줍니다.</p>
+        <div class="info-box"><p><strong>집계 기준</strong><br>· 조회수는 QR 코드 주소(<code>short_url</code>)로 들어온 조회만 셉니다. 휴대폰(iOS · Android)이 아닌 기기에서 연 경우는 빼고 셉니다.<br>· 주는 일요일 0시(한국 시각)에 시작하는 7일입니다. 가장 먼저 만든 페이지의 주부터 이번 주까지 한 주에 한 항목씩 들어 있습니다.<br>· 삭제한 페이지는 집계에 넣지 않습니다.</p></div>
+
+        <div class="sec-title">기본 정보</div>
+        <div class="endpoint-box">
+          <span class="method post">POST</span>
+          <code>https://aplx.link/api/</code>
+        </div>
+
+        <div class="sec-title">요청 파라미터</div>
+        <div class="sub-label">Header</div>
+        <div class="tbl-wrap">
+          <table class="tbl">
+            <thead>
+              <tr>
+                <th style="width:190px">파라미터명</th>
+                <th>설명</th>
+                <th style="width:56px">필수</th>
+                <th style="width:76px">타입</th>
+                <th style="width:76px">최대길이</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><span class="pname">AQR-DEVELOPER-TOKEN</span></td>
+                <td>부여받은 개발자 Token 값을 헤더에 입력합니다.</td>
+                <td><span class="req-y">Y</span></td>
+                <td><span class="type">String</span></td>
+                <td>-</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="sub-label" style="margin-top:12px">Body — application/x-www-form-urlencoded</div>
+        <div class="tbl-wrap">
+          <table class="tbl">
+            <thead>
+              <tr>
+                <th style="width:150px">파라미터명</th>
+                <th>설명</th>
+                <th style="width:56px">필수</th>
+                <th style="width:76px">타입</th>
+                <th style="width:76px">최대길이</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><span class="pname">action</span></td>
+                <td>"stats"를 입력합니다.</td>
+                <td><span class="req-y">Y</span></td>
+                <td><span class="type">String</span></td>
+                <td>20</td>
+              </tr>
+              <tr>
+                <td><span class="pname">email_address</span></td>
+                <td>가입시 입력한 이메일 주소를 입력합니다.</td>
+                <td><span class="req-y">Y</span></td>
+                <td><span class="type">String</span></td>
+                <td>100</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="sec-title">요청 예시</div>
+        <div class="code-wrap">
+          <div class="code-tabs" id="ct-stats">
+            <button class="code-tab active" data-pane="cstats-shell">Shell</button>
+            <button class="code-tab" data-pane="cstats-php">PHP</button>
+            <button class="code-tab" data-pane="cstats-js">JavaScript</button>
+            <button class="code-tab" data-pane="cstats-py">Python</button>
+          </div>
+          <div class="code-pane active" id="cstats-shell"><pre>curl -H "AQR-DEVELOPER-TOKEN: &lt;DEVELOPER TOKEN&gt;" \
+     -X POST \
+     --data-urlencode 'action=stats' \
+     --data-urlencode 'email_address=&lt;EMAILID&gt;' \
+     https://aplx.link/api/</pre></div>
+          <div class="code-pane" id="cstats-php"><pre>$body['action']         = 'stats';
+$body['email_address']  = '&lt;EMAILID&gt;';
+
+$ch = curl_init();
+curl_setopt($ch, CURLOPT_URL,            'https://aplx.link/api/');
+curl_setopt($ch, CURLOPT_HTTPHEADER,     array('AQR-DEVELOPER-TOKEN: &lt;DEVELOPER TOKEN&gt;'));
+curl_setopt($ch, CURLOPT_POST,           true);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+curl_setopt($ch, CURLOPT_POSTFIELDS,     http_build_query($body));
+$response = json_decode(curl_exec($ch), true);
+$status   = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+curl_close($ch);
+
+if ($response['result'] == 'success') {
+    // $response['data']
+}</pre></div>
+          <div class="code-pane" id="cstats-js"><pre>// Node.js 18+ (fetch 내장, async 함수 안에서). 개발자 Token 이 드러나므로 브라우저에서 직접 호출하지 마세요.
+const body = new URLSearchParams();
+body.append("action", "stats");
+body.append("email_address", "&lt;EMAILID&gt;");
+
+const res = await fetch("https://aplx.link/api/", {
+  method:  "POST",
+  headers: { "AQR-DEVELOPER-TOKEN": "&lt;DEVELOPER TOKEN&gt;" },
+  body:    body
+});
+const r = await res.json();
+if (r.result == "success") {
+  // r.data
+}</pre></div>
+          <div class="code-pane" id="cstats-py"><pre>import requests
+
+headers = {'AQR-DEVELOPER-TOKEN': '&lt;DEVELOPER TOKEN&gt;'}
+data = {
+    'action': 'stats',
+    'email_address': '&lt;EMAILID&gt;',
+}
+response = requests.post('https://aplx.link/api/', headers=headers, data=data)
+r = response.json()
+if r['result'] == 'success':
+    print(r['data'])</pre></div>
+        </div>
+
+        <div class="sec-title">응답 파라미터</div>
+        <div class="tbl-wrap">
+          <table class="tbl">
+            <thead>
+              <tr>
+                <th style="width:190px">파라미터명</th>
+                <th>설명</th>
+                <th style="width:76px">타입</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><span class="pname">result</span></td>
+                <td>처리 결과 ("success" 또는 "error")</td>
+                <td><span class="type">String</span></td>
+              </tr>
+              <tr>
+                <td><span class="pname">message</span></td>
+                <td>처리 결과가 "error"일 경우 오류 내용</td>
+                <td><span class="type">String</span></td>
+              </tr>
+              <tr>
+                <td><span class="pname">sendstatus</span></td>
+                <td>결과 코드 (0 = 성공, 음수 = 실패. 아래 Errors 참조)</td>
+                <td><span class="type">Integer</span></td>
+              </tr>
+              <tr>
+                <td><span class="pname">data.total_pages</span></td>
+                <td>지금 있는 페이지 수</td>
+                <td><span class="type">Integer</span></td>
+              </tr>
+              <tr>
+                <td><span class="pname">data.total_likes</span></td>
+                <td>모든 페이지의 좋아요 버튼을 누른 수 (전체 기간)</td>
+                <td><span class="type">Integer</span></td>
+              </tr>
+              <tr>
+                <td><span class="pname">data.all.one</span></td>
+                <td>전체 기간에 1~2회 조회된 페이지 수</td>
+                <td><span class="type">Integer</span></td>
+              </tr>
+              <tr>
+                <td><span class="pname">data.all.three</span></td>
+                <td>전체 기간에 3~9회 조회된 페이지 수</td>
+                <td><span class="type">Integer</span></td>
+              </tr>
+              <tr>
+                <td><span class="pname">data.all.ten</span></td>
+                <td>전체 기간에 10회 이상 조회된 페이지 수</td>
+                <td><span class="type">Integer</span></td>
+              </tr>
+              <tr>
+                <td><span class="pname">data.all.used</span></td>
+                <td>한 번이라도 조회된 페이지 수 (one + three + ten)</td>
+                <td><span class="type">Integer</span></td>
+              </tr>
+              <tr>
+                <td><span class="pname">data.all.unused</span></td>
+                <td>한 번도 조회되지 않은 페이지 수</td>
+                <td><span class="type">Integer</span></td>
+              </tr>
+              <tr>
+                <td><span class="pname">data.weeks[]</span></td>
+                <td>주별 통계 목록 (오래된 주부터). 항목은 아래 표를 따릅니다. 페이지가 없으면 빈 배열</td>
+                <td><span class="type">Array</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="sub-label" style="margin-top:12px">weeks[] 항목</div>
+        <div class="tbl-wrap">
+          <table class="tbl">
+            <thead>
+              <tr>
+                <th style="width:190px">항목명</th>
+                <th>설명</th>
+                <th style="width:76px">타입</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><span class="pname">idx</span></td>
+                <td>주 순번 (0부터)</td>
+                <td><span class="type">Integer</span></td>
+              </tr>
+              <tr>
+                <td><span class="pname">start / end</span></td>
+                <td>그 주의 첫날(일요일) · 마지막 날(토요일). "2026.10.18" 형식</td>
+                <td><span class="type">String</span></td>
+              </tr>
+              <tr>
+                <td><span class="pname">year / month / wom</span></td>
+                <td>그 주가 속한 연도 · 월 · 그 달의 몇째 주 (그 주의 수요일 기준)</td>
+                <td><span class="type">Integer</span></td>
+              </tr>
+              <tr>
+                <td><span class="pname">label</span></td>
+                <td>표시용 이름. 예: "10월 3주"</td>
+                <td><span class="type">String</span></td>
+              </tr>
+              <tr>
+                <td><span class="pname">total</span></td>
+                <td>그 주가 끝날 때까지 만들어진 페이지 수 (지금 남아 있는 페이지 기준, 누적)</td>
+                <td><span class="type">Integer</span></td>
+              </tr>
+              <tr>
+                <td><span class="pname">one</span></td>
+                <td>그 주에 1~2회 조회된 페이지 수</td>
+                <td><span class="type">Integer</span></td>
+              </tr>
+              <tr>
+                <td><span class="pname">three</span></td>
+                <td>그 주에 3~9회 조회된 페이지 수</td>
+                <td><span class="type">Integer</span></td>
+              </tr>
+              <tr>
+                <td><span class="pname">ten</span></td>
+                <td>그 주에 10회 이상 조회된 페이지 수</td>
+                <td><span class="type">Integer</span></td>
+              </tr>
+              <tr>
+                <td><span class="pname">sub</span></td>
+                <td>그 주에 한 번이라도 조회된 페이지 수 (one + three + ten)</td>
+                <td><span class="type">Integer</span></td>
+              </tr>
+              <tr>
+                <td><span class="pname">unused</span></td>
+                <td>그 주에 조회되지 않은 페이지 수 (total - sub)</td>
+                <td><span class="type">Integer</span></td>
+              </tr>
+              <tr>
+                <td><span class="pname">views</span></td>
+                <td>그 주의 조회수 합계</td>
+                <td><span class="type">Integer</span></td>
+              </tr>
+              <tr>
+                <td><span class="pname">likes</span></td>
+                <td>그 주에 좋아요 버튼을 누른 수</td>
+                <td><span class="type">Integer</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="sec-title">응답 예시</div>
+        <div class="json-wrap">
+          <div class="json-label">JSON Response</div>
+          <pre>{
+  <span class="jk">"result"</span>: <span class="js">"success"</span>,
+  <span class="jk">"message"</span>: <span class="js">"success"</span>,
+  <span class="jk">"sendstatus"</span>: 0,
+  <span class="jk">"data"</span>: {
+    <span class="jk">"total_pages"</span>: 3,
+    <span class="jk">"total_likes"</span>: 12,
+    <span class="jk">"all"</span>: { <span class="jk">"one"</span>: 1, <span class="jk">"three"</span>: 1, <span class="jk">"ten"</span>: 0, <span class="jk">"used"</span>: 2, <span class="jk">"unused"</span>: 1 },
+    <span class="jk">"weeks"</span>: [
+      {
+        <span class="jk">"idx"</span>: 0,
+        <span class="jk">"start"</span>: <span class="js">"2026.10.11"</span>,
+        <span class="jk">"end"</span>: <span class="js">"2026.10.17"</span>,
+        <span class="jk">"year"</span>: 2026,
+        <span class="jk">"month"</span>: 10,
+        <span class="jk">"wom"</span>: 2,
+        <span class="jk">"label"</span>: <span class="js">"10월 2주"</span>,
+        <span class="jk">"total"</span>: 2,
+        <span class="jk">"one"</span>: 1,
+        <span class="jk">"three"</span>: 0,
+        <span class="jk">"ten"</span>: 0,
+        <span class="jk">"sub"</span>: 1,
+        <span class="jk">"unused"</span>: 1,
+        <span class="jk">"views"</span>: 2,
+        <span class="jk">"likes"</span>: 0
+      },
+      {
+        <span class="jk">"idx"</span>: 1,
+        <span class="jk">"start"</span>: <span class="js">"2026.10.18"</span>,
+        <span class="jk">"end"</span>: <span class="js">"2026.10.24"</span>,
+        <span class="jk">"year"</span>: 2026,
+        <span class="jk">"month"</span>: 10,
+        <span class="jk">"wom"</span>: 3,
+        <span class="jk">"label"</span>: <span class="js">"10월 3주"</span>,
+        <span class="jk">"total"</span>: 3,
+        <span class="jk">"one"</span>: 1,
+        <span class="jk">"three"</span>: 1,
+        <span class="jk">"ten"</span>: 0,
+        <span class="jk">"sub"</span>: 2,
+        <span class="jk">"unused"</span>: 1,
+        <span class="jk">"views"</span>: 6,
+        <span class="jk">"likes"</span>: 12
+      }
+    ]
+  }
+}</pre>
+        </div>
+
+        <div class="sec-title">주요 오류</div>
+        <div class="tbl-wrap">
+          <table class="tbl">
+            <thead>
+              <tr>
+                <th style="width:150px">HTTP / sendstatus</th>
+                <th>설명</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td><span class="err-badge">500 / -1</span></td><td>통계를 만들지 못했습니다. 잠시 후 다시 시도하세요.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div><!-- /stats -->
+
+    </section><!-- /stats-section -->
 
     <!-- Errors -->
     <section id="errors" class="card">
@@ -652,11 +3118,54 @@ catch (WebException webException)
             <tr><td><span class="err-badge">410</span></td><td>Gone — 요청한 리소스가 서버에서 삭제되었습니다.</td></tr>
             <tr><td><span class="err-badge">429</span></td><td>Too Many Requests — 요청 횟수가 너무 많습니다. 잠시 후 다시 시도하세요.</td></tr>
             <tr><td><span class="err-badge">500</span></td><td>Internal Server Error — 서버 오류가 발생하였습니다. 잠시 후 다시 시도하세요.</td></tr>
+            <tr><td><span class="err-badge">409</span></td><td>Conflict — 연동된 계좌 해지에 실패했습니다. (페이지 대량 삭제)</td></tr>
             <tr><td><span class="err-badge">503</span></td><td>Service Unavailable — 서비스 점검 중입니다. 잠시 후 다시 시도하세요.</td></tr>
           </tbody>
         </table>
       </div>
+
+      <p style="margin-top:16px">응답 본문의 <code>sendstatus</code> 는 실패 이유를 더 자세히 알려 줍니다.</p>
+      <div class="tbl-wrap">
+        <table class="tbl">
+          <thead>
+            <tr>
+              <th style="width:120px">sendstatus</th>
+              <th>설명</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>0</td><td>성공</td></tr>
+            <tr><td>-1</td><td>파라미터 누락 · 인증 실패 · 처리 중 오류</td></tr>
+            <tr><td>-2</td><td>페이지를 찾을 수 없거나, 바꿀 수 없는 계좌 정보입니다.</td></tr>
+            <tr><td>-5</td><td>저장 중 오류</td></tr>
+            <tr><td>-6</td><td>값의 형식이 잘못되었습니다.</td></tr>
+            <tr><td>-7</td><td>사용할 수 없는 이름이거나, 등록할 수 있는 슬롯이 모자랍니다.</td></tr>
+            <tr><td>-8</td><td>바뀐 항목이 없습니다.</td></tr>
+            <tr><td>-901</td><td>연동된 계좌 해지에 실패했습니다. force=Y 로 다시 요청할 수 있습니다.</td></tr>
+          </tbody>
+        </table>
+      </div>
     </section>
+
+    <!-- 사업자 정보 (AQR Square 하단과 같은 구성) -->
+    <footer class="biz-foot">
+      <p class="biz-links">
+        <a href="https://aqr.aplx.link">AQR 홈페이지</a>
+        <a href="https://aplx.link/square">AQR Square</a>
+      </p>
+      <details class="biz-info">
+        <summary>(주)어플라이 사업자 정보</summary>
+        <div>
+          <img src="https://home.aply.biz/symbol/images/APLY_Transparent_Bg.png" alt="APLY" class="biz-logo">
+          <p><b>주식회사 어플라이</b> | 대표이사 <b>이건우</b></p>
+          <p>경기도 파주시 금빛로 24-21, 6층 604호(금촌동, 보람프라자)</p>
+          <p>사업자등록번호 <b>852-88-01183</b> [<a href="http://www.ftc.go.kr/bizCommPop.do?wrkr_no=8528801183" target="_blank" rel="noopener">조회하기</a>]</p>
+          <p>통신판매업번호 <b>제2022-경기파주-1463호</b></p>
+          <p>전화 <b>0507-1496-0803</b></p>
+        </div>
+      </details>
+      <p class="biz-copy">©2022-<span id="yr"></span> <a href="https://aply.biz" target="_blank" rel="noopener">APLY Inc.</a></p>
+    </footer>
 
   </main>
 </div>

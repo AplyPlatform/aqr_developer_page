@@ -15,8 +15,9 @@ document.querySelectorAll('.code-tabs').forEach(function(nav) {
 });
 
 // Sidebar highlight on scroll
-var anchors = ['intro', 'token', 'account-section', 'create', 'delete', 'errors'];
+// The section list comes from the sidebar links, so a new API section only needs a sidebar entry.
 var navLinks = document.querySelectorAll('.sidebar-nav a');
+var anchors = Array.prototype.map.call(navLinks, function(a) { return a.getAttribute('href').replace('#', ''); });
 window.addEventListener('scroll', function() {
   var scrollY = window.scrollY + 80;
   var current = anchors[0];
